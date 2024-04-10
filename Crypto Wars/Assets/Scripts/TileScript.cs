@@ -17,7 +17,7 @@ public class Tile : MonoBehaviour
     }
 
     // References to the renderer and materials for the tile
-    private MeshRenderer rendererReference;
+    public MeshRenderer rendererReference;
     private Building currBuilding;
 
     // Default Materials 
