@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2024-04-10_18-21-09" tag="">
+  <assembly name="Scripts">
+    <class name="AttackButtonScript" coveredlines="7" coverablelines="7" totallines="25" coveredbranches="0" totalbranches="0" />
+    <class name="Battles" coveredlines="0" coverablelines="88" totallines="217" coveredbranches="0" totalbranches="0" />
+    <class name="BuildButtonScript" coveredlines="9" coverablelines="9" totallines="178" coveredbranches="0" totalbranches="0" />
+    <class name="Building" coveredlines="7" coverablelines="59" totallines="104" coveredbranches="0" totalbranches="0" />
+    <class name="BuildingRegistry" coveredlines="0" coverablelines="14" totallines="33" coveredbranches="0" totalbranches="0" />
+    <class name="CameraScript" coveredlines="33" coverablelines="57" totallines="109" coveredbranches="0" totalbranches="0" />
+    <class name="CancelButton" coveredlines="8" coverablelines="8" totallines="24" coveredbranches="0" totalbranches="0" />
+    <class name="Card" coveredlines="4" coverablelines="31" totallines="99" coveredbranches="0" totalbranches="0" />
+    <class name="CardRegistry" coveredlines="0" coverablelines="21" totallines="44" coveredbranches="0" totalbranches="0" />
+    <class name="CardStack" coveredlines="0" coverablelines="45" totallines="68" coveredbranches="0" totalbranches="0" />
+    <class name="EndTurn" coveredlines="8" coverablelines="9" totallines="42" coveredbranches="0" totalbranches="0" />
+    <class name="EscapeMenu" coveredlines="4" coverablelines="79" totallines="127" coveredbranches="0" totalbranches="0" />
+    <class name="GameManager" coveredlines="0" coverablelines="23" totallines="53" coveredbranches="0" totalbranches="0" />
+    <class name="Hand" coveredlines="0" coverablelines="26" totallines="48" coveredbranches="0" totalbranches="0" />
+    <class name="Inventory" coveredlines="2" coverablelines="97" totallines="156" coveredbranches="0" totalbranches="0" />
+    <class name="InventoryManager" coveredlines="27" coverablelines="63" totallines="106" coveredbranches="0" totalbranches="0" />
+    <class name="InventorySelection" coveredlines="21" coverablelines="65" totallines="117" coveredbranches="0" totalbranches="0" />
+    <class name="MainMenu" coveredlines="0" coverablelines="56" totallines="125" coveredbranches="0" totalbranches="0" />
+    <class name="Player" coveredlines="8" coverablelines="85" totallines="168" coveredbranches="0" totalbranches="0" />
+    <class name="PlayerController" coveredlines="5" coverablelines="112" totallines="170" coveredbranches="0" totalbranches="0" />
+    <class name="PlayerList" coveredlines="1" coverablelines="52" totallines="87" coveredbranches="0" totalbranches="0" />
+    <class name="Stash" coveredlines="7" coverablelines="41" totallines="84" coveredbranches="0" totalbranches="0" />
+    <class name="Tile" coveredlines="31" coverablelines="40" totallines="89" coveredbranches="0" totalbranches="0" />
+    <class name="TurnMaster" coveredlines="0" coverablelines="52" totallines="88" coveredbranches="0" totalbranches="0" />
+    <class name="WinConditions" coveredlines="0" coverablelines="21" totallines="65" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>

@@ -6,7 +6,6 @@ using UnityEditor;
 public class EndTurnTest
 {
     public GameObject go;
-    // public TextMeshProUGUI turnNumber; //for some reason I can't find TextMeshProUGUI
     int startNum;
 
     [SetUp]
@@ -14,8 +13,8 @@ public class EndTurnTest
     {
         go = new GameObject("EndTurnButton");
         go.AddComponent<EndTurn>();
-        // go.GetComponent<TextMeshProUGUI>();
-        // turnOutput = go.GetComponent<TextMeshProUGUI>();
+        go.AddComponent<TMPro.TextMeshProUGUI>();
+        go.GetComponent<EndTurn>().turnOutput = go.GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     [Test]

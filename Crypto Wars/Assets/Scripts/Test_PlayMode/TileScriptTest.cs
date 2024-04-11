@@ -19,7 +19,7 @@ namespace Test
 
             // Initialize Tile GameObject and Tile script before each test
             tile = tileGameObject.GetComponent<Tile>();
-            tile.rendererReference = tileGameObject.GetComponent<MeshRenderer>();
+            tile.SetRender(tileGameObject.GetComponent<MeshRenderer>());
 
             // Set up a test material
             testMaterial = new Material(Shader.Find("Standard"));

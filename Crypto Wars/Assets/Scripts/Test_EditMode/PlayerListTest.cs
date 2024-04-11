@@ -6,10 +6,11 @@ using UnityEngine.TestTools;
 
 public class PlayerListTest
 {
+    // THIS SCRIPT DOES NOT WORK
     // A Test behaves as an ordinary method
     [Test]
     public void testVisibilityToggle(){
-        PlayerList pl = new();
+        PlayerList pl = new PlayerList();
         if(pl.visible){
             Assert.AreEqual(pl.image.color, new Color(0, 0, 0, 1));
         }

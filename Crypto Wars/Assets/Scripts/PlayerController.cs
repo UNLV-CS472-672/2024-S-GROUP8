@@ -21,13 +21,13 @@ public class PlayerController : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        players = new List<Player>();
-
-
-        players.Add(new Player("One", Resources.Load<Material>("Materials/PlayerTileColor")));
-        players.Add(new Player("Two", Resources.Load<Material>("Materials/EnemyTileColor")));
+        players = new List<Player>
+        {
+            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor")),
+            new Player("Two", Resources.Load<Material>("Materials/EnemyTileColor"))
+        };
 
         CurrentPlayer = players[0];
         CurrentPlayerIndex = 0;
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         // Temp player switching until TurnMaster additions can be made
-        if (Input.GetKeyDown(KeyCode.T)) {
+        if (Input.GetKeyDown(KeyCode.K)) {
             Switching = true;
             NextPlayer();
             Debug.Log("Next: Player Index is now: " + CurrentPlayerIndex);

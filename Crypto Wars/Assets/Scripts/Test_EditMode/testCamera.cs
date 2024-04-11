@@ -39,7 +39,7 @@ public class testCameraScript
     [TearDown]
     public void TearDown()
     {
-        Object.Destroy(cameraGameObject);
+        Object.DestroyImmediate(cameraGameObject);
     }
 
     /******************************************************

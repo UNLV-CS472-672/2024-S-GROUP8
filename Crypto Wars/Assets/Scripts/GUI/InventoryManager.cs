@@ -23,6 +23,7 @@ public class InventoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Slots = new List<GameObject>();
         for (int i = 0; i < 5; i++) {
             SetupSlot(i); // Create each slot in the inventory
             Debug.Log("" + Slots.Count);
@@ -56,6 +57,10 @@ public class InventoryManager : MonoBehaviour
         }
 
         if (PlayerController.Switching) {
+            currentPlayerInventory = PlayerController.CurrentPlayer.GetInventory();
+
+            Debug.Log(PlayerController.CurrentPlayer.GetName());
+
             // Empty slots
             for (int i = 0; i < 5; i++){
                 SetupSlot(i); 
@@ -67,10 +72,6 @@ public class InventoryManager : MonoBehaviour
             }
             PlayerController.Switching = false;
         }
-    }
-
-    public static void ReloadSlot(int index) { 
-        
     }
 
     // Easy reference to alter text inside the slot UI object

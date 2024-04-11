@@ -56,6 +56,16 @@ public class Tile : MonoBehaviour
         return rendererReference.material;
     }
 
+    public MeshRenderer GetRender()
+    {
+        return rendererReference;
+    }
+
+    public void SetRender(MeshRenderer renderer)
+    {
+        rendererReference = renderer;
+    }
+
     public void SetTilePosition(int x, int y)
     {
         this.BoardXPos = x;

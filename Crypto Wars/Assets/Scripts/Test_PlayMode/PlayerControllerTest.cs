@@ -1,32 +1,51 @@
 using NUnit.Framework;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
+using UnityEngine.TestTools;
+using System.Collections;
 
 public class PlayerControllerTest
 {
-    public GameObject go;
     public PlayerController testController;
-    // public List<Player> testPlayerList;
 
-    [SetUp]
-    public void SetUp()
+    [UnitySetUp]
+    public IEnumerator SetUp()
     {
-        go = new GameObject("Controller");
-        testController = go.AddComponent<PlayerController>();
-        // testPlayerList = new List<Player>();
+        SceneManager.LoadScene("Project", LoadSceneMode.Single);
+        yield return null;
+        yield return new EnterPlayMode();
     }
 
-    [Test]
-    public void TestNextPlayer()
+    [UnityTearDown]
+    public IEnumerator TearDown()
     {
+        yield return new ExitPlayMode();
+    }
+
+    [UnityTest]
+    public IEnumerator SceneTest()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameObject Inventory = GameObject.Find("Inventory Bar");
+        GameObject Camera = GameObject.Find("Main Camera");
+
+        Assert.IsNotNull(Camera);
+        Assert.IsNotNull(Inventory);
+
+        PlayerController PlayerController = Camera.GetComponent<PlayerController>();
+        testController = PlayerController;
+        Assert.IsNotNull(PlayerController);
+
+    }
+
+    [UnityTest]
+    public IEnumerator TestNextPlayer()
+    {
+        yield return new WaitForSeconds(0.5f);
         testController.NextPlayer();
-        Assert.AreEqual(0, testController.GetCurrentPlayerIndex());
+        Assert.AreEqual(1, testController.GetCurrentPlayerIndex());
     }
     
-    [TearDown]
-    public void TearDown()
-    {
-        // Clean up after each test
-        Object.DestroyImmediate(go);
-    }
+
 }

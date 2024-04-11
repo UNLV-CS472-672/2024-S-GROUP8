@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -42,8 +41,7 @@ public class PlayerList : MonoBehaviour
 
         // add text to panel
         for(int i = 0; i < Controller.GetNumberOfPlayers(); i++){
-            Player CurrentPlayer = Controller.GetCurrentPlayer(); // get next player from controller
-            // Player CurrentPlayer = Controller.CurrentPlayer; // get next player from controller
+            Player CurrentPlayer = PlayerController.CurrentPlayer; // get next player from controller
             GameObject temp = new GameObject("Player" + CurrentPlayer.GetName() + "_Text");
             TextMeshProUGUI playerText = temp.AddComponent<TextMeshProUGUI>();
             playerText.transform.parent = panel.transform;

@@ -27,13 +27,18 @@ public class StashTest
         yield return new WaitForSeconds(0.5f);
         GameObject Stash = GameObject.Find("Stash");
         GameObject Inventory = GameObject.Find("Inventory Bar");
+        GameObject Camera = GameObject.Find("Main Camera");
+        
         Assert.IsNotNull(Stash);
+        Assert.IsNotNull(Camera);
         Assert.IsNotNull(Inventory);
 
 
         Stash StashScript = Stash.GetComponent<Stash>();
         Assert.IsNotNull(StashScript);
 
+        PlayerController PlayerController = Camera.GetComponent<PlayerController>();
+        Assert.IsNotNull(PlayerController);
 
     }
 

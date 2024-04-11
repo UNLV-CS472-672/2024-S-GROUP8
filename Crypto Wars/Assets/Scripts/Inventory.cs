@@ -6,15 +6,13 @@ using UnityEngine.XR;
 public class Inventory
 {
     public static InventoryManager manager;
-    private static List<CardStack> CardStacks = new List<CardStack>();
-    private static List<GameObject> Slots = new List<GameObject>();
+    private List<CardStack> CardStacks = new List<CardStack>();
     private const int maxSize = 5;
     private const int maxCardStack = 16;
     private Hand hand = new Hand();
 
     static Inventory(){
-        manager = GameObject.Find("Inventory Bar").GetComponent<InventoryManager>();
-        
+        manager = GameObject.Find("Inventory Bar").GetComponent<InventoryManager>();  
     }
 
     // Add a card to the UI inventory
