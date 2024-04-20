@@ -9,12 +9,15 @@ public class AttackButtonScript : MonoBehaviour
     private Stash stash;
     // Start is called before the first frame update
     private PlayerController players;
-    void Start()
+    private GameObject cancelButton;
+    void Awake()
     {
         //outOfFrame();
         stash = FindObjectOfType<Stash>();
         button = GetComponent<Button>();
         button.onClick.AddListener(OnButtonClick);
+        stash.Activate(false);
+        cancelButton = GameObject.Find("Cancel Button");
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class AttackButtonScript : MonoBehaviour
     public void OnButtonClick()
     {
         stash.Activate(true);
+        cancelButton.SetActive(false);
         Debug.Log("Stash activated for Attacker");
     }
 }

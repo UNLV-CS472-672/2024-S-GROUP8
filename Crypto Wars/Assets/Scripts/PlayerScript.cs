@@ -29,6 +29,12 @@ public class Player
         currentPhase = (Phase)(((int)currentPhase + 1) % 3);
     }
 
+    // Sets the current phase for the player
+    public void SetPhase(Phase phase)
+    {
+        currentPhase = phase;
+    }
+
     // Resets the phase to the start (useful at the start of a new turn)
     public void ResetPhase()
     {

@@ -90,7 +90,7 @@ public class WinConditions : MonoBehaviour
                 if (ply.CalculatePercentage() >= 0.50)
                     winningPlayer = ply;
 
-                playerController.NextPlayer();
+                PlayerController.NextPlayer();
             }
 
             // Declare game over if winner was found
@@ -108,7 +108,7 @@ public class WinConditions : MonoBehaviour
             // Find max of all players TilesControlledCount
             for (int i = 0; i < PlayerController.players.Count; i++)
             {
-                playerController.NextPlayer();
+                PlayerController.NextPlayer();
                 ply = PlayerController.CurrentPlayer;
 
                 if (winningPlayer.getTilesControlledCount() < ply.getTilesControlledCount())
