@@ -76,7 +76,6 @@ public class PlayerList : MonoBehaviour
         player2Text.color = CurrentPlayer.GetColor().color;
         player2Text.font = font;
         player2Text.fontSize = 10;
-        PlayerController.NextPlayer();
     }
 
     // Update is called once per frame
