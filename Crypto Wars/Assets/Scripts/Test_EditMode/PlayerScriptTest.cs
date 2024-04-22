@@ -8,6 +8,65 @@ using UnityEngine.TestTools;
 
 public class PlayerScriptTest
 {
+    private Player player;
+
+    [SetUp]
+    public void Setup()
+    {
+        // Initialize player with default values for each test
+        player = new Player("TestPlayer", null);
+    }
+
+    [Test]
+    public void PlayerStartsInDefensePhase()
+    {
+        // Verify that the default phase is Defense
+        Assert.AreEqual(Player.Phase.Defense, player.GetCurrentPhase());
+    }
+
+    [Test]
+    public void NextPhaseCyclesThroughPhasesCorrectly()
+    {
+        // Defense -> Attack
+        player.NextPhase();
+        Assert.AreEqual(Player.Phase.Attack, player.GetCurrentPhase());
+
+        // Attack -> Build
+        player.NextPhase();
+        Assert.AreEqual(Player.Phase.Build, player.GetCurrentPhase());
+
+        // Build -> Defense (Loop back to start)
+        player.NextPhase();
+        Assert.AreEqual(Player.Phase.Defense, player.GetCurrentPhase());
+    }
+
+    [Test]
+    public void ResetPhaseSetsPhaseToDefense()
+    {
+        // Move to a different phase
+        player.NextPhase(); // Move to Attack
+        player.NextPhase(); // Move to Build
+
+        // Reset back to Defense
+        player.ResetPhase();
+        Assert.AreEqual(Player.Phase.Defense, player.GetCurrentPhase());
+    }
+
+    [Test]
+    public void PhaseTransitionIsConsistentAcrossMultipleCycles()
+    {
+        // Go through several cycles to check for consistency
+        for (int i = 0; i < 10; i++)
+        {
+            Assert.AreEqual(Player.Phase.Defense, player.GetCurrentPhase());
+            player.NextPhase();
+            Assert.AreEqual(Player.Phase.Attack, player.GetCurrentPhase());
+            player.NextPhase();
+            Assert.AreEqual(Player.Phase.Build, player.GetCurrentPhase());
+            player.NextPhase();
+        }
+    }
+
     // A Test behaves as an ordinary method
     [Test]
     public void testPlayerConstructor()
@@ -40,7 +99,7 @@ public class PlayerScriptTest
 
         Tile.TileReference tile = new Tile.TileReference();
         p1.AddTiles(tile);
-        Assert.AreEqual(p1.getTiles().Count, 1);
+        Assert.AreEqual(p1.GetTiles().Count, 1);
         Assert.AreEqual(p1.getTilesControlledCount(), 1);
     }
 }

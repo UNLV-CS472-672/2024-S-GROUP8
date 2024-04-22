@@ -140,8 +140,7 @@ public class testCameraScript
         // Create a GameObject and add Tile component to mock a tile
         GameObject tileGameObject = new GameObject("Tile");
         Tile tile = tileGameObject.AddComponent<Tile>();
-        tile.BoardXPos = (int)position.x;
-        tile.BoardYPos = (int)position.y;
+        tile.SetTilePosition((int)position.x, (int)position.y); // Not AI Generated line
         return tile;
     }
     // ai-gen end

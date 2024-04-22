@@ -76,13 +76,15 @@ public class BuildingTest
     [Test]
     public void testAddCardsToInventory()
     {
+        Material playerColor = new Material(Shader.Find("Specular"));
+        Player player = new Player("Test",playerColor);
         Card card = new Card(null, "testCard");
         Building build = new Building("testBuilding", 2, 1);
 
         build.didNotProduce();
         build.didNotProduce();
 
-        build.addCardsToInventory();
+        build.addCardsToInventory(player.GetInventory());
         Assert.AreEqual(0, build.getTurnsSinceLast());
     }
 }

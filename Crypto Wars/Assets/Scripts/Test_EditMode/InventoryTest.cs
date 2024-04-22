@@ -20,7 +20,7 @@ public class InventoryTests
          //inventory.manager = managerMock;
 
         for (int i = 0; i < 5; i++){
-            Inventory.manager.SetupSlot(i);
+            GetManager().SetupSlot(i);
         }
 
     }
@@ -92,7 +92,7 @@ public class InventoryTests
     [Test]
     public void TestRemoveCardFromStackNoIndex_MutipleCardsRemaining()
     {
-         Inventory inventory = new Inventory();
+        Inventory inventory = new Inventory();
          
         // Create cards
         Card card1 = new Card(null, "Card1");

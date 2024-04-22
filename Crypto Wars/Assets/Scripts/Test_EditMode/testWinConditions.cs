@@ -40,8 +40,8 @@ public class testWinConditions
     [TearDown]
     public void TearDown()
     {
-        Object.Destroy(winConditionsGameObject);
-        Object.Destroy(playerCtrlGameObject);
+        Object.DestroyImmediate(winConditionsGameObject);
+        Object.DestroyImmediate(playerCtrlGameObject);
     }
 
     /******************************************************
@@ -59,8 +59,10 @@ public class testWinConditions
         Player winner = new Player("Bobby", m);
 
         // Clear list so that there is only one player
-        PlayerController.players.Clear();
-        PlayerController.players.Add(winner);
+        PlayerController.players = new List<Player>
+        {
+            winner
+        };
 
         winConditions.gameIsOver(winner);
     }
@@ -73,8 +75,10 @@ public class testWinConditions
         Player winner = new Player("Bobby",m);
 
         // Clear list so that there is only one player
-        PlayerController.players.Clear();
-        PlayerController.players.Add(winner);
+        PlayerController.players = new List<Player>
+        {
+            winner
+        };
 
         // timer < maxTime
         winConditions.findWinner(playerCtrl);

@@ -7,7 +7,8 @@ public class CancelButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        outOfFrame();   
+        //outOfFrame();   
+        //gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -17,8 +18,8 @@ public class CancelButton : MonoBehaviour
     }
 
     //Moves the cancel button out of frame
-    public void outOfFrame()
+    public void Deactivate()
     {
-        this.transform.position = new Vector3(0,-375,0);
+        gameObject.SetActive(false);
     }
 }

@@ -7,6 +7,7 @@ public class BuildButtonTest
     public GameObject go;
     public BuildButtonScript buildButton;
 
+
     [SetUp]
     public void SetUp()
     {

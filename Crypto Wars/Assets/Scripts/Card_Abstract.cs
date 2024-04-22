@@ -55,6 +55,14 @@ public class Card
         return stats.staminaCost;
     }
 
+    public float getImmunityChance(){
+        return stats.immunity;
+    }
+
+    public float getEfficencyChance(){
+        return stats.efficency;
+    }
+
     //////////////////////////
     //////////////////////////
     //  SETTERS 
@@ -63,7 +71,7 @@ public class Card
 
     public void setDefense(int defense) {
         // prevent user from misassigning an invalid value
-        if(defense < 0 || defense > 2000)
+        if(defense < 0 || defense > 150)
             Debug.LogError("ERROR: stat value must be between 0-2000"); ;
 
         stats.defense = (short)defense;
@@ -71,7 +79,7 @@ public class Card
 
     public void setOffense(int offense) {
         // prevent user from misassigning an invalid value
-        if (offense < 0 || offense > 2000)
+        if (offense < 0 || offense > 30)
             Debug.LogError("ERROR: stat value must be between 0-2000"); ;
 
         stats.offense = (short)offense;
@@ -85,6 +93,22 @@ public class Card
         stats.staminaCost = (short)stamCost;
     }
 
+    public void setImmunityChance(float chance) {
+        // prevent user from misassigning an invalid value
+        if (chance < 0.0f || chance > 0.4f)
+            Debug.LogError("ERROR: stat value must be between 0.0-0.4"); ;
+
+        stats.immunity = chance;
+    }
+
+     public void setEfficency(float chance) {
+        // prevent user from misassigning an invalid value
+        if (chance < 0.0f || chance > 0.4f)
+            Debug.LogError("ERROR: stat value must be between 0.0-0.4"); ;
+
+        stats.efficency = chance;
+    }
+
     //////////////////////////
     // Struct contains the stats of the card
     //////////////////////////
@@ -92,6 +116,8 @@ public class Card
         public short defense;
         public short offense;
         public short staminaCost; // can be renamed at a later date
+        public float immunity;
+        public float efficency;
     };
 }
 

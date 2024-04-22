@@ -22,7 +22,7 @@ public class EndTurnTest
     [Test]
     public void TestTurnNumberIncrement()
     {
-        go.GetComponent<EndTurn>().endPlayerTurn();
+        go.GetComponent<EndTurn>().Advance();
         Assert.AreNotEqual(startNum, go.GetComponent<EndTurn>().turnNum);
     }
 
@@ -30,7 +30,7 @@ public class EndTurnTest
     public void TestPhaseIncrement()
     {
         phaseText = "Phase: " + "Defense";
-        go.GetComponent<EndTurn>().endPlayerPhase();
+        go.GetComponent<EndTurn>().Advance();
         Assert.AreNotEqual(phaseText, go.GetComponent<EndTurn>().phaseOutput.text);
     }
 

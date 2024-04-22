@@ -43,8 +43,8 @@ public class PlayerControllerTest
     public IEnumerator TestNextPlayer()
     {
         yield return new WaitForSeconds(0.5f);
-        testController.NextPlayer();
-        Assert.AreEqual(1, testController.GetCurrentPlayerIndex());
+        PlayerController.NextPlayer();
+        Assert.AreEqual(1, PlayerController.GetCurrentPlayerIndex());
     }
     
 

@@ -5,24 +5,22 @@ using UnityEngine.XR;
 
 public class Inventory
 {
-    public static InventoryManager manager;
     private List<CardStack> CardStacks = new List<CardStack>();
     private const int maxSize = 5;
     private const int maxCardStack = 16;
     private Hand hand = new Hand();
 
-    static Inventory(){
-        manager = GameObject.Find("Inventory Bar").GetComponent<InventoryManager>();  
-    }
-
     // Add a card to the UI inventory
     public void AddToCardToStack(Card card)
     {
+        // Get Manager
+        InventoryManager manager = InventoryManager.GetManager();
+
         // No stacks currently exist
         if (CardStacks.Count < 1)
         {
             CardStacks.Add(new CardStack(card, maxCardStack));
-            manager.SetText("CardName", 0, "" + CardStacks[0].GetCardinStack().getName());
+            manager.SetText("CardName", 0, "" + CardStacks[0].GetCardinStack().getName(), "CardName Bar");
             manager.SetText("Amount", 0, "" + 1);
         }
         // Stacks already exist
@@ -46,7 +44,7 @@ public class Inventory
             if (!hasBeenAdded && CardStacks.Count < maxSize)
             {
                 CardStacks.Add(new CardStack(card, maxCardStack));
-                manager.SetText("CardName", CardStacks.Count - 1, "" + CardStacks[CardStacks.Count - 1].GetCardinStack().getName());
+                manager.SetText("CardName", CardStacks.Count - 1, "" + CardStacks[CardStacks.Count - 1].GetCardinStack().getName(), "CardName Bar");
                 manager.SetText("Amount", CardStacks.Count - 1, "" + CardStacks[CardStacks.Count - 1].GetSize());
             }
             else
@@ -89,6 +87,8 @@ public class Inventory
     // Method for if the player chooses the specific stack to remove from
     public void RemoveCardFromStack(Card card, int index)
     {
+        // Get Manager
+        InventoryManager manager = InventoryManager.GetManager();
         // Cardstack has one card remaining
         if (CardStacks[index].GetSize() < 2)
         {

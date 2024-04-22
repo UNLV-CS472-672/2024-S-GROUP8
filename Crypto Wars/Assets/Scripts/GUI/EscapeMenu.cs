@@ -10,6 +10,7 @@ public class EscapeMenu : MonoBehaviour
     private bool inPauseMenu = false;
     private GameObject escMenu;
     private GameObject escButton;
+    public Sprite bar;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class EscapeMenu : MonoBehaviour
         escButton.AddComponent<CanvasRenderer>();
 
         GameObject buttonPanel = CreatePanel("Panel", escButton.transform, new Vector2(0, 0), new Vector2(0, 1), new Vector2(0, 1), new Color(0, 0, 0, 0.5f));
-        buttonPanel.AddComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.5f);
+        buttonPanel.AddComponent<Image>().color = new Color(255, 255, 255, 255);
         GameObject menuToggleButton = CreateButton(buttonPanel.transform, new Vector2(39, -17), "Menu");
 
         escMenu = new GameObject("EscapeMenu");
@@ -33,7 +34,9 @@ public class EscapeMenu : MonoBehaviour
         escMenu.AddComponent<CanvasRenderer>();
         
         GameObject menuPanel = CreatePanel("Panel", escMenu.transform, new Vector2(300, 350), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Color(0, 0, 0, 0.5f));
-        menuPanel.AddComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.5f);
+        menuPanel.AddComponent<UnityEngine.UI.Image>().color = new Color(255, 255, 255, 255);
+        menuPanel.GetComponent<Image>().sprite = bar;
+        menuPanel.GetComponent<Image>().type = Image.Type.Sliced;
 
         // Create text for the escape menu and attach it to escape menu panel
         GameObject text = CreatePanel("Text", menuPanel.transform, new Vector2(200, 200), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Color(0, 0, 0, 0.5f));
@@ -56,7 +59,7 @@ public class EscapeMenu : MonoBehaviour
 
         // Quit to main menu is not available yet as we do not have a main menu currently.
         // Otherwise this button will allow the player to return to the main menu from a battle.
-        GameObject quitButton = CreateButton(menuPanel.transform, new Vector2(0, -60), "Quit To Main Menu");
+        GameObject quitButton = CreateButton(menuPanel.transform, new Vector2(0, -60), "Main Menu");
         quitButton.GetComponent<Button>().onClick.AddListener(() => {Debug.Log("Quit to main menu button clicked");});
 
         // If this button is clicked, close the entire game.
@@ -84,7 +87,9 @@ public class EscapeMenu : MonoBehaviour
         RectTransform buttonRT = button.AddComponent<RectTransform>();
         buttonRT.sizeDelta = new Vector2(80, 35);
         buttonRT.anchoredPosition = anchoredPosition;
-        button.AddComponent<UnityEngine.UI.Image>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+        button.AddComponent<Image>().color = new Color(255f, 255f, 255f, 1);
+        button.GetComponent<Image>().sprite = bar;
+        button.GetComponent<Image>().type = Image.Type.Sliced;
 
         // Add and customize the text that is held inside of the button
         GameObject textObject = new GameObject(text);

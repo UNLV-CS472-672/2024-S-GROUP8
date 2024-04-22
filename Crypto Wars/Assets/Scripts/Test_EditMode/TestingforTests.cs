@@ -9,7 +9,7 @@ public class TestingforTests
     public void Testing() { 
         Card card = new Card(null, "Smith");
         Inventory inventory = new Inventory();
-        Inventory.manager.SetupSlot(0);
+        InventoryManager.GetManager().SetupSlot(0);
 
         inventory.AddToCardToStack(card);
         Assert.AreEqual(inventory.GetStacksListSize(), 1);
