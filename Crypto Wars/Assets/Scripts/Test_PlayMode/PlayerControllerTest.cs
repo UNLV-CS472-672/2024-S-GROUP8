@@ -44,7 +44,7 @@ public class PlayerControllerTest
     {
         yield return new WaitForSeconds(0.5f);
         PlayerController.NextPlayer();
-        Assert.AreEqual(1, testController.GetCurrentPlayerIndex());
+        Assert.AreEqual(1, PlayerController.GetCurrentPlayerIndex());
     }
     
 

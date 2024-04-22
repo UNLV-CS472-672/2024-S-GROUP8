@@ -99,7 +99,7 @@ public class PlayerScriptTest
 
         Tile.TileReference tile = new Tile.TileReference();
         p1.AddTiles(tile);
-        Assert.AreEqual(p1.getTiles().Count, 1);
+        Assert.AreEqual(p1.GetTiles().Count, 1);
         Assert.AreEqual(p1.getTilesControlledCount(), 1);
     }
 }

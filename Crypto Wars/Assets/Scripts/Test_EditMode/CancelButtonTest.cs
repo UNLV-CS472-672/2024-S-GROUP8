@@ -17,10 +17,9 @@ public class CancelButtonTest
     }
 
     [Test]
-    public void TestOutOfFrame()
+    public void TestDeactivate()
     {
-        Vector3 expectedPosition = new Vector3(0,-375,0);
-        cancelButton.outOfFrame();
-        Assert.AreEqual(expectedPosition, go.transform.position);
+        cancelButton.Deactivate();
+        Assert.AreEqual(cancelButton.isActiveAndEnabled, false);
     }
 }

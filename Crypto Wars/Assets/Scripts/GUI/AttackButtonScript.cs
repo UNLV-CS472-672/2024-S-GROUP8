@@ -5,35 +5,28 @@ using UnityEngine.UI;
 
 public class AttackButtonScript : MonoBehaviour
 {
+    // Unity serialized fields
+    [SerializeField]
     private Button button;
-    private Stash stash;
-    // Start is called before the first frame update
-    private PlayerController players;
+    [SerializeField]
     private GameObject cancelButton;
+    [SerializeField]
+    private Stash stashButton;
+    
     void Awake()
     {
-        //outOfFrame();
-        stash = FindObjectOfType<Stash>();
-        button = GetComponent<Button>();
         button.onClick.AddListener(OnButtonClick);
-        stash.Activate(false);
-        cancelButton = GameObject.Find("Cancel Button");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {   
-
+        stashButton.Activate(false);
     }
 
     //Moves the Attack Button out of frame
     public void outOfFrame()
     {
-        this.transform.position = new Vector3(0,-375,0);
+        transform.position = new Vector3(0,-375,0);
     }
     public void OnButtonClick()
     {
-        stash.Activate(true);
+        stashButton.Activate(true);
         cancelButton.SetActive(false);
         Debug.Log("Stash activated for Attacker");
     }

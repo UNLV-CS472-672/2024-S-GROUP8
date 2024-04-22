@@ -18,7 +18,6 @@ public class TurnMasterTest
 
         // Initialize TurnMaster with two players
         Player[] players = new Player[] { player1, player2 };
-        turnMaster.SetPlayers(players); // Implemented in TurnMaster to set the Players array
     }
 
     // [Test]
@@ -41,7 +40,7 @@ public class TurnMasterTest
     public void TestNewTurn_ResetsPlayers()
     {
         player1.PlayerFinishTurn();
-        turnMaster.StartNewTurn();
+        TurnMaster.StartNewTurn();
         Assert.IsFalse(player1.IsPlayerTurnFinished());
         Assert.AreEqual(Player.Phase.Defense, player1.GetCurrentPhase());
     }
@@ -55,7 +54,7 @@ public class TurnMasterTest
         player2.PlayerFinishTurn();
         player2.NextPhase(); // Attack
         player2.NextPhase(); // Build
-        Assert.IsTrue(turnMaster.AllPhasesDone());
+        Assert.IsTrue(TurnMaster.AllPhasesDone());
     }
 
     [Test]
@@ -64,16 +63,16 @@ public class TurnMasterTest
         player1.PlayerFinishTurn();
         player1.NextPhase(); // Attack
         // player2 is still in Defense phase
-        Assert.IsFalse(turnMaster.AllPhasesDone());
+        Assert.IsFalse(TurnMaster.AllPhasesDone());
     }
 
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhases()
     {
-        turnMaster.AdvancePlayerPhase(player1);
+        TurnMaster.AdvancePlayerPhase(player1);
         Assert.AreEqual(Player.Phase.Attack, player1.GetCurrentPhase());
-        turnMaster.AdvancePlayerPhase(player1);
-        turnMaster.AdvancePlayerPhase(player1);
+        TurnMaster.AdvancePlayerPhase(player1);
+        TurnMaster.AdvancePlayerPhase(player1);
         Assert.AreEqual(Player.Phase.Defense, player1.GetCurrentPhase());
         Assert.IsTrue(player1.IsPlayerTurnFinished());
     }
@@ -81,7 +80,7 @@ public class TurnMasterTest
     [Test]
     public void TestGetCurrTurn_Initial()
     {
-        Assert.AreEqual(0, turnMaster.GetCurrentTurn());
+        Assert.AreEqual(0, TurnMaster.GetCurrentTurn());
     }
 }
 

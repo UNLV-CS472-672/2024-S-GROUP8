@@ -7,20 +7,61 @@ using UnityEngine.UI;
 // Cards in the stash will go to either depending on player action
 public class Stash : MonoBehaviour
 {
+    // Unity Serialized Fields
+    [SerializeField]
+    private Sprite stack_1;
+    [SerializeField]
+    private Sprite stack_2;
+    [SerializeField]
+    private Sprite stack_3;
+    [SerializeField]
+    private GameObject stackImage;
+
+    // Buttons
+    [SerializeField]
+    private Button Confirm;
+    [SerializeField]
+    private Button Exit;
+    [SerializeField]
+    private Button Dropoff;
+
+    // Default Fields
     private List<Card> stashedCards = new List<Card>();
     private Battles.AttackObject makeAttack;
     private Battles.DefendObject makeDefend;
     private Tile tileSelect;
-    private static Stash self;
 
     // Start is called before the first frame update
     void Start()
     {
         // Listener for the Button that interacts with the Stash
-        gameObject.GetComponent<Button>().onClick.AddListener(HandtoStash);
+        Dropoff.onClick.AddListener(HandtoStash);
         // Accept and Cancel button listeners
-        gameObject.transform.Find("Confirm").GetComponent<Button>().onClick.AddListener(Accept);
-        gameObject.transform.Find("Cancel").GetComponent<Button>().onClick.AddListener(Cancel);
+        Confirm.onClick.AddListener(Accept);
+        Exit.onClick.AddListener(Cancel);
+        ModifyStashImage();
+    }
+
+    /// <summary>
+    /// Shows an image of a 1-3 stack of cards to generally indicate to the player
+    /// how many cards they may have in their stash
+    /// </summary>
+    public void ModifyStashImage() {
+        if (stashedCards.Count < 1){
+            stackImage.GetComponent<Image>().enabled = false;
+        }
+        else {
+            stackImage.GetComponent<Image>().enabled = true;
+        }
+        if (stashedCards.Count > 0 && stashedCards.Count < 2) {
+            stackImage.GetComponent<Image>().sprite = stack_1;
+        }
+        if (stashedCards.Count >= 2 && stashedCards.Count < 5){
+            stackImage.GetComponent<Image>().sprite = stack_2;
+        }
+        if (stashedCards.Count >= 5){
+            stackImage.GetComponent<Image>().sprite = stack_3;
+        }
     }
 
     /// <summary>
@@ -32,7 +73,10 @@ public class Stash : MonoBehaviour
         Hand hand = PlayerController.CurrentPlayer.GetInventory().GetHand();
         if (hand != null && !hand.IsEmpty()){
             stashedCards.AddRange(hand.GetHandCards());
+            hand.GetHandCards().Clear();
+            ModifyStashImage();
         }
+        
     }
 
     /// <summary>
@@ -46,6 +90,7 @@ public class Stash : MonoBehaviour
             inv.AddToCardToStack(card);
         }
         stashedCards.Clear();
+        ModifyStashImage();
     }
 
     /// <summary>
@@ -60,10 +105,10 @@ public class Stash : MonoBehaviour
     }
 
     /// <summary>
-    /// Accepts the cards in the stash to...
+    /// Accepts the cards in the stash to create an Attack on a clicked tile or a defence on that tile
     /// </summary>
     public void Accept() {
-        // This is where battle stuff goes
+        // Controls the actions the player can take on tiles
         Debug.Log(PlayerController.CurrentPlayer.GetCurrentPhase().ToString());
         if ((PlayerController.CurrentPlayer.GetCurrentPhase() == Player.Phase.Attack) && GetStashSize() > 0){
             Activate(false);
@@ -87,6 +132,7 @@ public class Stash : MonoBehaviour
             // Finish the incomplete battle with our attacker object
             GameManager.AddDefenderToBattle(PlayerController.CurrentPlayer, makeDefend);
             // Clear the stash since we have our defendObject storing it now
+            CreateDefenseSystem.RemoveDefenceObject(tileSelect.GetTilePosition());
             Clear();
         }
         else {
@@ -109,11 +155,18 @@ public class Stash : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Get size of the stashed cards list
+    /// </summary>
     public int GetStashSize() { 
         return stashedCards.Count;
     }
 
+    /// <summary>
+    /// Clear the stashed cards and reset the image 
+    /// </summary>
     public void Clear(){
         stashedCards.Clear();
+        ModifyStashImage();
     }
 }

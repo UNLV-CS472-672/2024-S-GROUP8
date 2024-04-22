@@ -33,7 +33,7 @@ public class Tile : MonoBehaviour
             // Temp name system
             reference.tileName = " " + reference.tilePosition.x + " " + reference.tilePosition.y;
         }
-        SetPlayer(playerIndex);
+        SetPlayer(GetPlayer());
     }
 
     public int GetPlayer() 
@@ -43,9 +43,8 @@ public class Tile : MonoBehaviour
 
     public void SetPlayer(int index)
     {
-        playerIndex = index;
         // -1 represents non-ownership
-        if (playerIndex != -1) {
+        if (index > -1) {
             PlayerController.players[index].AddTiles(reference);
         }
     }
@@ -84,13 +83,42 @@ public class Tile : MonoBehaviour
         return reference.tilePosition;
     }
 
-    public Building getBuilding()
+    public Building GetBuilding()
     {
         return currBuilding;
     }
 
-    public void setBuilding(Building newBuilding)
+    public void SetBuilding(Building newBuilding)
     {
         currBuilding = newBuilding;
     }
+
+    public static bool IsAdjacent(Player player, Tile friendlyTile) {
+        List<TileReference> tiles = player.GetTiles();
+        foreach (TileReference enemyTile in tiles) {
+            int X1 = (int)enemyTile.tilePosition.x;
+            int Y1 = (int)enemyTile.tilePosition.y;
+
+            int X2 = (int)friendlyTile.reference.tilePosition.x;
+            int Y2 = (int)friendlyTile.reference.tilePosition.y;
+
+            if (X2 == X1 && Y2 == Y1) // (0,0) Self
+                return false; 
+
+            if (X2 + 1 == X1 || X2 - 1 == X1 || X2 == X1) {
+                if (Y2 == Y1) // +(1, 0) || +(-1, 0)
+                    return true;
+                if (Y2 + 1 == Y1) // +(1, 1) || +(-1, 1) || +(0, 1) 
+                    return true;
+                if (Y2 - 1 == Y1) // +(1, -1) || +(-1, -1) || +(0, -1) 
+                    return true;
+            }
+
+        }
+        Debug.Log("AAA");
+        return false;
+    }
+
+
+
 }
