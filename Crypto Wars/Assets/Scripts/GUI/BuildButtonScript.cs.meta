@@ -3,7 +3,11 @@ guid: 143a7a634173da948b65763a8d4dbf36
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - destroyButton: {instanceID: 0}
+  - buildButton: {instanceID: 0}
+  - cancelButton: {instanceID: 0}
+  - BuildingPrefab: {fileID: 1609615834109288300, guid: 8644ced24616a284aa6104bf1b8cc0ff, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

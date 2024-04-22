@@ -5,7 +5,14 @@ using TMPro;
 
 public class EndTurn : MonoBehaviour
 {
+    // Game screen displays
+    GameObject turnObject;
+    GameObject phaseObject;
     public TextMeshProUGUI turnOutput;
+    public TextMeshProUGUI phaseOutput;
+    public TextMeshProUGUI turnPhaseName;
+
+    // EndTurn Variables
     public int turnNum;
     PlayerController playerList;
     Player pl;
@@ -14,29 +21,58 @@ public class EndTurn : MonoBehaviour
     // Attaches the counter to a Text (TMP) gameObject
     void Start()
     {
-        turnNum = 0;
-        turnOutput = GetComponent<TextMeshProUGUI>();
+        turnNum = 0; // starting turn #
+
+        // On-screen text for displaying the current phase
+        phaseObject = GameObject.Find("PhaseDisplay");
+        if (phaseObject == null)
+        {
+            phaseObject = new GameObject("PhaseDisplay");
+            phaseObject.AddComponent<TextMeshProUGUI>();
+            phaseObject.SetActive(true);
+        }
+        phaseOutput = phaseObject.GetComponent<TextMeshProUGUI>();
+        phaseOutput.text = "Phase: " + "Defense";
+
+        // On-screen text for turn counter
+        turnObject = GameObject.Find("TurnCounter");
+        if (turnObject == null)
+        {
+            turnObject = new GameObject("TurnCounter");
+            turnObject.AddComponent<TextMeshProUGUI>();
+            turnObject.SetActive(true);
+        }
+        turnOutput = turnObject.GetComponent<TextMeshProUGUI>();
         turnOutput.text = "Turn " + turnNum.ToString();
+
+        //GameObject playerCtrlGameObject = new GameObject("PlayerCtrller");
+        //playerList = playerCtrlGameObject.AddComponent<PlayerController>();
+
+        turnPhaseName = GameObject.Find("Misc Bar").transform.Find("EndTurn").transform.Find("TurnName Bar").transform.Find("EndTurnName").gameObject.GetComponent<TextMeshProUGUI>();
+        turnPhaseName.text = "End Phase";
+
     }
 
-    // Sets player isDone to false
-    // Calls for the current player that is in PlayerController list in On Click()
-    // updates turnOutput for turn after player hits end turn 
-    public void endPlayerTurn()
+    /*
+      * Advance - moves onto a player's next phase
+      *      or once a player reaches their "Build" phase,
+      *      their turn will be ended
+      */
+    public void Advance()
     {
-        // will be added in future use, might need to refactor TM so that playerController and TM
-        // reference the same players
+        TurnMaster.AdvancePlayerPhase(PlayerController.CurrentPlayer);
+        phaseOutput.text = "Phase: " + PlayerController.CurrentPlayer.GetCurrentPhase();
 
-        // pl = playerList.CurrentPlayer;
-        // pl.PlayerFinishTurn();
-        // playerList.NextPlayer();
-        // turnOutput.text = "Turn " + turnNum.ToString();
-        
-
-
-        // test prototype for now to make sure the text output and button are working properly
-        turnNum++;
+        turnNum = TurnMaster.GetCurrentTurn();
         turnOutput.text = "Turn " + turnNum.ToString();
+
+        if (PlayerController.CurrentPlayer.GetCurrentPhase() == Player.Phase.Build){
+            turnPhaseName.text = "End Turn";
+        }
+        else {
+            turnPhaseName.text = "End Phase";
+        }
+
     }
 
 }

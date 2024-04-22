@@ -60,7 +60,7 @@ public class PlayerList : MonoBehaviour
             playerText.font = font;
             playerText.fontSize = 10;
 
-            Controller.NextPlayer();
+            PlayerController.NextPlayer();
         }
     }
 

@@ -1,65 +1,122 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
+using System.Collections.Generic;
 
 public class WinConditions : MonoBehaviour
 {
-    private float timer;        // starting timer
-    private float maxTime = 45.5f;   // time limit of 45.5 sec (for now)
-    public Text scoreText;          // keep track of tile score, maybe win %? (on screen)
-    public GameObject gameOver;     // Unity game over object
-    
+    public float timer { get; set; }    // Starting timer
+    public float maxTime { get; set; }  // Time limit of 45.5 sec (for now)
+    public GameObject gameOver;         // Unity game over object
+    public TextMeshProUGUI gameWinner;  // Output text for overall game winner
+    public Player winningPlayer { get; private set; } // Find/output the winner
+    private PlayerController playerCtrl;
+    private GameObject playerCtrlGameObject;
 
-    //public PlayerScript player1; //  PLACEHOLDER NAMES 
-    //public PlayerScript player2; //  PLACEHOLDER NAMES 
 
     void Start() {
         timer = 0f;
+        maxTime = 45.5f;
+        gameWinner = GetComponent<TextMeshProUGUI>();
+        gameWinner.text = "Winner ";
+        playerCtrlGameObject = new GameObject();
+        playerCtrl = playerCtrlGameObject.AddComponent<PlayerController>();
     } 
 
     void Update()
     {
-        // Check if any player has won based on time or tiles
-        if (timer < maxTime) // game time limit not yet reached
-        {
-            // check if players have enough tiles
-            // player1.getpercentControlled();
-            // player2.getpercentControlled();
-        }
-        else // game time limit reached
-        {
-            // force game to end
-            /*  if(player1.getpercentControlled() < player2.getpercentControlled()){
-                    Debug.Log("Player 1 won due to greater tile control");
-                    Debug.Log("Game Time Limit Reached");
-                    gameIsOver();
-                }
-                else {
-                    Debug.Log("Game Time Limit Reached");
-                    gameIsOver();
-                }
-            */
-            // restart game?
-            // restartGame();
-            Debug.Log("Game Time Limit Reached");
-            gameIsOver();
-        }
-        // increment game timer
+        // Check/find a winner
+        findWinner(playerCtrl);
+
+        // Increment game timer
         timer += Time.deltaTime;
     }
 
-    // added in case we want a game over screen
+    /*******************************************************
+     * 
+     * Game scenes based on wins
+     * 
+    *******************************************************/
+
+    // Added in case we want a restart game screen
     public void restartGame() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // sets game value to be over
-    public void gameIsOver()
+    // Displays gameOver object & scene
+    // Added in case we want a game over screen
+    public void gameIsOver(Player winner)
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log("Game is Over");
+
+        // Add player name to winner text
+        gameWinner.text += winner.GetName();
+
+        // Set gameOver to be displayed
         gameOver.SetActive(true);
+
+        // Destroy objects
+        Object.Destroy(playerCtrlGameObject);
+    }
+
+    /***********************************************************************************************
+     * 
+     * findWinner - find a winner based on game win conditions:
+     *      1. a player has reached the tile percentage controlled necessary to win (>=50%)
+     *      
+     *      or
+     *      
+     *      2. time runs out and a winner must be found based on tile count
+     * 
+     ***********************************************************************************************/
+    public void findWinner(PlayerController playerController)
+    {
+        Player ply; // temp - stores a player
+
+        winningPlayer = null;
+
+        // Check if any player has won based on time or tiles
+        if (timer < maxTime) // game time limit not yet reached
+        {
+            // Check if any player's tile controlled  % >= 50%
+            for (int i = 0; i < PlayerController.players.Count; i++)
+            {
+                ply = PlayerController.CurrentPlayer;
+
+                // Player needs at least 50% overall tile control to win
+                if (ply.CalculatePercentage() >= 0.50)
+                    winningPlayer = ply;
+
+                PlayerController.NextPlayer();
+            }
+
+            // Declare game over if winner was found
+            if (winningPlayer != null)
+                gameIsOver(winningPlayer);
+        }
+        else // game time limit reached
+        {
+            // force game to end
+            Debug.Log("Game Time Limit Reached");
+
+            // Default winner is currentPlayer to prevent winningPlayer = null
+            winningPlayer = PlayerController.CurrentPlayer;
+
+            // Find max of all players TilesControlledCount
+            for (int i = 0; i < PlayerController.players.Count; i++)
+            {
+                PlayerController.NextPlayer();
+                ply = PlayerController.CurrentPlayer;
+
+                if (winningPlayer.getTilesControlledCount() < ply.getTilesControlledCount())
+                    winningPlayer = ply;
+            }
+
+            // Declare game over
+            gameIsOver(winningPlayer);
+        }
     }
 }
