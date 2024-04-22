@@ -82,11 +82,6 @@ public class PlayerList : MonoBehaviour
     /* Update() should be used to change any displayed text during the game */
     void Update()
     {
-        /*
-        for(int i = 0; i < list.Count; i++){
-            player2Text.text = "Player " + PlayerController.CurrentPlayer.GetName() + "\nTiles: " + PlayerController.CurrentPlayer.getTilesControlledCount();
-        }
-        */
         for(int i = 0; i < list.Count; i++){
             switch(list[i].GetName()){
                 case "One":
