@@ -14,6 +14,7 @@ public class PlayerList : MonoBehaviour
     private GameObject panel;
     private TextMeshProUGUI player1Text;
     private TextMeshProUGUI player2Text;
+    private List<Player> list;
 
     // Start is called before the first frame update
     /* Start creates all objects and components needed to create */
@@ -41,8 +42,9 @@ public class PlayerList : MonoBehaviour
         panel.GetComponent<RectTransform>().anchorMax = new Vector2(1, 0.5f);
         panel.GetComponent<RectTransform>().pivot = new Vector2(1, 0.5f);
 
+        list = Controller.GetPlayerList();
         // add text for player 1 to panel
-        Player CurrentPlayer = PlayerController.CurrentPlayer; // get next player from controller
+        Player CurrentPlayer = list[0]; // get next player from controller
         GameObject temp = new GameObject("Player" + CurrentPlayer.GetName() + "_Text");
         player1Text = temp.AddComponent<TextMeshProUGUI>();
         player1Text.transform.parent = panel.transform;
@@ -59,8 +61,7 @@ public class PlayerList : MonoBehaviour
         player1Text.fontSize = 10;
 
         // add text for player 2 to panel
-        Controller.NextPlayer();
-        CurrentPlayer = PlayerController.CurrentPlayer; // get next player from controller
+        CurrentPlayer = list[1]; // get next player from controller
         temp = new GameObject("Player" + CurrentPlayer.GetName() + "_Text");
         player2Text = temp.AddComponent<TextMeshProUGUI>();
         player2Text.transform.parent = panel.transform;
@@ -81,10 +82,22 @@ public class PlayerList : MonoBehaviour
     /* Update() should be used to change any displayed text during the game */
     void Update()
     {
-        Controller.NextPlayer();
-        player1Text.text = "Player " + PlayerController.CurrentPlayer.GetName() + "\nTiles: " + PlayerController.CurrentPlayer.getTilesControlledCount();
-        Controller.NextPlayer();
-        player2Text.text = "Player " + PlayerController.CurrentPlayer.GetName() + "\nTiles: " + PlayerController.CurrentPlayer.getTilesControlledCount();
+        /*
+        for(int i = 0; i < list.Count; i++){
+            player2Text.text = "Player " + PlayerController.CurrentPlayer.GetName() + "\nTiles: " + PlayerController.CurrentPlayer.getTilesControlledCount();
+        }
+        */
+        for(int i = 0; i < list.Count; i++){
+            switch(list[i].GetName()){
+                case "One":
+                    player1Text.text = "Player " + list[i].GetName() + "\nTiles: " + list[i].getTilesControlledCount();
+                break;
+                case "Two":
+                    player2Text.text = "Player " + list[i].GetName() + "\nTiles: " + list[i].getTilesControlledCount();
+                break;
+            }
+
+        }
     }
 
     public void ToggleVisibility(){
