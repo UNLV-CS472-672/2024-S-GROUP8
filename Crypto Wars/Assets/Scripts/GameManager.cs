@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static PlasticPipe.Server.MonitorStats;
+using static Battles;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     }
     public static List<Battle> PlannedBattles = new List<Battle>();
     public static List<Battle> FinalBattles = new List<Battle>();
+    Battles calcBattles = new Battles();
 
     public static List<Battle> OnlyDefenderBattles(Player player) {
         List<Battle> Battles = new List<Battle>();
@@ -39,8 +41,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CardRegistry.Load();
-        BuildingRegistry.Load();
         PlannedBattles = new List<Battle>();
         FinalBattles = new List<Battle>();
     }
@@ -93,10 +93,36 @@ public class GameManager : MonoBehaviour
                 // Defender has selected cards
             }
             //FinalBattles[i].winner = FinalBattles[i].attacker; // return attacker as victor for now
+            Player originalAttacker = FinalBattles[i].attacker;
+            Player winner = calcBattles.CalculateWinner(FinalBattles[i].attack.cardList, FinalBattles[i].defence.cardList, FinalBattles[i].attacker, FinalBattles[i].defender); 
+            //if winner is attacker remove the tile from the defenders tiles owned and add it to the attackers
+            if (String.Equals(winner.GetName(), originalAttacker.GetName())){
+                Tile.TileReference tile = Tile.GetTileAtPostion(FinalBattles[i].defence.originTilePos, FinalBattles[i].defender.GetTiles());
+                FinalBattles[i].defender.RemoveTiles(tile);
+                winner.AddTiles(tile);
+                returnWinnersRemainingCardsToInventory(winner, FinalBattles[i].attack.cardList);
+            }
+            else {
+                // if winner was not attacker then nothing happens defender won and will keep tile 
+                Debug.Log("Player " + winner.GetName() + " has won the battle. Since the defender has won " + originalAttacker.GetName()  + " will keep their tile.");
+                returnWinnersRemainingCardsToInventory(winner, FinalBattles[i].defence.cardList);
+            }
         }
     }
 
     public void BattlesComplete(){
         // Called by TurnMaster waiting until all battles are calculated
     }
+
+    public void returnWinnersRemainingCardsToInventory(Player winner, List<Card> remainingCards){
+         Debug.Log(winner.GetName() + " stil has " + remainingCards.Count + " cards after the battle.");
+         for (int i = 0; i < remainingCards.Count; i++){
+            Debug.Log("Adding card " + remainingCards[i].getName() + " back to player " + winner.GetName()  + "'s card stack.");
+            winner.GetInventory().AddToCardToStack(remainingCards[i]);
+         }
+    }
+
+
+
+
 }

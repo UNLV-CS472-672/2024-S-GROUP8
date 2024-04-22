@@ -249,7 +249,7 @@ public class BattleTests
     Defender[2].setImmunityChance(0.0f);
     Defender[2].setEfficency(0.0f);
 
-    battles.Swap(ref Attacker, ref Defender, ref playerAttacking, ref playerDefending);
+    battles.swap(ref Attacker, ref Defender, ref playerAttacking, ref playerDefending);
 
     Assert.AreEqual(2, Defender.Count);
     Assert.AreEqual("Attacker2", Defender[0].getName());
