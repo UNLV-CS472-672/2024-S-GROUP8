@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,25 +10,27 @@ public class Tile : MonoBehaviour
     public int playerIndex;
 
     // Public properties
-    public struct TileReference
+    public class TileReference
     {
-        public Vector2 tilePosition;
-        public string tileName;
+        public Vector2 tilePosition = new Vector2(-1000,-1000);
+        public string tileName = "";
+        public Building currBuilding = new Building("Nothing", 0, 0);
     }
 
     // References to the renderer and materials for the tile
-    public MeshRenderer rendererReference;
-    private Building currBuilding;
-    private TileReference reference;
+    private MeshRenderer rendererReference;
+    private TileReference reference = new TileReference();
 
     // Initialization in Start method
     // Assumes that the tile materials are located within a Resources folder
     void Start()
     {
         rendererReference = GetComponent<MeshRenderer>();
-        SetMaterial(PlayerController.players[playerIndex].GetColor());
-        currBuilding = new Building("Nothing",0,0);
+        if (playerIndex > -1)
+            SetMaterial(PlayerController.players[playerIndex].GetColor());
         if (gameObject != null) {
+            Debug.Log(gameObject.transform.position.x);
+            Debug.Log(gameObject.transform.position.z);
             reference.tilePosition.x = (int)gameObject.transform.position.x;
             reference.tilePosition.y = (int)gameObject.transform.position.z;
             // Temp name system
@@ -44,11 +47,13 @@ public class Tile : MonoBehaviour
     public void SetPlayer(int index)
     {
         // -1 represents non-ownership
-        if (index > -1) {
+        if (index > -1)
+        {
             PlayerController.players[index].AddTiles(reference);
         }
+        playerIndex = index;
     }
-    
+
     public void SetMaterial(Material newMaterial)
     {
         rendererReference.material = newMaterial;
@@ -71,9 +76,6 @@ public class Tile : MonoBehaviour
 
     public void SetTilePosition(int x, int y)
     {
-        if (reference.Equals(null)) {
-            reference = new TileReference();
-        }
         reference.tilePosition.x = x;
         reference.tilePosition.y = y;
     }
@@ -83,14 +85,30 @@ public class Tile : MonoBehaviour
         return reference.tilePosition;
     }
 
+     /* Fucntion to check if a tile located at a certain postion is in the players tilesOwned list */
+    public static TileReference GetTileAtPostion(Vector2 position, List<TileReference> tilesOwned){
+        foreach (TileReference tileRef in tilesOwned){
+            if (tileRef.tilePosition == position){
+                return tileRef;
+            }
+        }
+        return default;
+    }
+
     public Building GetBuilding()
     {
-        return currBuilding;
+        return reference.currBuilding;
     }
 
     public void SetBuilding(Building newBuilding)
     {
-        currBuilding = newBuilding;
+        if (newBuilding == null){
+            reference.currBuilding = new Building("Nothing", 0, 0);
+        }
+        else {
+            reference.currBuilding = newBuilding;
+        }
+        
     }
 
     public static bool IsAdjacent(Player player, Tile friendlyTile) {

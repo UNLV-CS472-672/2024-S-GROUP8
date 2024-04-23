@@ -34,7 +34,7 @@ public class Hand
     public int CountofCardType(Card card) { 
         int i = 0;
         foreach (Card oldCard in heldCards) {
-            if (oldCard.getName().Equals(card.getName())) {
+            if (oldCard.GetName().Equals(card.GetName())) {
                 i++;
             }
         }

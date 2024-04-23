@@ -151,7 +151,7 @@ public class StashTest
             new Card(null, "Steve")
         };
         Battles.AttackObject makeAttack = new Battles.AttackObject(cards, new Vector2(0, 0), new Vector2(0, 0));
-        GameManager.AddAttackerToBattle(PlayerController.CurrentPlayer, PlayerController.players[1], makeAttack);
+        GameManager.AddAttackerToBattle(PlayerController.CurrentPlayer, PlayerController.players[1], makeAttack, null);
 
         PlayerController.CurrentPlayer = PlayerController.players[1];
         PlayerController.CurrentPlayer.SetPhase(Player.Phase.Defense);

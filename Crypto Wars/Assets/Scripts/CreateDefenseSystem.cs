@@ -34,7 +34,8 @@ public class CreateDefenseSystem : MonoBehaviour
         if (defendObjects.Count < 1)
             return;
         foreach (GameObject def in defendObjects) {
-            if (def.transform.position.x == vec.x && def.transform.position.z == vec.y) { 
+            Debug.Log(vec.x);
+            if (Mathf.FloorToInt(def.transform.position.x) == vec.x && Mathf.FloorToInt(def.transform.position.z) == vec.y) { 
                 Destroy(def);
             }
         }
@@ -82,7 +83,7 @@ public class CreateDefenseSystem : MonoBehaviour
             foreach (GameManager.Battle battle in battles){
                 Vector2 battlePos = battle.attack.destinationTilePos;
                 if (checkPlayerTiles(battlePos, ownedTiles)){
-                    GameObject defendButton = Instantiate(defendIcon, new Vector3(battlePos.x, 2.5f, battlePos.y), Quaternion.identity);
+                    GameObject defendButton = Instantiate(defendIcon, new Vector3(battlePos.x + 0.04f, 2.5f, battlePos.y), Quaternion.identity);
                     defendButton.transform.localScale = new Vector3(0.032f, 0.032f, 0.032f);
                     defendButton.transform.eulerAngles = new Vector3(90, 0, 0);
                     defendButton.transform.SetParent(Canvas.transform);

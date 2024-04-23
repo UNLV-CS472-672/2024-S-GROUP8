@@ -17,7 +17,7 @@ public class CardRegistry
         // To test, log the names of the cards that were created
         foreach (var card in cardList)
         {
-            Debug.Log("Created card: " + card.getName());
+            Debug.Log("Created card: " + card.GetName());
         }
     }
 
@@ -39,6 +39,21 @@ public class CardRegistry
     // Might be helpful
     public static Card GetCardByName(string cardName)
     {
-        return cardList.Find(card => card.getName() == cardName);
+        Card card = cardList.Find(card => card.GetName() == cardName);
+        Card newCard = new Card(card.GetSprite(), card.GetName());
+        newCard.setOffense(card.getOffense());
+        newCard.setDefense(card.getDefense());
+        newCard.setStaminaCost(card.getStaminaCost());
+        return newCard;
+    }
+
+    public static Card GetCardByIndex(int index)
+    {
+        Card card = cardList[index];
+        Card newCard = new Card(card.GetSprite(), card.GetName());
+        newCard.setOffense(card.getOffense());
+        newCard.setDefense(card.getDefense());
+        newCard.setStaminaCost(card.getStaminaCost());
+        return newCard;
     }
 }

@@ -14,7 +14,9 @@ public class EndTurn : MonoBehaviour
 
     // EndTurn Variables
     public int turnNum;
-    PlayerController playerList;
+
+    [SerializeField]
+    PlayerController controller;
     Player pl;
 
     // Start is called before the first frame update
@@ -60,6 +62,8 @@ public class EndTurn : MonoBehaviour
       */
     public void Advance()
     {
+        controller.DisableButtonCanvas();
+
         TurnMaster.AdvancePlayerPhase(PlayerController.CurrentPlayer);
         phaseOutput.text = "Phase: " + PlayerController.CurrentPlayer.GetCurrentPhase();
 

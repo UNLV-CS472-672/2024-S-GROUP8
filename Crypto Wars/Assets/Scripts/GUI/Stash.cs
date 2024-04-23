@@ -116,7 +116,7 @@ public class Stash : MonoBehaviour
             tileSelect = PlayerController.GetSelectedTile();
             makeAttack = new Battles.AttackObject(stashedCards, new Vector2(0, 0) /* Null for now */, tileSelect.GetTilePosition());
             // Create a new incomplete battle with our attacker object
-            GameManager.AddAttackerToBattle(PlayerController.CurrentPlayer, PlayerController.players[tileSelect.GetPlayer()], makeAttack);
+            GameManager.AddAttackerToBattle(PlayerController.CurrentPlayer, PlayerController.players[tileSelect.GetPlayer()], makeAttack, tileSelect);
             // Clear the stash since we have our attackObject storing it now
             Clear();
             // DEBUG
@@ -128,6 +128,7 @@ public class Stash : MonoBehaviour
             Activate(false);
             Debug.Log("Collecting defender data");
             tileSelect = PlayerController.GetSelectedTile();
+            Debug.Log("" + stashedCards.Count);
             makeDefend = new Battles.DefendObject(stashedCards, tileSelect.GetTilePosition());
             // Finish the incomplete battle with our attacker object
             GameManager.AddDefenderToBattle(PlayerController.CurrentPlayer, makeDefend);

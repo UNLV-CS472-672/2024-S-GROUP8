@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 2775374345323002833}
   - component: {fileID: 3684717487812397211}
   - component: {fileID: 6402466154713936626}
-  - component: {fileID: 7095445217964923258}
   m_Layer: 0
   m_Name: Building
-  m_TagString: Untagged
+  m_TagString: IsBuilding
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,15 +107,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &7095445217964923258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609615834109288300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f47990992206944bc2fde9f26fadcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

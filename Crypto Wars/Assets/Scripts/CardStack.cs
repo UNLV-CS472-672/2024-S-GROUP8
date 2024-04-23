@@ -20,7 +20,7 @@ public class CardStack
     }
 
     public bool CanAddtoStack(Card card) {
-        if (card.getName().Equals(this.card.getName()))
+        if (card.GetName().Equals(this.card.GetName()))
         {
             return true;
         }

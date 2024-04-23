@@ -4,22 +4,17 @@ using UnityEngine;
 
 public class CancelButton : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject cancelButton;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        //outOfFrame();   
-        //gameObject.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Deactivate();
     }
 
     //Moves the cancel button out of frame
     public void Deactivate()
     {
-        gameObject.SetActive(false);
+        cancelButton.SetActive(false);
     }
 }

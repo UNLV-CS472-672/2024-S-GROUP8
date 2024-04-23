@@ -21,8 +21,8 @@ public class BuildingTest
         Material playerColor = new Material(Shader.Find("Specular"));
         Player tim = new Player("Tim", playerColor);
         Building build = new Building("testBuilding", 1, 2);
-        build.setOwner(tim);
-        Player buildingOwner = build.getOwner();
+        build.SetOwner(tim);
+        Player buildingOwner = build.GetOwner();
         Assert.AreEqual(tim, buildingOwner);
     }
 
@@ -32,8 +32,8 @@ public class BuildingTest
     {  
         Tile tile = new Tile();
         Building build = new Building("testBuilding", 1, 2);
-        build.setTile(tile);
-        Tile buildTile = build.getTile();
+        build.SetTile(tile);
+        Tile buildTile = build.GetTile();
         Assert.AreEqual(tile, buildTile);
     }
 
@@ -41,8 +41,8 @@ public class BuildingTest
     public void testBuildingProduction()
     {  
         Building build = new Building("testBuilding", 1, 4);
-        build.didNotProduce();
-        int buildTurnsSinceLast = build.getTurnsSinceLast();
+        build.DidNotProduce();
+        int buildTurnsSinceLast = build.GetTurnsSinceLast();
         Assert.AreEqual(1, buildTurnsSinceLast);
     }
 
@@ -50,8 +50,8 @@ public class BuildingTest
     public void testBuildingAmount()
     {  
         Building build = new Building("testBuilding", 2, 2);
-        build.setAmount(3);
-        int buildAmount = build.getAmount();
+        build.SetAmount(3);
+        int buildAmount = build.GetAmount();
         Assert.AreEqual(3, buildAmount);
     }
 
@@ -59,7 +59,7 @@ public class BuildingTest
     public void testBuildingName()
     {  
         Building build = new Building("testBuilding", 2, 2);
-        string buildName = build.getName();
+        string buildName = build.GetName();
         Assert.AreEqual("testBuilding", buildName);
     }
 
@@ -68,8 +68,8 @@ public class BuildingTest
     {  
         Card card = new Card(null, "testCard");
         Building build = new Building("testBuilding", 2, 2);
-        build.setCard(card);
-        Card buildCard = build.getCard();
+        build.SetCard(card);
+        Card buildCard = build.GetCard();
         Assert.AreEqual(card, buildCard);
     }
 
@@ -81,10 +81,10 @@ public class BuildingTest
         Card card = new Card(null, "testCard");
         Building build = new Building("testBuilding", 2, 1);
 
-        build.didNotProduce();
-        build.didNotProduce();
+        build.DidNotProduce();
+        build.DidNotProduce();
 
-        build.addCardsToInventory(player.GetInventory());
-        Assert.AreEqual(0, build.getTurnsSinceLast());
+        build.AddCardsToInventory(player.GetInventory());
+        Assert.AreEqual(0, build.GetTurnsSinceLast());
     }
 }

@@ -17,10 +17,13 @@ public class HandManager : MonoBehaviour
     private static Hand currentPlayerHand = null;
     private Card newSlot1Card, newSlot2Card, newSlot3Card, newSlot4Card, newSlot5Card;
     private int cardsInHandLast, newSlot1Count, newSlot2Count, newSlot3Count, newSlot4Count, newSlot5Count;
-    public GameObject panel, handGrid, canvas;
+    private GameObject panel, handGrid, canvas;
     private TextMeshProUGUI handSlot1Text, handSlot2Text, handSlot3Text, handSlot4Text, handSlot5Text;
-    public Boolean visible, cardsUpdated;
-    public Image image;
+    private bool visible, cardsUpdated;
+    private Image image;
+
+    [SerializeField]
+    private Sprite Bar;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +36,11 @@ public class HandManager : MonoBehaviour
         panel = new GameObject("Handheld Cards");
         panel.transform.parent = canvas.transform;
         panel.AddComponent<CanvasRenderer>();
-        image = panel.AddComponent<Image>();
-        image.color = new Color(0, 0, 0, 0.5f);
+        panel.AddComponent<Image>();
+        panel.GetComponent<Image>().sprite = Bar;
+        panel.GetComponent<Image>().pixelsPerUnitMultiplier = 0.5f;
+        panel.GetComponent<Image>().type = Image.Type.Sliced;
+        image = panel.GetComponent<Image>();
 
         EventTrigger et = panel.AddComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();
@@ -55,18 +61,18 @@ public class HandManager : MonoBehaviour
         slot1.GetComponent<RectTransform>().localPosition = handGrid.GetComponent<RectTransform>().localPosition;
         GameObject slot1Text = new GameObject("HandCardName");
         handSlot1Text = slot1Text.AddComponent<TextMeshProUGUI>();
-        handSlot1Text.GetComponent<RectTransform>().pivot = new Vector2(-0.46f, 1.2f);
+        handSlot1Text.GetComponent<RectTransform>().pivot = new Vector2(-0.50f, 1.45f);
         handSlot1Text.transform.parent = slot1.transform;
         handSlot1Text.fontSize = 14;
         handSlot1Text.text = "Slot 1 Text";
-        
+
         GameObject slot2 = new GameObject("Hand_Slot_2");
         slot2.AddComponent<RectTransform>();
         slot2.transform.parent = handGrid.transform;
         slot2.GetComponent<RectTransform>().localPosition = handGrid.GetComponent<RectTransform>().localPosition;
         GameObject slot2Text = new GameObject("HandCardName");
         handSlot2Text = slot2Text.AddComponent<TextMeshProUGUI>();
-        handSlot2Text.GetComponent<RectTransform>().pivot = new Vector2(-0.46f, 1.2f);
+        handSlot2Text.GetComponent<RectTransform>().pivot = new Vector2(-0.50f, 1.45f);
         handSlot2Text.transform.parent = slot2.transform;
         handSlot2Text.fontSize = 14;
         handSlot2Text.text = "Slot 2 Text";
@@ -77,7 +83,7 @@ public class HandManager : MonoBehaviour
         slot3.GetComponent<RectTransform>().localPosition = handGrid.GetComponent<RectTransform>().localPosition;
         GameObject slot3Text = new GameObject("HandCardName");
         handSlot3Text = slot3Text.AddComponent<TextMeshProUGUI>();
-        handSlot3Text.GetComponent<RectTransform>().pivot = new Vector2(-0.46f, 1.2f);
+        handSlot3Text.GetComponent<RectTransform>().pivot = new Vector2(-0.50f, 1.45f);
         handSlot3Text.transform.parent = slot3.transform;
         handSlot3Text.fontSize = 14;
         handSlot3Text.text = "Slot 3 Text";
@@ -88,7 +94,7 @@ public class HandManager : MonoBehaviour
         slot4.GetComponent<RectTransform>().localPosition = handGrid.GetComponent<RectTransform>().localPosition;
         GameObject slot4Text = new GameObject("HandCardName");
         handSlot4Text = slot4Text.AddComponent<TextMeshProUGUI>();
-        handSlot4Text.GetComponent<RectTransform>().pivot = new Vector2(-0.46f, 1.2f);
+        handSlot4Text.GetComponent<RectTransform>().pivot = new Vector2(-0.50f, 1.45f);
         handSlot4Text.transform.parent = slot4.transform;
         handSlot4Text.fontSize = 14;
         handSlot4Text.text = "Slot 4 Text";
@@ -99,15 +105,19 @@ public class HandManager : MonoBehaviour
         slot5.GetComponent<RectTransform>().localPosition = handGrid.GetComponent<RectTransform>().localPosition;
         GameObject slot5Text = new GameObject("HandCardName");
         handSlot5Text = slot5Text.AddComponent<TextMeshProUGUI>();
-        handSlot5Text.GetComponent<RectTransform>().pivot = new Vector2(-0.46f, 1.2f);
+        handSlot5Text.GetComponent<RectTransform>().pivot = new Vector2(-0.50f, 1.45f);
         handSlot5Text.transform.parent = slot5.transform;
         handSlot5Text.fontSize = 14;
         handSlot5Text.text = "Slot 5 Text";
 
+        
+
         for (int i = 0; i < 5; i++) {
-            SetupSlot(i); // Create each slot in the inventory
+           // SetupSlot(i); // Create each slot in the inventory
             Debug.Log("Hand Slot " + Slots.Count);
         }
+
+        ForceHideAll();
 
         visible = true;
         cardsUpdated = false;
@@ -121,16 +131,15 @@ public class HandManager : MonoBehaviour
         Vector3 offsetVector = Vector3.zero;
         Vector3 offsetPosition = Input.mousePosition + offsetVector;
         panel.transform.position = offsetPosition;
+        if(PlayerController.Switching)
+            currentPlayerHand = PlayerController.CurrentPlayer.GetInventory().GetHand();
 
-        if(currentPlayerHand.GetHandCards().Count != 0)
+        if (currentPlayerHand.GetHandCards().Count != cardsInHandLast)
         {
-            if(currentPlayerHand.GetHandCards().Count != cardsInHandLast)
-            {
-                cardsUpdated = true;
-            }
+            cardsUpdated = true;
         }
 
-        if(cardsUpdated)
+        if (cardsUpdated)
         {
             ChangeDisplayedCards();
         }
@@ -141,14 +150,14 @@ public class HandManager : MonoBehaviour
             ToggleHideAll();
             Debug.Log("Toggling Hand Visibility Status: " + visible);
         }
-        
+
         // DEBUG: Remove before shipping?
         if (Input.GetKeyDown(KeyCode.P)) {
             int count = 4;
             PartialReveal(count);
             Debug.Log("Partially Revealing: " + count);
         }
-        
+
         // DEBUG: Remove before shipping?
         if (Input.GetKeyDown(KeyCode.C)) {
             visible = false;
@@ -167,7 +176,7 @@ public class HandManager : MonoBehaviour
     {
         image.enabled = true;
 
-        switch(count)
+        switch (count)
         {
             case 1:
                 handSlot1Text.enabled = true;
@@ -233,122 +242,71 @@ public class HandManager : MonoBehaviour
         newSlot3Count = 0;
         newSlot4Count = 0;
         newSlot5Count = 0;
-        List<string> cardNamesInHand = new List<string>();
+        cardNamesInHand = new List<string>();
         // for(int i = 0; i < currentPlayerHand.GetHandCards().Count; i++)
         // {
-            
+
         // }
-        
+
         // newSlot1Card = currentPlayerHand.GetHandCards()[0];
-        if(currentPlayerHand.GetHandCards().Count != 0)
+        if (currentPlayerHand.GetHandCards().Count != 0)
         {
             foreach (Card oldCard in currentPlayerHand.GetHandCards())
             {
-                if(newSlot1Card == null)
-                {
-                    if(!cardNamesInHand.Contains(oldCard.getName()))
-                    {
-                        newSlot1Card = oldCard;
-                        cardNamesInHand.Add(newSlot1Card.getName());
-                    }
-                }
-                if(newSlot1Card != null)
-                {
-                    if (cardNamesInHand.IndexOf(oldCard.getName()) == 0)
-                    {
-                        newSlot1Count++;
-                    }
-                }
-                if(newSlot2Card == null)
-                {
-                    if(!cardNamesInHand.Contains(oldCard.getName()))
-                    {
-                        newSlot2Card = oldCard;
-                        cardNamesInHand.Add(newSlot2Card.getName());
-                    }
-                }
-                if(newSlot2Card != null)
-                {
-                    if(cardNamesInHand.IndexOf(oldCard.getName()) == 1)
-                    {
-                        newSlot2Count++;
-                    }
-                }
-                if(newSlot3Card == null)
-                {
-                    if(!cardNamesInHand.Contains(oldCard.getName()))
-                    {
-                        newSlot3Card = oldCard;
-                        cardNamesInHand.Add(newSlot3Card.getName());
-                    }
-                }
-                if(newSlot3Card != null)
-                {
-                    if(cardNamesInHand.IndexOf(oldCard.getName()) == 2)
-                    {
-                        newSlot3Count++;
-                    }
-                }
-                if(newSlot4Card == null)
-                {
-                    if(!cardNamesInHand.Contains(oldCard.getName()))
-                    {
-                        newSlot4Card = oldCard;
-                        cardNamesInHand.Add(newSlot4Card.getName());
-                    }
-                }
-                if(newSlot4Card != null)
-                {
-                    if(cardNamesInHand.IndexOf(oldCard.getName()) == 3)
-                    {
-                        newSlot4Count++;
-                    }
-                }
-                if(newSlot3Card == null)
-                {
-                    if(!cardNamesInHand.Contains(oldCard.getName()))
-                    {
-                        newSlot5Card = oldCard;
-                        cardNamesInHand.Add(newSlot5Card.getName());
-                    }
-                }
-                if(newSlot5Card != null)
-                {
-                    if(cardNamesInHand.IndexOf(oldCard.getName()) == 4)
-                    {
-                        newSlot5Count++;
-                    }
-                }
+                EditCard(ref newSlot1Card, oldCard, ref newSlot1Count, 0);
+                EditCard(ref newSlot2Card, oldCard, ref newSlot2Count, 1);
+                EditCard(ref newSlot3Card, oldCard, ref newSlot3Count, 2);
+                EditCard(ref newSlot4Card, oldCard, ref newSlot4Count, 3);
+                EditCard(ref newSlot5Card, oldCard, ref newSlot5Count, 4);
             }
-        
-            if(newSlot1Card != null)
+
+            if (newSlot1Card != null)
             {
-                handSlot1Text.text = newSlot1Count + "x " + newSlot1Card.getName();
+                handSlot1Text.text = newSlot1Count + "x " + newSlot1Card.GetName();
             }
-            if(newSlot2Card != null)
+            if (newSlot2Card != null)
             {
-                handSlot2Text.text = newSlot2Count + "x " + newSlot2Card.getName();
+                handSlot2Text.text = newSlot2Count + "x " + newSlot2Card.GetName();
             }
-            if(newSlot3Card != null)
+            if (newSlot3Card != null)
             {
-                handSlot3Text.text = newSlot3Count + "x " + newSlot3Card.getName();
+                handSlot3Text.text = newSlot3Count + "x " + newSlot3Card.GetName();
             }
-            if(newSlot4Card != null)
+            if (newSlot4Card != null)
             {
-                handSlot4Text.text = newSlot4Count + "x " + newSlot4Card.getName();
+                handSlot4Text.text = newSlot4Count + "x " + newSlot4Card.GetName();
             }
-            if(newSlot5Card != null)
+            if (newSlot5Card != null)
             {
-                handSlot5Text.text = newSlot5Count + "x " + newSlot5Card.getName();
+                handSlot5Text.text = newSlot5Count + "x " + newSlot5Card.GetName();
             }
         }
         else
         {
             ForceHideAll();
         }
-        
+
         cardsInHandLast = currentPlayerHand.GetHandCards().Count;
         cardsUpdated = false;
+    }
+
+    public void EditCard(ref Card cardSlot, Card oldCard, ref int slotNum, int index){
+        if (cardSlot == null)
+        {
+            if (!cardNamesInHand.Contains(oldCard.GetName()))
+            {
+                cardSlot = oldCard;
+                cardNamesInHand.Add(cardSlot.GetName());
+                PartialReveal(index + 1);
+            }
+        }
+        if (cardSlot != null)
+        {
+            if (cardNamesInHand.IndexOf(oldCard.GetName()) == index)
+            {
+                slotNum++;
+            }
+        }
     }
     
     // Sets the text of a given TextMeshProUGUI object

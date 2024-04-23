@@ -52,6 +52,16 @@ public class TurnMaster : MonoBehaviour
         }
     }
 
+    private static void BuildingRewards(Player player) { 
+        List<Tile.TileReference> tiles = player.GetTiles();
+        foreach (Tile.TileReference tile in tiles) {
+            if (!tile.currBuilding.GetName().Equals("Nothing")) {
+                if(tile.currBuilding.GetOwner() != null)
+                    tile.currBuilding.AddCardsToInventory(player.GetInventory());
+            }
+        }
+    }
+
     // Advances a player to the next phase and checks for turn completion
     public static void AdvancePlayerPhase(Player player)
     {
@@ -64,6 +74,12 @@ public class TurnMaster : MonoBehaviour
             }
         }
         else {
+            if (player.GetCurrentPhase() == Player.Phase.Attack) {
+                foreach (Player rewarded in PlayerController.players)
+                {
+                    BuildingRewards(rewarded);
+                }
+            }
             player.NextPhase();
         }
         

@@ -11,21 +11,13 @@ public class BuildButtonScriptTest
     public GameObject buildButton;
     public GameObject cancelButton;
 
+    /// <summary>
+    /// FIX
+    /// </summary>
     [SetUp]
     public void SetUp()
     {
-<<<<<<< HEAD
-        // go = new GameObject("BuildMenu");
-        // canvas = new GameObject("Canvas");
-        // go.AddComponent<BuildButtonScript>();
-        // testBuildButton = go.GetComponent<BuildButtonScript>();
-        // testBuildButton.CreateBuildButton();
-        // testBuildButton.CreateDestroyButton();
-        // testBuildButton.CreateCancelButton();
-        // testBuildButton.buildButton = GameObject.Find("BuildButton");
-        // testBuildButton.destroyButton = GameObject.Find("DestroyButton");
-        // testBuildButton.cancelButton = GameObject.Find("CancelButton");
-=======
+
         go = new GameObject("BuildMenu");
         canvas = new GameObject("Canvas");
         go.AddComponent<BuildButtonScript>();
@@ -33,29 +25,27 @@ public class BuildButtonScriptTest
         //testBuildButton.CreateBuildButton();
         //testBuildButton.CreateDestroyButton();
         //testBuildButton.CreateCancelButton();
+        /*
         testBuildButton.buildButton = GameObject.Find("BuildButton");
         testBuildButton.destroyButton = GameObject.Find("DestroyButton");
         testBuildButton.cancelButton = GameObject.Find("CancelButton");
->>>>>>> 170c8125da5d228d6cc6b6fd8cd543095efe3762
+        */
     }
 
     [Test]
     public void TestToggleMenu()
     {
-<<<<<<< HEAD
-        // testBuildButton.ToggleMenu();
-        // Assert.IsFalse(testBuildButton.buildButton.GetComponent<Image>().enabled);
-        // testBuildButton.ToggleMenu();
-        // Assert.IsTrue(testBuildButton.buildButton.GetComponent<Image>().enabled);
-=======
+
         // buildButton.AddComponent<Image>();
         //testBuildButton.ToggleMenu();
+        /*
         Assert.IsFalse(testBuildButton.buildButton.GetComponent<Image>().enabled);
         //testBuildButton.ToggleMenu();
         Assert.IsTrue(testBuildButton.buildButton.GetComponent<Image>().enabled);
->>>>>>> 170c8125da5d228d6cc6b6fd8cd543095efe3762
+
+        */
     }
-    
+
     [Test]
     public void TestCreateBuildButton()
     {

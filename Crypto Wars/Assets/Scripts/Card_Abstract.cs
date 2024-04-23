@@ -24,8 +24,13 @@ public class Card
         this.card = card;   
     }
 
-    public string getName() { 
+    public string GetName() { 
         return name;
+    }
+
+    public Sprite GetSprite()
+    {
+        return card;
     }
     /*
      * // displays the card in Unity

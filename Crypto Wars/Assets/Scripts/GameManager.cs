@@ -14,17 +14,21 @@ public class GameManager : MonoBehaviour
         public Player defender; // null until winner is chosen in DoAllBattles
         public Battles.AttackObject attack;
         public Battles.DefendObject defence;
+        public Tile tile;
         public bool defenderHasCards; // Has defender selected cards?
-        public Battle(Player attacker, Player defender, Battles.AttackObject attack){ // Constructor
+        public Battle(Player attacker, Player defender, Battles.AttackObject attack, Tile tile){ // Constructor
             this.attacker = attacker;
             this.attack = attack;
             this.defender = defender;
             defence = null;
             defenderHasCards = false;
+            this.tile = tile;
         }
     }
     public static List<Battle> PlannedBattles = new List<Battle>();
     public static List<Battle> FinalBattles = new List<Battle>();
+    Battles calcBattles = new Battles();
+
 
     public static List<Battle> OnlyDefenderBattles(Player player) {
         List<Battle> Battles = new List<Battle>();
@@ -54,12 +58,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void AddAttackerToBattle(Player From, Player To, Battles.AttackObject attack)
+    public static void AddAttackerToBattle(Player From, Player To, Battles.AttackObject attack, Tile tile)
     {
-        PlannedBattles.Add(new Battle(From, To, attack));
+        PlannedBattles.Add(new Battle(From, To, attack, tile));
         Debug.Log("Battle - Player: " + From.GetName() + " Position: " + attack.destinationTilePos.ToString());
         foreach (Card card in attack.cardList) {
-            Debug.Log("BattleCard: " + card.getName());
+            Debug.Log("BattleCard: " + card.GetName());
         }
     }
 
@@ -70,6 +74,7 @@ public class GameManager : MonoBehaviour
             if (battle.attack.destinationTilePos == defend.originTilePos) {
                 PlannedBattles.Remove(battle);
                 battle.defender = For;
+                battle.defence = defend;
                 if (defend.cardList.Count > 0) {
                     battle.defenderHasCards = true; 
                 }
@@ -77,7 +82,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Battle - Def Player: " + For.GetName() + " Att Player: " + battle.attacker.GetName() + " Position: " + defend.originTilePos.ToString());
                 foreach (Card card in defend.cardList)
                 {
-                    Debug.Log("BattleCard: " + card.getName());
+                    Debug.Log("BattleCard: " + card.GetName());
                 }
                 break;
             }
@@ -87,16 +92,49 @@ public class GameManager : MonoBehaviour
     }
 
     public void DoAllBattles(){
-        for(int i = 0; i < FinalBattles.Count; i++){
+         for(int i = 0; i < FinalBattles.Count; i++){
             // Calculate outcome for battle i
             if(FinalBattles[i].defenderHasCards){
                 // Defender has selected cards
             }
             //FinalBattles[i].winner = FinalBattles[i].attacker; // return attacker as victor for now
+            Player originalAttacker = FinalBattles[i].attacker;
+            Player winner = calcBattles.CalculateWinner(FinalBattles[i].attack.cardList, FinalBattles[i].defence.cardList, FinalBattles[i].attacker, FinalBattles[i].defender); 
+            //if winner is attacker remove the tile from the defenders tiles owned and add it to the attackers
+            if (string.Equals(winner.GetName(), originalAttacker.GetName())){
+                Tile.TileReference tile = Tile.GetTileAtPostion(FinalBattles[i].defence.originTilePos, FinalBattles[i].defender.GetTiles());
+                Debug.Log(tile.tilePosition);
+                FinalBattles[i].defender.RemoveTiles(tile);
+                winner.AddTiles(tile);
+                Debug.Log(PlayerController.players.IndexOf(winner));
+                int index = PlayerController.players.IndexOf(winner);
+                FinalBattles[i].tile.SetPlayer(index);
+                FinalBattles[i].tile.SetMaterial(PlayerController.players[index].GetColor());
+                returnWinnersRemainingCardsToInventory(winner, FinalBattles[i].attack.cardList);
+                
+            }
+            else {
+                // if winner was not attacker then nothing happens defender won and will keep tile 
+                Debug.Log("Player " + winner.GetName() + " has won the battle. Since the defender has won " + originalAttacker.GetName()  + " will keep their tile.");
+                returnWinnersRemainingCardsToInventory(winner, FinalBattles[i].defence.cardList);
+            }
+            FinalBattles.Remove(FinalBattles[i]);
+            // if winner was not attacker then nothing happens defender won and will keep tile 
         }
+
     }
 
+    
     public void BattlesComplete(){
         // Called by TurnMaster waiting until all battles are calculated
+    }
+
+
+    public void returnWinnersRemainingCardsToInventory(Player winner, List<Card> remainingCards){
+         Debug.Log(winner.GetName() + " stil has " + remainingCards.Count + " cards after the battle.");
+         for (int i = 0; i < remainingCards.Count; i++){
+            Debug.Log("Adding card " + remainingCards[i].GetName() + " back to player " + winner.GetName()  + "'s card stack.");
+            winner.GetInventory().AddToCardToStack(remainingCards[i]);
+         }
     }
 }
