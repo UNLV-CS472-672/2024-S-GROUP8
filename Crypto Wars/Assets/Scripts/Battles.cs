@@ -7,7 +7,7 @@ using static Battles;
 public class Battles
 {
 
-    private List<AttackObject> atackArray = new List<AttackObject>();
+    private List<AttackObject> attackArray = new List<AttackObject>();
     private List<DefendObject> defenseArray = new List<DefendObject>();
 
     public class AttackObject {
@@ -164,7 +164,7 @@ public class Battles
 
         // swap who is attacker and defender until someone runs out of cards
         while (Attacker.Count != 0 && Defender.Count != 0){
-            Swap(ref Attacker, ref Defender, ref playerAttacking, ref playerDefending);
+            swap(ref Attacker, ref Defender, ref playerAttacking, ref playerDefending);
             Attack(Attacker, Defender);
         }
 
@@ -241,7 +241,7 @@ public class Battles
 
 
     // Fuction that swaps roles of attacker and defender in a battle 
-    public void Swap(ref List<Card> list1, ref List<Card> list2, ref Player atk, ref Player def){
+    public void swap(ref List<Card> list1, ref List<Card> list2, ref Player atk, ref Player def){
         List<Card> temp = list1;
         list1 = list2; //new Attacker
         list2 = temp; //new Defender
@@ -302,6 +302,7 @@ public class Battles
 
            return rand <= attackerCard.getEfficencyChance();   
     }
+
 
 
 

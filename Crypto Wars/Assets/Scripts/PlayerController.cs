@@ -154,8 +154,8 @@ public class PlayerController : MonoBehaviour
         // DEBUG: allows current player to take tile regardless of who owns it
         if (Input.GetMouseButton(1))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //RaycastHit hit;
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 100f)) {
                 if (hit.transform != null) {
                     Tile tile = hit.transform.GetComponent<Tile>();
@@ -169,6 +169,7 @@ public class PlayerController : MonoBehaviour
         }
            
     }
+}
 
     // Moves to the next player in line
     public static void NextPlayer() {
@@ -309,6 +310,7 @@ public class PlayerController : MonoBehaviour
             desButton.onClick.AddListener(() => buildButton.GetComponent<BuildButtonScript>().DeletePrefab(tile));
             Debug.Log(tile.GetBuilding().GetName());
             Debug.Log("Creating a Destroy Button");
+
         }
         
     }
