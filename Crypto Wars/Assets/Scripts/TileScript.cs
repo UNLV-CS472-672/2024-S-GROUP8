@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,25 +10,25 @@ public class Tile : MonoBehaviour
     public int playerIndex;
 
     // Public properties
-    public struct TileReference
+    public class TileReference
     {
-        public Vector2 tilePosition;
-        public string tileName;
+        public Vector2 tilePosition = new Vector2();
+        public string tileName = "";
+        public Building currBuilding = new Building("Nothing", 0, 0);
     }
 
     // References to the renderer and materials for the tile
     private MeshRenderer rendererReference;
-    private Building currBuilding;
-    private TileReference reference;
+    private TileReference reference = new TileReference();
 
     // Initialization in Start method
     // Assumes that the tile materials are located within a Resources folder
     void Start()
     {
         rendererReference = GetComponent<MeshRenderer>();
-        SetMaterial(PlayerController.players[playerIndex].GetColor());
-        currBuilding = new Building("Nothing",0,0);
-        if (gameObject != null) {
+        if (playerIndex > -1)
+            SetMaterial(PlayerController.players[playerIndex].GetColor());
+        if (gameObject != null) { 
             reference.tilePosition.x = (int)gameObject.transform.position.x;
             reference.tilePosition.y = (int)gameObject.transform.position.z;
             // Temp name system
@@ -45,8 +46,8 @@ public class Tile : MonoBehaviour
     {
         playerIndex = index;
         // -1 represents non-ownership
-        if (playerIndex != -1) {
-            PlayerController.players[index].AddTiles(reference);
+        if (index > -1) {
+            PlayerController.players[index].AddTiles(ref reference);
         }
     }
 
@@ -96,11 +97,17 @@ public class Tile : MonoBehaviour
 
     public Building getBuilding()
     {
-        return currBuilding;
+        return reference.currBuilding;
     }
 
     public void setBuilding(Building newBuilding)
     {
-        currBuilding = newBuilding;
+        if (newBuilding == null){
+            reference.currBuilding = new Building("Nothing", 0, 0);
+        }
+        else {
+            reference.currBuilding = newBuilding;
+        }
+        
     }
 }

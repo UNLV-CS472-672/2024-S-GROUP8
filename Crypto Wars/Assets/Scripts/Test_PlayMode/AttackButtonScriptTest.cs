@@ -20,7 +20,7 @@ public class AttackButtonScriptTest
     public void TestOutOfFrame()
     {
         Vector3 expectedPosition = new Vector3(0,-375,0);
-        attackButton.outOfFrame();
+        attackButton.Deactivate();
         Assert.AreEqual(expectedPosition, go.transform.position);
     }
 }

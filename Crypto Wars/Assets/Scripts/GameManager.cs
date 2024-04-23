@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         PlannedBattles.Add(new Battle(From, To, attack));
         Debug.Log("Battle - Player: " + From.GetName() + " Position: " + attack.destinationTilePos.ToString());
         foreach (Card card in attack.cardList) {
-            Debug.Log("BattleCard: " + card.getName());
+            Debug.Log("BattleCard: " + card.GetName());
         }
     }
 
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Battle - Def Player: " + For.GetName() + " Att Player: " + battle.attacker.GetName() + " Position: " + defend.originTilePos.ToString());
                 foreach (Card card in defend.cardList)
                 {
-                    Debug.Log("BattleCard: " + card.getName());
+                    Debug.Log("BattleCard: " + card.GetName());
                 }
                 break;
             }

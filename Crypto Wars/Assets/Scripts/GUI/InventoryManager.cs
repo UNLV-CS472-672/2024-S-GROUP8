@@ -62,7 +62,7 @@ public class InventoryManager : MonoBehaviour
             }
             List<CardStack> stacks = currentPlayerInventory.GetStacks();
             for (int i = 0; i < currentPlayerInventory.GetStacksListSize(); i++){
-                SetText("CardName", i, "" + stacks[i].GetCardinStack().getName(), "CardName Bar");
+                SetText("CardName", i, "" + stacks[i].GetCardinStack().GetName(), "CardName Bar");
                 SetText("Amount", i, "" + stacks[i].GetSize());
             }
             PlayerController.Switching = false;
@@ -91,17 +91,12 @@ public class InventoryManager : MonoBehaviour
         if (currentPlayerInventory != null){
             List<CardStack> stacks = currentPlayerInventory.GetStacks();
             for (int i = 0; i < stacks.Count(); i++) {
-                SetText("CardName", i, "" + stacks[i].GetCardinStack().getName(), "CardName Bar");
+                SetText("CardName", i, "" + stacks[i].GetCardinStack().GetName(), "CardName Bar");
                 SetText("Amount", i, "" + stacks[i].GetSize());
             }
         SetText("CardName", stacks.Count(), "", "CardName Bar");
         SetText("Amount", stacks.Count(), "");
         }
-    }
-
-    public void comeIntoFrame()
-    {
-        this.transform.position = new Vector3(200,35,0);
     }
 
     // Function for unit tests to reset slots

@@ -44,7 +44,7 @@ public class InventoryTests
         // Check if card is in now in inventory
         Assert.AreEqual(1, inventory.GetStacksListSize());
         Assert.AreEqual(1, inventory.GetStack(0).GetSize());
-        Assert.AreEqual(newCard.getName(), inventory.GetStack(0).GetCardinStack().getName());
+        Assert.AreEqual(newCard.GetName(), inventory.GetStack(0).GetCardinStack().GetName());
     }
 
 

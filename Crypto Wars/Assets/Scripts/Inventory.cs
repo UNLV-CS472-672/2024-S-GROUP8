@@ -20,7 +20,7 @@ public class Inventory
         if (CardStacks.Count < 1)
         {
             CardStacks.Add(new CardStack(card, maxCardStack));
-            manager.SetText("CardName", 0, "" + CardStacks[0].GetCardinStack().getName(), "CardName Bar");
+            manager.SetText("CardName", 0, "" + CardStacks[0].GetCardinStack().GetName(), "CardName Bar");
             manager.SetText("Amount", 0, "" + 1);
         }
         // Stacks already exist
@@ -44,7 +44,7 @@ public class Inventory
             if (!hasBeenAdded && CardStacks.Count < maxSize)
             {
                 CardStacks.Add(new CardStack(card, maxCardStack));
-                manager.SetText("CardName", CardStacks.Count - 1, "" + CardStacks[CardStacks.Count - 1].GetCardinStack().getName(), "CardName Bar");
+                manager.SetText("CardName", CardStacks.Count - 1, "" + CardStacks[CardStacks.Count - 1].GetCardinStack().GetName(), "CardName Bar");
                 manager.SetText("Amount", CardStacks.Count - 1, "" + CardStacks[CardStacks.Count - 1].GetSize());
             }
             else
@@ -69,7 +69,7 @@ public class Inventory
             // Find stack with an existing card name
             foreach (CardStack existing in CardStacks)
             {
-                if (existing.GetCardinStack().getName().Equals(card.getName()))
+                if (existing.GetCardinStack().GetName().Equals(card.GetName()))
                 {
                     selectedStack = existing;
                     break;
@@ -128,7 +128,7 @@ public class Inventory
     public void MoveCardToHand(int amount, Card card, int index = -1)
     {
         if (index > -1) {
-            if (!CardStacks[index].GetCardinStack().getName().Equals(card.getName())) {
+            if (!CardStacks[index].GetCardinStack().GetName().Equals(card.GetName())) {
                 return;
             }
         }

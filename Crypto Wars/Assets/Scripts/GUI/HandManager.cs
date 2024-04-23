@@ -246,75 +246,75 @@ public class HandManager : MonoBehaviour
             {
                 if(newSlot1Card == null)
                 {
-                    if(!cardNamesInHand.Contains(oldCard.getName()))
+                    if(!cardNamesInHand.Contains(oldCard.GetName()))
                     {
                         newSlot1Card = oldCard;
-                        cardNamesInHand.Add(newSlot1Card.getName());
+                        cardNamesInHand.Add(newSlot1Card.GetName());
                     }
                 }
                 if(newSlot1Card != null)
                 {
-                    if (cardNamesInHand.IndexOf(oldCard.getName()) == 0)
+                    if (cardNamesInHand.IndexOf(oldCard.GetName()) == 0)
                     {
                         newSlot1Count++;
                     }
                 }
                 if(newSlot2Card == null)
                 {
-                    if(!cardNamesInHand.Contains(oldCard.getName()))
+                    if(!cardNamesInHand.Contains(oldCard.GetName()))
                     {
                         newSlot2Card = oldCard;
-                        cardNamesInHand.Add(newSlot2Card.getName());
+                        cardNamesInHand.Add(newSlot2Card.GetName());
                     }
                 }
                 if(newSlot2Card != null)
                 {
-                    if(cardNamesInHand.IndexOf(oldCard.getName()) == 1)
+                    if(cardNamesInHand.IndexOf(oldCard.GetName()) == 1)
                     {
                         newSlot2Count++;
                     }
                 }
                 if(newSlot3Card == null)
                 {
-                    if(!cardNamesInHand.Contains(oldCard.getName()))
+                    if(!cardNamesInHand.Contains(oldCard.GetName()))
                     {
                         newSlot3Card = oldCard;
-                        cardNamesInHand.Add(newSlot3Card.getName());
+                        cardNamesInHand.Add(newSlot3Card.GetName());
                     }
                 }
                 if(newSlot3Card != null)
                 {
-                    if(cardNamesInHand.IndexOf(oldCard.getName()) == 2)
+                    if(cardNamesInHand.IndexOf(oldCard.GetName()) == 2)
                     {
                         newSlot3Count++;
                     }
                 }
                 if(newSlot4Card == null)
                 {
-                    if(!cardNamesInHand.Contains(oldCard.getName()))
+                    if(!cardNamesInHand.Contains(oldCard.GetName()))
                     {
                         newSlot4Card = oldCard;
-                        cardNamesInHand.Add(newSlot4Card.getName());
+                        cardNamesInHand.Add(newSlot4Card.GetName());
                     }
                 }
                 if(newSlot4Card != null)
                 {
-                    if(cardNamesInHand.IndexOf(oldCard.getName()) == 3)
+                    if(cardNamesInHand.IndexOf(oldCard.GetName()) == 3)
                     {
                         newSlot4Count++;
                     }
                 }
                 if(newSlot3Card == null)
                 {
-                    if(!cardNamesInHand.Contains(oldCard.getName()))
+                    if(!cardNamesInHand.Contains(oldCard.GetName()))
                     {
                         newSlot5Card = oldCard;
-                        cardNamesInHand.Add(newSlot5Card.getName());
+                        cardNamesInHand.Add(newSlot5Card.GetName());
                     }
                 }
                 if(newSlot5Card != null)
                 {
-                    if(cardNamesInHand.IndexOf(oldCard.getName()) == 4)
+                    if(cardNamesInHand.IndexOf(oldCard.GetName()) == 4)
                     {
                         newSlot5Count++;
                     }
@@ -323,23 +323,23 @@ public class HandManager : MonoBehaviour
         
             if(newSlot1Card != null)
             {
-                handSlot1Text.text = newSlot1Count + "x " + newSlot1Card.getName();
+                handSlot1Text.text = newSlot1Count + "x " + newSlot1Card.GetName();
             }
             if(newSlot2Card != null)
             {
-                handSlot2Text.text = newSlot2Count + "x " + newSlot2Card.getName();
+                handSlot2Text.text = newSlot2Count + "x " + newSlot2Card.GetName();
             }
             if(newSlot3Card != null)
             {
-                handSlot3Text.text = newSlot3Count + "x " + newSlot3Card.getName();
+                handSlot3Text.text = newSlot3Count + "x " + newSlot3Card.GetName();
             }
             if(newSlot4Card != null)
             {
-                handSlot4Text.text = newSlot4Count + "x " + newSlot4Card.getName();
+                handSlot4Text.text = newSlot4Count + "x " + newSlot4Card.GetName();
             }
             if(newSlot5Card != null)
             {
-                handSlot5Text.text = newSlot5Count + "x " + newSlot5Card.getName();
+                handSlot5Text.text = newSlot5Count + "x " + newSlot5Card.GetName();
             }
         }
         else

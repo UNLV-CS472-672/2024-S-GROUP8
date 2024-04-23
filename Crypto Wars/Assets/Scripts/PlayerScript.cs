@@ -94,7 +94,7 @@ public class Player
 
     // Add one tile to a player's ownership
     // Simple reference for calculating victory, etc
-    public void AddTiles(Tile.TileReference tile)
+    public void AddTiles(ref Tile.TileReference tile)
     {
         tilesControlled += 1;
         if (!tilesOwned.Contains(tile))
@@ -107,7 +107,7 @@ public class Player
 
     // Overloaded adding tiles for if amount is more than 1
     // Simple reference for calculating victory
-    public void AddTiles(List<Tile.TileReference> tiles, int amount)
+    public void AddTiles(ref List<Tile.TileReference> tiles, int amount)
     {
         tilesControlled += amount;
         foreach (Tile.TileReference tile in tiles)

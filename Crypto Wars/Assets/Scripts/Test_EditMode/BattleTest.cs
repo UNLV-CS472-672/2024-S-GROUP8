@@ -252,13 +252,13 @@ public class BattleTests
     battles.swap(ref Attacker, ref Defender, ref playerAttacking, ref playerDefending);
 
     Assert.AreEqual(2, Defender.Count);
-    Assert.AreEqual("Attacker2", Defender[0].getName());
-    Assert.AreEqual("Attacker1", Defender[1].getName());
+    Assert.AreEqual("Attacker2", Defender[0].GetName());
+    Assert.AreEqual("Attacker1", Defender[1].GetName());
 
     Assert.AreEqual(3, Attacker.Count);
-    Assert.AreEqual("Defender3", Attacker[0].getName());
-    Assert.AreEqual("Defender2", Attacker[1].getName());
-    Assert.AreEqual("Defender1", Attacker[2].getName());
+    Assert.AreEqual("Defender3", Attacker[0].GetName());
+    Assert.AreEqual("Defender2", Attacker[1].GetName());
+    Assert.AreEqual("Defender1", Attacker[2].GetName());
 
     Assert.AreEqual("Bob", playerDefending.GetName());
     Assert.AreEqual("John", playerAttacking.GetName());

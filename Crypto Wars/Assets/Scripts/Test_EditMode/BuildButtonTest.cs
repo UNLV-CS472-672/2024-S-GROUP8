@@ -21,7 +21,7 @@ public class BuildButtonTest
     public void TestOutOfFrame()
     {
         Vector3 expectedPosition = new Vector3(0,-375,0);
-        buildButton.outOfFrame();
+        buildButton.DeactivateMain();
         Assert.AreEqual(expectedPosition, go.transform.position);
     }
 }

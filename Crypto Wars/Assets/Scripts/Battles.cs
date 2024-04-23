@@ -194,11 +194,11 @@ public class Battles
 
             if (DodgeAttack(defenderCard)){
                 attackerCard.setOffense(attackerCard.getOffense() - 1);  // update attack -1 since defender dodged and attack was not successful
-                Debug.Log("Card " + attackerCard.getName() + " had an unsuccessful attack. Attack is now " + attackerCard.getOffense() + ".");
-                Debug.Log("Card " + defenderCard.getName() + " has sucessfully dodged an attack.");
+                Debug.Log("Card " + attackerCard.GetName() + " had an unsuccessful attack. Attack is now " + attackerCard.getOffense() + ".");
+                Debug.Log("Card " + defenderCard.GetName() + " has sucessfully dodged an attack.");
                 if (attackerCard.getOffense() == 0){
                     Attacker.RemoveAt(i); 
-                    Debug.Log("Attack stat for card " + attackerCard.getName() + " has reached 0. Card has been defeated.");
+                    Debug.Log("Attack stat for card " + attackerCard.GetName() + " has reached 0. Card has been defeated.");
                     minCount--;
                     continue;
                 }
@@ -206,7 +206,7 @@ public class Battles
             else {
                 if (attackerCard.getOffense() >= defenderCard.getDefense()){
                     Defender.RemoveAt(i);    // attack was successful so remove defensive card
-                    Debug.Log("Attack sucessful, card " + defenderCard.getName() + " has been defeated.");
+                    Debug.Log("Attack sucessful, card " + defenderCard.GetName() + " has been defeated.");
                     minCount--;
 
                     // if (KeepAttack(attackerCard)){
@@ -214,23 +214,23 @@ public class Battles
                     //     Debug.Log("Card " + attackerCard.getName() + " has sucessfully retained their attack upon a sucessful attack. Attack is now " + attackerCard.getOffense() + ".");
                     // }
                     attackerCard.setOffense(attackerCard.getOffense() + 1);  // update attack +1 since attack successful
-                    Debug.Log("Card " + attackerCard.getName() + " had a sucessful attack. Attack is now " + attackerCard.getOffense() + ".");
+                    Debug.Log("Card " + attackerCard.GetName() + " had a sucessful attack. Attack is now " + attackerCard.getOffense() + ".");
                 }
                 else if (attackerCard.getOffense() < defenderCard.getDefense()){   // if attacker stat is not more than defender stat then card still has health
                     defenderCard.setDefense(defenderCard.getDefense() - attackerCard.getOffense());   // subtract players attack stat (damage) from the defense stat (health)
-                    Debug.Log("Card " + defenderCard.getName() + " has been attacked. Defense is now " + defenderCard.getDefense() + ".");
+                    Debug.Log("Card " + defenderCard.GetName() + " has been attacked. Defense is now " + defenderCard.getDefense() + ".");
                     if (!KeepAttack(attackerCard)){
                         attackerCard.setOffense(attackerCard.getOffense() - 1);  // update attack -1 since attack was not successful
-                        Debug.Log("Card " + attackerCard.getName() + " had an unsuccessful attack. Attack is now " + attackerCard.getOffense() + ".");
+                        Debug.Log("Card " + attackerCard.GetName() + " had an unsuccessful attack. Attack is now " + attackerCard.getOffense() + ".");
                         if (attackerCard.getOffense() == 0){
                             Attacker.RemoveAt(i); 
-                            Debug.Log("Attack stat for card " + attackerCard.getName() + " has reached 0. Card has been defeated.");
+                            Debug.Log("Attack stat for card " + attackerCard.GetName() + " has reached 0. Card has been defeated.");
                             minCount--;
                             continue;
                         }
                     }
                     else {
-                        Debug.Log("Card " + attackerCard.getName() + " has sucessfully retained their attack. Attack is stil " + attackerCard.getOffense() + ".");
+                        Debug.Log("Card " + attackerCard.GetName() + " has sucessfully retained their attack. Attack is stil " + attackerCard.getOffense() + ".");
                     }
                 }
             }
