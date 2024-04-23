@@ -84,6 +84,16 @@ public class Tile : MonoBehaviour
         return reference.tilePosition;
     }
 
+     /* Fucntion to check if a tile located at a certain postion is in the players tilesOwned list */
+    public static TileReference GetTileAtPostion(Vector2 position, List<Tile.TileReference> tilesOwned){
+        foreach (TileReference tileRef in tilesOwned){
+            if (tileRef.tilePosition == position){
+                return tileRef;
+            }
+        }
+        return default(TileReference);
+    }
+
     public Building GetBuilding()
     {
         return reference.currBuilding;
