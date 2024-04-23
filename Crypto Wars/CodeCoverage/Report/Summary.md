@@ -1,52 +1,52 @@
 ﻿# Summary
 |||
 |:---|:---|
-| Generated on: | 4/23/2024 - 4:06:06 PM |
-| Parser: | MultiReportParser (4x OpenCoverParser) |
+| Generated on: | 4/23/2024 - 4:42:50 PM |
+| Parser: | MultiReportParser (2x OpenCoverParser) |
 | Assemblies: | 1 |
 | Classes: | 30 |
 | Files: | 30 |
-| Covered lines: | 685 |
-| Uncovered lines: | 1779 |
-| Coverable lines: | 2464 |
-| Total lines: | 3916 |
-| Line coverage: | 27.8% (685 of 2464) |
+| Covered lines: | 189 |
+| Uncovered lines: | 1982 |
+| Coverable lines: | 2171 |
+| Total lines: | 3920 |
+| Line coverage: | 8.7% (189 of 2171) |
 | Covered branches: | 0 |
 | Total branches: | 0 |
-| Covered methods: | 186 |
-| Total methods: | 412 |
-| Method coverage: | 45.1% (186 of 412) |
+| Covered methods: | 47 |
+| Total methods: | 281 |
+| Method coverage: | 16.7% (47 of 281) |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-|**Scripts**|**685**|**1779**|**2464**|**3916**|**27.8%**|**0**|**0**|****|**186**|**412**|**45.1%**|
-|AttackButtonScript|9|20|29|48|31%|0|0||5|9|55.5%|
-|Battles|13|137|150|309|8.6%|0|0||5|21|23.8%|
-|BuildButtonScript|9|83|92|140|9.7%|0|0||2|14|14.2%|
-|Building|23|75|98|119|23.4%|0|0||12|32|37.5%|
-|BuildingRegistry|23|4|27|45|85.1%|0|0||8|8|100%|
-|CameraScript|38|19|57|109|66.6%|0|0||6|7|85.7%|
-|CancelButton|3|8|11|20|27.2%|0|0||2|5|40%|
-|Card|34|28|62|130|54.8%|0|0||14|20|70%|
-|CardRegistry|25|9|34|59|73.5%|0|0||4|6|66.6%|
-|CardStack|11|34|45|68|24.4%|0|0||3|8|37.5%|
-|CreateDefenseSystem|25|78|103|164|24.2%|0|0||7|13|53.8%|
-|EndTurn|9|34|43|82|20.9%|0|0||3|4|75%|
-|EscapeMenu|77|6|83|132|92.7%|0|0||6|6|100%|
-|GameManager|47|60|107|140|43.9%|0|0||15|20|75%|
-|Hand|13|13|26|48|50%|0|0||4|6|66.6%|
+|**Scripts**|**189**|**1982**|**2171**|**3920**|**8.7%**|**0**|**0**|****|**47**|**281**|**16.7%**|
+|AttackButtonScript|1|24|25|48|4%|0|0||1|5|20%|
+|Battles|4|107|111|309|3.6%|0|0||1|10|10%|
+|BuildButtonScript|0|83|83|140|0%|0|0||0|12|0%|
+|Building|68|0|68|122|100%|0|0||18|18|100%|
+|BuildingRegistry|0|23|23|45|0%|0|0||0|5|0%|
+|CameraScript|9|48|57|109|15.7%|0|0||1|7|14.2%|
+|CancelButton|0|6|6|20|0%|0|0||0|2|0%|
+|Card|7|43|50|130|14%|0|0||2|13|15.3%|
+|CardRegistry|0|34|34|59|0%|0|0||0|5|0%|
+|CardStack|32|13|45|68|71.1%|0|0||7|8|87.5%|
+|CreateDefenseSystem|0|82|82|164|0%|0|0||0|8|0%|
+|EndTurn|0|36|36|82|0%|0|0||0|2|0%|
+|EscapeMenu|1|82|83|132|1.2%|0|0||1|6|16.6%|
+|GameManager|1|91|92|140|1%|0|0||1|11|9%|
+|Hand|3|23|26|48|11.5%|0|0||1|6|16.6%|
 |HandManager|0|231|231|326|0%|0|0||0|10|0%|
-|Inventory|44|62|106|168|41.5%|0|0||8|11|72.7%|
-|InventoryManager|51|46|97|111|52.5%|0|0||13|17|76.4%|
-|InventorySelection|21|44|65|117|32.3%|0|0||3|7|42.8%|
+|Inventory|29|78|107|169|27.1%|0|0||2|11|18.1%|
+|InventoryManager|11|62|73|111|15%|0|0||3|8|37.5%|
+|InventorySelection|2|63|65|117|3%|0|0||1|7|14.2%|
 |MainMenu|0|56|56|125|0%|0|0||0|13|0%|
 |MapGenerator|0|56|56|101|0%|0|0||0|7|0%|
-|Player|35|84|119|184|29.4%|0|0||15|41|36.5%|
-|PlayerController|37|218|255|318|14.5%|0|0||14|38|36.8%|
-|PlayerList|40|12|52|86|76.9%|0|0||3|4|75%|
+|Player|12|80|92|184|13%|0|0||2|21|9.5%|
+|PlayerController|2|218|220|318|0.9%|0|0||1|23|4.3%|
+|PlayerList|1|51|52|86|1.9%|0|0||1|4|25%|
 |SettingsMenu|0|75|75|169|0%|0|0||0|12|0%|
-|Stash|60|63|123|173|48.7%|0|0||16|19|84.2%|
-|Tile|37|63|100|142|37%|0|0||16|26|61.5%|
-|TurnMaster|1|71|72|93|1.3%|0|0||2|14|14.2%|
+|Stash|1|87|88|173|1.1%|0|0||1|10|10%|
+|Tile|4|81|85|142|4.7%|0|0||2|15|13.3%|
+|TurnMaster|1|59|60|93|1.6%|0|0||1|8|12.5%|
 |VictoryScreen|0|38|38|68|0%|0|0||0|3|0%|
 |WinConditions|0|52|52|122|0%|0|0||0|11|0%|
