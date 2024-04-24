@@ -47,7 +47,6 @@ public class TurnMasterTest
     [Test]
     public void TestNewTurn_ResetsTurnsFinsished()
     {
-        players[0] = new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"));
         PlayerController.players[0].PlayerFinishTurn();
         TurnMaster.StartNewTurn();
         Assert.IsFalse(PlayerController.players[0].IsPlayerTurnFinished());
@@ -56,7 +55,6 @@ public class TurnMasterTest
     [Test]
     public void TestNewTurn_ResetsPhase()
     {
-        players[0] = new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"));
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.StartNewTurn();
         Assert.AreEqual(Player.Phase.Defense, PlayerController.players[0].GetCurrentPhase());
@@ -72,18 +70,12 @@ public class TurnMasterTest
         TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
-        //PlayerController.players[0].NextPhase(); // Attack
-        //PlayerController.players[0].NextPhase(); // Build
-        //PlayerController.players[1].PlayerFinishTurn();
-        //PlayerController.players[1].NextPhase(); // Attack
-        //PlayerController.players[1].NextPhase(); // Build
         Assert.IsTrue(TurnMaster.AllPhasesDone());
     }
 
     [Test]
     public void TestAllPhasesDone_False()
     {
-        players[0] = new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"));
         PlayerController.players[0].PlayerFinishTurn();
         PlayerController.players[0].NextPhase(); // Attack
         // PlayerController.players[1] is still in Defense phase
@@ -93,7 +85,6 @@ public class TurnMasterTest
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesAttack()
     {
-        players[0] = new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"));
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         Assert.AreEqual(Player.Phase.Attack, PlayerController.players[0].GetCurrentPhase());
     }
@@ -101,7 +92,6 @@ public class TurnMasterTest
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesFinishTurn()
     {
-        players[0] = new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"));
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
@@ -111,7 +101,6 @@ public class TurnMasterTest
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesBuild()
     {
-        players[0] = new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"));
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         Assert.AreEqual(Player.Phase.Build, PlayerController.players[0].GetCurrentPhase());
