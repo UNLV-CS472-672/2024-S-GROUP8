@@ -16,11 +16,7 @@ public class TurnMasterTest
         turnMaster = new TurnMaster();
         playerController = new PlayerController();
         
-        PlayerController.players = new List<Player>
-        {
-            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor")),
-            new Player("Two", Resources.Load<Material>("Materials/EnemyTileColor"))
-        };
+        
         // Initialize TurnMaster with two players
         //Player[] players = PlayerController.players;
         //player1 = players[0];
@@ -46,6 +42,10 @@ public class TurnMasterTest
     [Test]
     public void TestNewTurn_ResetsTurnsFinsished()
     {
+        PlayerController.players = new List<Player>
+        {
+            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
+        };
         PlayerController.players[0].PlayerFinishTurn();
         TurnMaster.StartNewTurn();
         Assert.IsFalse(PlayerController.players[0].IsPlayerTurnFinished());
@@ -54,6 +54,10 @@ public class TurnMasterTest
     [Test]
     public void TestNewTurn_ResetsPhase()
     {
+        PlayerController.players = new List<Player>
+        {
+            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
+        };
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.StartNewTurn();
         Assert.AreEqual(Player.Phase.Defense, PlayerController.players[0].GetCurrentPhase());
@@ -62,6 +66,11 @@ public class TurnMasterTest
     [Test]
     public void TestAllPhasesDone_True()
     {
+        PlayerController.players = new List<Player>
+        {
+            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor")),
+            new Player("Two", Resources.Load<Material>("Materials/EnemyTileColor"))
+        };
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
@@ -79,6 +88,10 @@ public class TurnMasterTest
     [Test]
     public void TestAllPhasesDone_False()
     {
+        PlayerController.players = new List<Player>
+        {
+            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
+        };
         PlayerController.players[0].PlayerFinishTurn();
         PlayerController.players[0].NextPhase(); // Attack
         // PlayerController.players[1] is still in Defense phase
@@ -88,6 +101,10 @@ public class TurnMasterTest
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesAttack()
     {
+        PlayerController.players = new List<Player>
+        {
+            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
+        };
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         Assert.AreEqual(Player.Phase.Attack, PlayerController.players[0].GetCurrentPhase());
     }
@@ -95,6 +112,10 @@ public class TurnMasterTest
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesFinishTurn()
     {
+        PlayerController.players = new List<Player>
+        {
+            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
+        };
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
@@ -104,6 +125,10 @@ public class TurnMasterTest
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesBuild()
     {
+        PlayerController.players = new List<Player>
+        {
+            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
+        };
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         Assert.AreEqual(Player.Phase.Build, PlayerController.players[0].GetCurrentPhase());
@@ -112,6 +137,10 @@ public class TurnMasterTest
     [Test]
     public void TestGetCurrTurn_Initial()
     {
+        PlayerController.players = new List<Player>
+        {
+            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
+        };
         Assert.AreEqual(0, TurnMaster.GetCurrentTurn());
     }
 }
