@@ -45,6 +45,12 @@ public class TurnMasterTest
     // }
 
     [Test]
+    public void TestGetCurrTurn_Initial()
+    {
+        Assert.AreEqual(0, TurnMaster.GetCurrentTurn());
+    }
+    
+    [Test]
     public void TestNewTurn_ResetsTurnsFinsished()
     {
         PlayerController.players[0].PlayerFinishTurn();
@@ -75,8 +81,9 @@ public class TurnMasterTest
     [Test]
     public void TestAllPhasesDone_False()
     {
-        PlayerController.players[0].PlayerFinishTurn();
-        PlayerController.players[0].NextPhase(); // Attack
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        //PlayerController.players[0].PlayerFinishTurn();
+        //PlayerController.players[0].NextPhase(); // Attack
         // PlayerController.players[1] is still in Defense phase
         Assert.IsFalse(TurnMaster.AllPhasesDone());
     }
@@ -105,11 +112,6 @@ public class TurnMasterTest
         Assert.AreEqual(Player.Phase.Build, PlayerController.players[0].GetCurrentPhase());
     }
 
-    [Test]
-    public void TestGetCurrTurn_Initial()
-    {
-        TurnMaster = new TurnMaster();
-        Assert.AreEqual(0, TurnMaster.GetCurrentTurn());
-    }
+    
 }
 
