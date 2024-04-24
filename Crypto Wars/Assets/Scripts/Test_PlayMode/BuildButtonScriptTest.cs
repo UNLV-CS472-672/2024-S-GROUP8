@@ -32,7 +32,7 @@ public class BuildButtonScriptTest
         // Assign mock objects to the script
         go.AddComponent<BuildButtonScript>();
         testBuildButton = go.GetComponent<BuildButtonScript>();
-        testBuildButton.buildButton = buildButton;
+        // testBuildButton.buildButton = buildButton;
         
         //testBuildButton.CreateBuildButton();
         //testBuildButton.CreateDestroyButton();
