@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building { 
+public class Building 
+{ 
 
     private int amount;
     private int turnsToProduce;
@@ -19,8 +20,7 @@ public class Building {
         amount = amt;
         turnsToProduce = ttProduce;
         turnsSinceLastProdction = 0;
-        //Get the correct material for the type of building that is being created
-        
+        //Get the correct material for the type of building that is being created   
     }
 
     public Player GetOwner()
@@ -101,7 +101,7 @@ public class Building {
 
     public void AddCardsToInventory(Inventory inv)
     {
-        if(turnsSinceLastProdction >= turnsToProduce)
+        if (turnsSinceLastProdction >= turnsToProduce)
         {
             for (int i = 0; i < amount; i++)
             {
@@ -109,7 +109,10 @@ public class Building {
             }
             turnsSinceLastProdction = 0;
         }
-        DidNotProduce();
+        else {
+            DidNotProduce();
+        }
+        
     }
 
     public void DidNotProduce()

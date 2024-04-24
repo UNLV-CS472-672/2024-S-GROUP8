@@ -16,6 +16,9 @@ public class CreateDefenseSystem : MonoBehaviour
     private static List<GameObject> defendObjects; // Only works with Hotseating, otherwise needs player indicator 
     private static List<Vector2> needDefensePositions;
 
+    public static List<Vector2> GetDefensePositions() {
+        return needDefensePositions;
+    }
 
     // Grabs a position and based on the players that were attack returns true/false
     public static bool IsDefendable(Vector2 pos) {

@@ -18,7 +18,7 @@ public class HandManager : MonoBehaviour
     private Card newSlot1Card, newSlot2Card, newSlot3Card, newSlot4Card, newSlot5Card;
     private int cardsInHandLast, newSlot1Count, newSlot2Count, newSlot3Count, newSlot4Count, newSlot5Count;
     private GameObject panel, handGrid, canvas;
-    private TextMeshProUGUI handSlot1Text, handSlot2Text, handSlot3Text, handSlot4Text, handSlot5Text;
+    public TextMeshProUGUI handSlot1Text, handSlot2Text, handSlot3Text, handSlot4Text, handSlot5Text;
     private bool visible, cardsUpdated;
     private Image image;
 
@@ -112,14 +112,12 @@ public class HandManager : MonoBehaviour
 
         
 
-        for (int i = 0; i < 5; i++) {
-           // SetupSlot(i); // Create each slot in the inventory
-            Debug.Log("Hand Slot " + Slots.Count);
-        }
+        // for (int i = 0; i < 5; i++) {
+        //    // SetupSlot(i); // Create each slot in the inventory
+        //     Debug.Log("Hand Slot " + Slots.Count);
+        // }
 
         ForceHideAll();
-
-        visible = true;
         cardsUpdated = false;
         cardsInHandLast = 0;
     }
@@ -144,36 +142,35 @@ public class HandManager : MonoBehaviour
             ChangeDisplayedCards();
         }
 
-        // DEBUG: Remove before shipping?
-        if (Input.GetKeyDown(KeyCode.H)) {
-            visible = !visible;
-            ToggleHideAll();
-            Debug.Log("Toggling Hand Visibility Status: " + visible);
-        }
+        // DEBUG: Toggles hand info on/off
+        // if (Input.GetKeyDown(KeyCode.H)) {
+        //     ToggleHideAll();
+        //     Debug.Log("Toggling Hand Visibility Status: " + visible);
+        // }
 
-        // DEBUG: Remove before shipping?
-        if (Input.GetKeyDown(KeyCode.P)) {
-            int count = 4;
-            PartialReveal(count);
-            Debug.Log("Partially Revealing: " + count);
-        }
+        // DEBUG: Reveals the first *count* cards in hand
+        // if (Input.GetKeyDown(KeyCode.P)) {
+        //     int count = 4;
+        //     PartialReveal(count);
+        //     Debug.Log("Partially Revealing: " + count);
+        // }
 
-        // DEBUG: Remove before shipping?
-        if (Input.GetKeyDown(KeyCode.C)) {
-            visible = false;
-            ForceHideAll();
-            Debug.Log("Forcing Hand Visibility Status: " + visible);
-        }
+        // DEBUG: Forces all hand display text to hide
+        // if (Input.GetKeyDown(KeyCode.C)) {
+        //     ForceHideAll();
+        //     Debug.Log("Forcing Hand Visibility Status: " + visible);
+        // }
 
-        // DEBUG: Remove before shipping?
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            Debug.Log("Testing Cards In Hand: " + currentPlayerHand.GetHandCards().Count);
-        }
+        // DEBUG: Tells the player how many cards are in their hand
+        // if (Input.GetKeyDown(KeyCode.Q)) {
+        //     Debug.Log("Testing Cards In Hand: " + currentPlayerHand.GetHandCards().Count);
+        // }
     }
 
     // Reveals the requested number of card names
     public void PartialReveal(int count)
     {
+        visible = true;
         image.enabled = true;
 
         switch (count)
@@ -211,6 +208,7 @@ public class HandManager : MonoBehaviour
     // DEBUG: Hides/Reveals all info about the hand slots, regardless of status
     public void ToggleHideAll()
     {
+        visible = !visible;
         image.enabled = visible;
         handSlot1Text.enabled = visible;
         handSlot2Text.enabled = visible;
@@ -222,6 +220,7 @@ public class HandManager : MonoBehaviour
     // DEBUG: Forcibly hides all info about hand slots
     public void ForceHideAll()
     {
+        visible = false;
         image.enabled = false;
         handSlot1Text.enabled = false;
         handSlot2Text.enabled = false;
@@ -309,18 +308,7 @@ public class HandManager : MonoBehaviour
         }
     }
     
-    // Sets the text of a given TextMeshProUGUI object
-    public void SetText(string textObject, int index, string newText) {
-        if(Slots[index] != null)
-            Slots[index].transform.Find(textObject).GetComponent<TextMeshProUGUI>().text = newText;
-    }
-
-
-    // Sets up a hand slot and sets the text values to an empty string
-    public void SetupSlot(int index)
-    {
-        Slots.Add(gameObject.transform.Find("Hand Grid").Find("Hand_Slot_" + (index + 1)).gameObject);
-        SetText("HandCardName", index, "");
-        SetText("HandAmount", index, "");
+    public Hand GetCurrentPlayerHand() {
+        return currentPlayerHand;
     }
 }

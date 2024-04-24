@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;                        
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 // using UnityEngine.EventSystems;
@@ -19,9 +19,28 @@ public class BuildButtonScript : MonoBehaviour
     [SerializeField]
     private Button choiceThree;
     [SerializeField]
-    private GameObject buildMenu;
+    public GameObject buildMenu;
     [SerializeField]
     private GameObject destroyButton;
+
+    // public GameObject BuildMenu
+    // {
+    //     get => buildMenu;
+    //     private set => buildMenu = value;
+    // }
+
+    // Public properties to expose the private fields
+    public GameObject BuildButton
+    {
+        get => buildButton;
+        private set => buildButton = value;
+    }
+
+    public GameObject DestroyButton
+    {
+        get => destroyButton;
+        private set => destroyButton = value;
+    }
 
     private static List<GameObject> buildingPrefabs;
 
@@ -46,7 +65,8 @@ public class BuildButtonScript : MonoBehaviour
         SetText(choiceThree.transform, 2);
     }
 
-    public void SetText(Transform form, int build) {
+    public void SetText(Transform form, int build)
+    {
         form.Find("BuildingName").GetComponent<TextMeshProUGUI>().text = "Build " + BuildingRegistry.GetBuildingByIndex(build).GetName();
     }
 
@@ -60,7 +80,8 @@ public class BuildButtonScript : MonoBehaviour
         buildMenu.SetActive(false);
     }
 
-    public void ActivateMenu() {
+    public void ActivateMenu()
+    {
         buildMenu.SetActive(true);
 
         Vector2 pos = PlayerController.GetSelectedTile().GetTilePosition();
@@ -69,17 +90,21 @@ public class BuildButtonScript : MonoBehaviour
         buildMenu.transform.eulerAngles = new Vector3(90, 0, 0);
     }
 
-    public void CreateBuildingOptionOne() {
+    public void CreateBuildingOptionOne()
+    {
         CreateBuildingOption(1);
     }
-    public void CreateBuildingOptionTwo(){
+    public void CreateBuildingOptionTwo()
+    {
         CreateBuildingOption(2);
     }
-    public void CreateBuildingOptionThree(){
+    public void CreateBuildingOptionThree()
+    {
         CreateBuildingOption(3);
     }
 
-    public void CreateBuildingOption(int option) {
+    public void CreateBuildingOption(int option)
+    {
         DeactivateMenu();
         Debug.Log(PlayerController.GetSelectedTile());
         InstantiatePrefab(PlayerController.GetSelectedTile(), option);
@@ -118,7 +143,8 @@ public class BuildButtonScript : MonoBehaviour
         Vector2 pos = toDelete.GetPosition();
         GameObject prefab = FindBuildingPrefab(pos);
 
-        if(prefab != null) { 
+        if (prefab != null)
+        {
             Destroy(prefab);
             buildingPrefabs.Remove(prefab);
             tile.SetBuilding(null);
@@ -128,9 +154,12 @@ public class BuildButtonScript : MonoBehaviour
         buildButton.SetActive(true);
     }
 
-    public GameObject FindBuildingPrefab(Vector2 pos) {
-        foreach (GameObject gameObject in buildingPrefabs) {
-            if (pos.Equals(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z))) {
+    public GameObject FindBuildingPrefab(Vector2 pos)
+    {
+        foreach (GameObject gameObject in buildingPrefabs)
+        {
+            if (pos.Equals(new Vector2(gameObject.transform.position.x, gameObject.transform.position.z)))
+            {
                 return gameObject;
             }
         }

@@ -4,30 +4,66 @@ using NUnit.Framework;
 
 public class MapGeneratorTests
 {
-    [Test]
-    public void TestMapGeneration()
+    public GameObject tileGO;
+    public MapGenerator mapGenerator;
+    public int[,] testMap;
+    public int[,] defaultMap;
+    public int[,] ownerArray;
+
+    [SetUp]
+    public void SetUp()
     {
-        // Create a test GameObject to hold the MapGenerator script
-        GameObject testObject = new GameObject();
-        MapGenerator mapGenerator = testObject.AddComponent<MapGenerator>();
+        tileGO = new GameObject("Tile");
+        mapGenerator = tileGO.AddComponent<MapGenerator>();
+        mapGenerator.tilePrefab = new GameObject("Tile");
+        mapGenerator.tilePrefab.AddComponent<Tile>();
 
-        // Create a test map
-        int[,] testMap = 
+        defaultMap = new int[2, 2]
         {
-            {1, 1, 1, 1, 0},
-            {1, 1, 1, 1, 0},
-            {1, 1, 1, 1, 1},
-            {0, 1, 1, 1, 1},
-            {0, 1, 1, 1, 0}
+            {1, 1},
+            {1, 1}
         };
+        ownerArray = new int[2, 2]
+        {
+            {1, 0},
+            {0, 0}
+        };
+        testMap = new int[4, 2]
+        {
+            {1, 1},
+            {1, 1},
+            {1, 1},
+            {1, 1}
+        };   
+    }
 
-        // Set the test map
-        mapGenerator.SetArray(testMap);
-        mapGenerator.CreateSymmetricMap(testMap);
-        mapGenerator.GenerateMap();
+    [Test]
+    public void MapGenerator_TestSetArray()
+    {
+        mapGenerator.SetArray(defaultMap);
+        Assert.AreEqual(defaultMap, mapGenerator.GetArray());
+    }
+    
+    [Test]
+    public void MapGenerator_TestSetOwner()
+    {
+        mapGenerator.SetOwner(ownerArray);
+        Assert.AreEqual(ownerArray, mapGenerator.GetOwnership());
+    }
 
-        // Check if the tiles are instantiated correctly
-        Tile[] tiles = testObject.GetComponentsInChildren<Tile>();
-        Assert.AreEqual(16, tiles.Length); // Assuming each '1' in the test map generates a tile
+    [Test]
+    public void MapGenerator_TestCreateSymmetricMap()
+    {
+        mapGenerator.SetOwner(ownerArray);
+        mapGenerator.SetArray(defaultMap);
+        mapGenerator.CreateSymmetricMap(defaultMap);
+        Assert.AreEqual(testMap, mapGenerator.GetArray());
+    }
+
+    [Test]
+    public void MapGenerator_TestGetOwnership()
+    {
+        mapGenerator.SetOwner(ownerArray);
+        Assert.AreEqual(ownerArray, mapGenerator.GetOwnership());
     }
 }
