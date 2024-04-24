@@ -19,9 +19,15 @@ public class BuildButtonScript : MonoBehaviour
     [SerializeField]
     private Button choiceThree;
     [SerializeField]
-    private GameObject buildMenu;
+    public GameObject buildMenu;
     [SerializeField]
     private GameObject destroyButton;
+
+    // public GameObject BuildMenu
+    // {
+    //     get => buildMenu;
+    //     private set => buildMenu = value;
+    // }
 
     // Public properties to expose the private fields
     public GameObject BuildButton
