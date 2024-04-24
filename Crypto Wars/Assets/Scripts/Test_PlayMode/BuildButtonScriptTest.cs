@@ -5,86 +5,72 @@ using UnityEditor;
 
 public class BuildButtonScriptTest
 {
-    public GameObject go, canvas;
-    public BuildButtonScript testBuildButton;
-    public GameObject destroyButton;
-    public GameObject buildButton;
-    public GameObject cancelButton;
+    private GameObject go, canvas, buildButton, destroyButton, cancelButton;
 
-    /// <summary>
-    /// FIX
-    /// </summary>
+    private BuildButtonScript testBuildButton;
+
     [SetUp]
     public void SetUp()
     {
         go = new GameObject("BuildMenu");
         canvas = new GameObject("Canvas");
 
-        // Create and set up BuildButton
         buildButton = new GameObject("BuildButton");
         buildButton.transform.SetParent(canvas.transform);
+        buildButton.AddComponent<Image>();  // Image component??
 
-        // Create and set up Text object for the BuildButton
         GameObject buildText = new GameObject("BuildButtonText");
         buildText.transform.SetParent(buildButton.transform);
         buildText.AddComponent<Text>();
 
-        // Assign mock objects to the script
+        destroyButton = new GameObject("DestroyButton");
+        destroyButton.transform.SetParent(canvas.transform);
+        destroyButton.AddComponent<Image>();
+
+        GameObject destroyText = new GameObject("DestroyButtonText");
+        destroyText.transform.SetParent(destroyButton.transform);
+        destroyText.AddComponent<Text>();
+
+        cancelButton = new GameObject("CancelButton");
+        cancelButton.transform.SetParent(canvas.transform);
+        cancelButton.AddComponent<Image>();
+
+        GameObject cancelText = new GameObject("CancelButtonText");
+        cancelText.transform.SetParent(cancelButton.transform);
+        cancelText.AddComponent<Text>();
+
         go.AddComponent<BuildButtonScript>();
         testBuildButton = go.GetComponent<BuildButtonScript>();
-        // testBuildButton.buildButton = buildButton;
-        
-        //testBuildButton.CreateBuildButton();
-        //testBuildButton.CreateDestroyButton();
-        //testBuildButton.CreateCancelButton();
-        /*
-        testBuildButton.buildButton = GameObject.Find("BuildButton");
-        testBuildButton.destroyButton = GameObject.Find("DestroyButton");
-        testBuildButton.cancelButton = GameObject.Find("CancelButton");
-        */
-    }
-
-    [Test]  //  Currently Broken (Null Reference, BuildButtonScript: 41)
-    public void TestToggleMenu()
-    {
-        // buildButton.AddComponent<Image>();
-        //testBuildButton.ToggleMenu();
-        /*
-        Assert.IsFalse(testBuildButton.buildButton.GetComponent<Image>().enabled);
-        //testBuildButton.ToggleMenu();
-        Assert.IsTrue(testBuildButton.buildButton.GetComponent<Image>().enabled);
-        */
+        testBuildButton.buildButton = buildButton;
+        testBuildButton.destroyButton = destroyButton;
+        testBuildButton.cancelButton = cancelButton;
     }
 
     [Test]
     public void TestCreateBuildButton()
     {
-        GameObject buildText = GameObject.Find("BuildButtonText");
-        Assert.IsNotNull(buildText);
+        Assert.IsNotNull(testBuildButton.buildButton.GetComponentInChildren<Text>());
     }
 
     [Test]
     public void TestCreateDestroyButton()
     {
-        GameObject destroyText = GameObject.Find("DestroyButtonText");
-        Assert.IsNotNull(destroyText);
+        Assert.IsNotNull(testBuildButton.destroyButton.GetComponentInChildren<Text>());
     }
 
     [Test]
     public void TestCreateCancelButton()
     {
-        GameObject cancelText = GameObject.Find("CancelButtonText");
-        Assert.IsNotNull(cancelText);
+        Assert.IsNotNull(testBuildButton.cancelButton.GetComponentInChildren<Text>());
     }
 
     [TearDown]
     public void TearDown()
     {
-        // Clean up after each test
-        Object.DestroyImmediate(cancelButton);
-        Object.DestroyImmediate(destroyButton);
-        Object.DestroyImmediate(buildButton);
-        Object.DestroyImmediate(canvas);
         Object.DestroyImmediate(go);
+        Object.DestroyImmediate(canvas);
+        Object.DestroyImmediate(buildButton);
+        Object.DestroyImmediate(destroyButton);
+        Object.DestroyImmediate(cancelButton);
     }
 }
