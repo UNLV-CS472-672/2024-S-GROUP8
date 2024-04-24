@@ -72,12 +72,10 @@ public class TurnMasterTest
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
-        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
-        TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
-        Assert.IsTrue(TurnMaster.AllPhasesDone());
+        Assert.AreEqual(Player.Phase.Build, PlayerController.players[0].GetCurrentPhase());
     }
 
     [Test]
