@@ -47,9 +47,9 @@ public class TurnMasterTest
     [Test]
     public void TestGetCurrTurn_Initial()
     {
-        Assert.AreEqual(0, TurnMaster.GetCurrentTurn());
+        Assert.AreEqual(1, TurnMaster.GetCurrentTurn());
     }
-    
+
     [Test]
     public void TestNewTurn_ResetsTurnsFinsished()
     {
@@ -72,6 +72,8 @@ public class TurnMasterTest
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
