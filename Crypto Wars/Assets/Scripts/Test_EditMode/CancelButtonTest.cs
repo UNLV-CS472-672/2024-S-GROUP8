@@ -4,22 +4,20 @@ using UnityEditor;
 
 public class CancelButtonTest
 {
-    public GameObject go;
-    public CancelButton cancelButton;
+    public PlayerController testController;
 
     [SetUp]
     public void SetUp()
     {
-        go = new GameObject("Cancel Button");
-        go.AddComponent<CancelButton>();
-        cancelButton = go.GetComponent<CancelButton>();
-        go.transform.position = new Vector3(0, 0, 0);
+        GameObject camera = GameObject.Find("Main Camera");
+        PlayerController PlayerController = camera.GetComponent<PlayerController>();
+        testController = PlayerController;
     }
 
     [Test]
     public void TestDeactivate()
     {
-        cancelButton.Deactivate();
-        Assert.AreEqual(cancelButton.isActiveAndEnabled, false);
+        testController.GetCancelButton().GetComponent<CancelButton>().Deactivate();
+        Assert.AreEqual(testController.GetCancelButton().activeSelf, false);
     }
 }

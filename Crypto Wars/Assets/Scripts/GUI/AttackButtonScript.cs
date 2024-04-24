@@ -15,7 +15,7 @@ public class AttackButtonScript : MonoBehaviour
 
     private bool DoubleClicked = false;
     
-    void Awake()
+    void Start()
     {
         Deactivate();
         attackButton.GetComponent<Button>().onClick.AddListener(OnButtonClick);
@@ -44,5 +44,28 @@ public class AttackButtonScript : MonoBehaviour
 
     public void ResetClicks() {
         DoubleClicked = false;
+    }
+
+    // For testing
+    public void SetAttackButton(GameObject obj) {
+        attackButton = obj;
+    }
+
+    // For testing
+    public GameObject GetAttackButton()
+    {
+        return attackButton;
+    }
+
+    // For testing
+    public void SetStash(Stash stash)
+    {
+        stashButton = stash;
+    }
+
+    // For testing
+    public void SetCancelButton(GameObject obj)
+    {
+        cancelButton = obj;
     }
 }

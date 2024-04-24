@@ -2,42 +2,61 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.SceneManagement;
+using UnityEngine.TestTools;
+using System.Collections;
 
 public class EndTurnTest
 {
-    public GameObject go;
-    int startNum;
+    public GameObject turn;
+    public EndTurn end;
+    int startNum = 1;
     string phaseText;
 
-    [SetUp]
-    public void SetUp()
+    [UnitySetUp]
+    public IEnumerator SetUp()
     {
-        go = new GameObject("EndTurnButton");
-        go.AddComponent<EndTurn>();
-        go.AddComponent<TMPro.TextMeshProUGUI>();
-        go.GetComponent<EndTurn>().turnOutput = go.GetComponent<TMPro.TextMeshProUGUI>();
-        go.GetComponent<EndTurn>().phaseOutput = go.GetComponent<TMPro.TextMeshProUGUI>();
+        SceneManager.LoadScene("Project", LoadSceneMode.Single);
+        yield return null;
+        yield return new EnterPlayMode();
+
+        turn = GameObject.Find("Canvas").transform.Find("TurnCounter").gameObject;
+        EndTurn thing = turn.GetComponent<EndTurn>();
+        end = thing;
     }
 
-    [Test]
-    public void TestTurnNumberIncrement()
+    [UnityTearDown]
+    public IEnumerator TearDown()
     {
-        go.GetComponent<EndTurn>().Advance();
-        Assert.AreNotEqual(startNum, go.GetComponent<EndTurn>().turnNum);
+        yield return new ExitPlayMode();
     }
 
-    [Test]
-    public void TestPhaseIncrement()
+    [UnityTest]
+    public IEnumerator SceneTest()
     {
-        phaseText = "Phase: " + "Defense";
-        go.GetComponent<EndTurn>().Advance();
-        Assert.AreNotEqual(phaseText, go.GetComponent<EndTurn>().phaseOutput.text);
+        yield return new WaitForSeconds(0.5f);
+
+        Assert.IsNotNull(turn);
+        Assert.IsNotNull(end);
+
     }
 
-    [TearDown]
-    public void TearDown()
+    [UnityTest]
+    public IEnumerator TestPhaseBuild()
     {
-        // Clean up after each test
-        Object.DestroyImmediate(go);
+        yield return new WaitForSeconds(0.5f);
+        phaseText = "Phase: " + "Build";
+        end.Advance();
+        end.Advance();
+        Assert.AreEqual(phaseText, end.phaseOutput.text);
+    }
+
+    [UnityTestAttribute]
+    public IEnumerator TestPhaseIncrement()
+    {
+        yield return new WaitForSeconds(0.5f);
+        phaseText = "Phase: " + "Attack";
+        end.Advance();
+        Assert.AreEqual(phaseText, end.phaseOutput.text);
     }
 }
