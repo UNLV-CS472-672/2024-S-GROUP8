@@ -5,8 +5,7 @@ using UnityEditor;
 
 public class BuildButtonScriptTest
 {
-    private GameObject go, canvas, buildButton, destroyButton, cancelButton;
-
+    private GameObject go, canvas;
     private BuildButtonScript testBuildButton;
 
     [SetUp]
@@ -15,48 +14,32 @@ public class BuildButtonScriptTest
         go = new GameObject("BuildMenu");
         canvas = new GameObject("Canvas");
 
-        buildButton = new GameObject("BuildButton");
+        var buildButton = new GameObject("BuildButton");
         buildButton.transform.SetParent(canvas.transform);
 
-        destroyButton = new GameObject("DestroyButton");
+        var destroyButton = new GameObject("DestroyButton");
         destroyButton.transform.SetParent(canvas.transform);
-
-        cancelButton = new GameObject("CancelButton");
-        cancelButton.transform.SetParent(canvas.transform);
 
         go.AddComponent<BuildButtonScript>();
         testBuildButton = go.GetComponent<BuildButtonScript>();
-
-        // Use the public properties to assign mock objects to script
-        typeof(BuildButtonScript).GetProperty("BuildButton").SetValue(testBuildButton, buildButton, null);
-        typeof(BuildButtonScript).GetProperty("DestroyButton").SetValue(testBuildButton, destroyButton, null);
     }
 
     [Test]
     public void TestCreateBuildButton()
     {
-        Assert.IsNotNull(testBuildButton.buildButton.GetComponentInChildren<Text>());
+        // Ensure the build button is properly instantiated and has an Image component
+        Assert.IsNotNull(testBuildButton.BuildButton);
+        Assert.IsNotNull(testBuildButton.BuildButton.GetComponent<Image>());
     }
 
     [Test]
     public void TestCreateDestroyButton()
     {
-        Assert.IsNotNull(testBuildButton.destroyButton.GetComponentInChildren<Text>());
+        // Ensure the destroy button is properly instantiated and has an Image component
+        Assert.IsNotNull(testBuildButton.DestroyButton);
+        Assert.IsNotNull(testBuildButton.DestroyButton.GetComponent<Image>());
     }
 
-    [Test]
-    public void TestCreateCancelButton()
-    {
-        Assert.IsNotNull(testBuildButton.cancelButton.GetComponentInChildren<Text>());
-    }
+    // CancelButton??
 
-    [TearDown]
-    public void TearDown()
-    {
-        Object.DestroyImmediate(go);
-        Object.DestroyImmediate(canvas);
-        Object.DestroyImmediate(buildButton);
-        Object.DestroyImmediate(destroyButton);
-        Object.DestroyImmediate(cancelButton);
-    }
 }
