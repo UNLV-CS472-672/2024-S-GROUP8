@@ -47,7 +47,7 @@ public class TurnMasterTest
     [Test]
     public void TestNewTurn_ResetsPhase()
     {
-        player1.PlayerFinishTurn();
+        TurnMaster.AdvancePlayerPhase(player1);
         TurnMaster.StartNewTurn();
         Assert.AreEqual(Player.Phase.Defense, player1.GetCurrentPhase());
     }
@@ -58,6 +58,8 @@ public class TurnMasterTest
         TurnMaster.AdvancePlayerPhase(player1);
         TurnMaster.AdvancePlayerPhase(player1);
         TurnMaster.AdvancePlayerPhase(player1);
+        TurnMaster.AdvancePlayerPhase(player1);
+        TurnMaster.AdvancePlayerPhase(player2);
         TurnMaster.AdvancePlayerPhase(player2);
         TurnMaster.AdvancePlayerPhase(player2);
         TurnMaster.AdvancePlayerPhase(player2);
@@ -95,12 +97,11 @@ public class TurnMasterTest
     }
 
     [Test]
-    public void TestAdvancePlayerPhase_CyclesThroughPhasesDefense()
+    public void TestAdvancePlayerPhase_CyclesThroughPhasesBuild()
     {
         TurnMaster.AdvancePlayerPhase(player1);
         TurnMaster.AdvancePlayerPhase(player1);
-        TurnMaster.AdvancePlayerPhase(player1);
-        Assert.AreEqual(Player.Phase.Defense, player1.GetCurrentPhase());
+        Assert.AreEqual(Player.Phase.Build, player1.GetCurrentPhase());
     }
 
     [Test]
