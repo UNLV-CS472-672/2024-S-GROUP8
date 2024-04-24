@@ -63,7 +63,6 @@ public class TurnMasterTest
     [Test]
     public void TestAllPhasesDone_True()
     {
-        
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
@@ -109,7 +108,7 @@ public class TurnMasterTest
     [Test]
     public void TestGetCurrTurn_Initial()
     {
-        playerController = new PlayerController();
+        TurnMaster = new TurnMaster();
         Assert.AreEqual(0, TurnMaster.GetCurrentTurn());
     }
 }
