@@ -32,6 +32,14 @@ public class GameManagerTest
     {
         // Arrange
         GameManager gameManager = new GameObject().AddComponent<GameManager>(); // Creating a GameManager instance
+        InventoryManager inventoryManager = new GameObject().AddComponent<InventoryManager>();
+        PlayerController playerController = new GameObject().AddComponent<PlayerController>();
+        
+        GameObject tileGameObject = new GameObject("Tile");
+        Tile tile = tileGameObject.AddComponent<Tile>();
+        MeshRenderer renderer = tileGameObject.AddComponent<MeshRenderer>();
+
+
         Player attacker = new Player("Bob", null);
         Player defender = new Player("John", null);
         List<Card> Attacker = new List<Card>();
@@ -76,8 +84,9 @@ public class GameManagerTest
         Tile.TileReference tileDefender = new Tile.TileReference();
         tileDefender.tilePosition = new Vector2(2, 2);
         defender.AddTiles(tileDefender); // Attacker owns a tile at position (2,2)
+
         // Adding a battle where attacker wins
-        GameManager.Battle battle = new GameManager.Battle(attacker, defender, new AttackObject(Attacker, tileAttacker.tilePosition, tileDefender.tilePosition), null);
+        GameManager.Battle battle = new GameManager.Battle(attacker, defender, new AttackObject(Attacker, tileAttacker.tilePosition, tileDefender.tilePosition), tile);
         battle.defence = new DefendObject(Defender, tileDefender.tilePosition);
         //battle.defence.cardList.Add(new Card(null, "Card1")); // Adding a dummy card for the defender
         GameManager.FinalBattles.Add(battle);
@@ -99,6 +108,13 @@ public class GameManagerTest
     {
         // Arrange
         GameManager gameManager = new GameObject().AddComponent<GameManager>(); // Creating a GameManager instance
+        InventoryManager inventoryManager = new GameObject().AddComponent<InventoryManager>();
+        PlayerController playerController = new GameObject().AddComponent<PlayerController>();
+
+        GameObject tileGameObject = new GameObject("Tile");
+        Tile tile = tileGameObject.AddComponent<Tile>();
+        MeshRenderer renderer = tileGameObject.AddComponent<MeshRenderer>();
+
         Player attacker = new Player("Bob", null);
         Player defender = new Player("John", null);
         List<Card> Attacker = new List<Card>();
@@ -145,7 +161,7 @@ public class GameManagerTest
         tileDefender.tilePosition = new Vector2(2, 2);
         defender.AddTiles(tileDefender); // Attacker owns a tile at position (2,2)
         // Adding a battle where attacker wins
-        GameManager.Battle battle = new GameManager.Battle(attacker, defender, new Battles.AttackObject(Attacker, tileAttacker.tilePosition, tileDefender.tilePosition), null);
+        GameManager.Battle battle = new GameManager.Battle(attacker, defender, new Battles.AttackObject(Attacker, tileAttacker.tilePosition, tileDefender.tilePosition), tile);
         battle.defence = new Battles.DefendObject(Defender, tileDefender.tilePosition);
         //battle.defence.cardList.Add(new Card(null, "Card1")); // Adding a dummy card for the defender
         GameManager.FinalBattles.Add(battle);
@@ -163,14 +179,6 @@ public class GameManagerTest
     [Test]
     public void returnWinnersRemainingCardsToInventoryTest()
     {
-        //InventoryManager manager = InventoryManager.GetManager();
-        // InventoryManager manager = new GameObject().AddComponent<InventoryManager>();
-        // manager.SetupSlot(0);
-        // manager.SetupSlot(1);
-        // manager.SetupSlot(2);
-        // manager.SetupSlot(3);
-        // manager.SetupSlot(4);
-        // manager.SetupSlot(5);
 
         Inventory inventory = new Inventory();
 
@@ -224,11 +232,99 @@ public class GameManagerTest
 
     }
 
+
+     [Test]
+    public void OnlyDefenderBattlesTest()
+    {
+        GameManager gameManager = new GameObject().AddComponent<GameManager>();
+
+        GameManager.Battle battle1 = new GameManager.Battle(new Player("Atacker1", null), new Player("Defender", null), null, null);
+        GameManager.Battle battle2 = new GameManager.Battle(new Player("Atacker2", null), new Player("Defender", null), null, null);
+        GameManager.Battle battle3 = new GameManager.Battle(new Player("Atacker3", null), new Player("Attacker", null), null, null);
+
+        GameManager.PlannedBattles.AddRange(new GameManager.Battle[] { battle1, battle2, battle3 });
+
+        List<GameManager.Battle> defenderBattles = GameManager.OnlyDefenderBattles(new Player("Defender", null));
+
+        // assert that only battle 1 and 2 were added since there was a defender
+        Assert.AreEqual(2, defenderBattles.Count);
+        Assert.Contains(battle1, defenderBattles);
+        Assert.Contains(battle2, defenderBattles);
+        Assert.IsFalse(defenderBattles.Contains(battle3));
+
+    }
+
+
+    [Test]
+    public void AddDefenderToBattle_Test()
+    {
+    // Arrange
+    GameManager gameManager = new GameObject().AddComponent<GameManager>();
+    Player attacker = new Player("Attacker", null);
+    Player attacker2 = new Player("Attacker2", null);
+    Player defender = new Player("Defender", null);
+    Player defender2 = new Player("Defender2", null);
+    GameManager.Battle battle1 = new GameManager.Battle(attacker, null, new AttackObject(new List<Card>(), new Vector2(1, 1), new Vector2(2, 2)), null);
+    GameManager.Battle battle2 = new GameManager.Battle(attacker, null, new AttackObject(new List<Card>(), new Vector2(2, 2), new Vector2(3, 3)), null);
+    GameManager.Battle battle3 = new GameManager.Battle(attacker2, null, new AttackObject(new List<Card>(), new Vector2(4, 4), new Vector2(5, 5)), null);
+
+    GameManager.PlannedBattles.AddRange(new[] { battle1, battle2, battle3 });
+
+    // Create a DefendObject for testing
+    List<Card> cardList = new List<Card> { new Card(null, "Card1"), new Card(null, "Card2") };
+    Vector2 originTilePos = new Vector2(2, 2);
+    DefendObject defendObject = new DefendObject(cardList, originTilePos);
+
+    // Create a DefendObject for testing
+    List<Card> cardList2 = new List<Card> { new Card(null, "Card1"), new Card(null, "Card2") };
+    Vector2 originTilePos2 = new Vector2(5, 5);
+    DefendObject defendObject2 = new DefendObject(cardList2, originTilePos2);
+
+    // Act
+    GameManager.AddDefenderToBattle(defender, defendObject);
+    GameManager.AddDefenderToBattle(defender2, defendObject2);
+
+    // Assert
+    Assert.AreEqual(2, GameManager.FinalBattles.Count); 
+    Assert.AreEqual(defender, battle1.defender); //first battle should have defender set to the provided player
+    Assert.AreEqual(defendObject, battle1.defence); //first battle should have defence set to the given defendObject
+    Assert.IsTrue(battle1.defenderHasCards); 
+    Assert.IsFalse(GameManager.PlannedBattles.Contains(battle1)); 
+    Assert.IsFalse(battle2.defenderHasCards); 
+    Assert.IsTrue(GameManager.PlannedBattles.Contains(battle2)); //second battle should still be in PlannedBattles  
+
+    }  
+
+
+     [Test]
+    public void AddAttackerToBattle_Test()
+    {
+        GameManager gameManager = new GameObject().AddComponent<GameManager>();
+
+
+        GameObject tileGameObject = new GameObject("Tile");
+        Tile tile = tileGameObject.AddComponent<Tile>();
+        MeshRenderer renderer = tileGameObject.AddComponent<MeshRenderer>();
+
+        Player attacker = new Player("Attacker", null);
+        Player defender = new Player("Defender", null);
+
+        Battles.AttackObject atkObj = new Battles.AttackObject(new List<Card>(), new Vector2(1,1), new Vector2(2,2));
+
+        GameManager.AddAttackerToBattle(attacker, defender, atkObj, tile);
+
+        Assert.AreEqual(1, GameManager.PlannedBattles.Count);
+        Assert.AreEqual(attacker, GameManager.PlannedBattles[0].attacker);
+        Assert.AreEqual(defender, GameManager.PlannedBattles[0].defender);
+
+    }
     
     [TearDown]
     public void TearDown()
     {
         // Clean up after each test
         Object.DestroyImmediate(go);
+        GameManager.PlannedBattles.Clear(); // Clear the PlannedBattles list after each test
+        GameManager.FinalBattles.Clear();
     }
 }

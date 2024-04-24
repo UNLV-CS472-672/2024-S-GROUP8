@@ -103,13 +103,18 @@ public class GameManager : MonoBehaviour
             //if winner is attacker remove the tile from the defenders tiles owned and add it to the attackers
             if (string.Equals(winner.GetName(), originalAttacker.GetName())){
                 Tile.TileReference tile = Tile.GetTileAtPostion(FinalBattles[i].defence.originTilePos, FinalBattles[i].defender.GetTiles());
-                Debug.Log(tile.tilePosition);
                 FinalBattles[i].defender.RemoveTiles(tile);
                 winner.AddTiles(tile);
-                Debug.Log(PlayerController.players.IndexOf(winner));
-                int index = PlayerController.players.IndexOf(winner);
-                FinalBattles[i].tile.SetPlayer(index);
-                FinalBattles[i].tile.SetMaterial(PlayerController.players[index].GetColor());
+                Debug.Log("Index of winner is " + PlayerController.players.IndexOf(winner));
+                int index = -1;
+                if (PlayerController.players.IndexOf(winner) >= 0){
+                    index = PlayerController.players.IndexOf(winner);
+                    FinalBattles[i].tile.SetPlayer(index);
+                    FinalBattles[i].tile.SetMaterial(PlayerController.players[index].GetColor());
+                }
+                else {
+                    FinalBattles[i].tile.SetPlayer(index);
+                }
                 returnWinnersRemainingCardsToInventory(winner, FinalBattles[i].attack.cardList);
                 
             }
@@ -122,11 +127,6 @@ public class GameManager : MonoBehaviour
             // if winner was not attacker then nothing happens defender won and will keep tile 
         }
 
-    }
-
-    
-    public void BattlesComplete(){
-        // Called by TurnMaster waiting until all battles are calculated
     }
 
 
