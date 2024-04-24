@@ -46,67 +46,67 @@ public class TurnMasterTest
     [Test]
     public void TestNewTurn_ResetsTurnsFinsished()
     {
-        players[0].PlayerFinishTurn();
+        PlayerController.players[0].PlayerFinishTurn();
         TurnMaster.StartNewTurn();
-        Assert.IsFalse(players[0].IsPlayerTurnFinished());
+        Assert.IsFalse(PlayerController.players[0].IsPlayerTurnFinished());
     }
 
     [Test]
     public void TestNewTurn_ResetsPhase()
     {
-        TurnMaster.AdvancePlayerPhase(players[0]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
         TurnMaster.StartNewTurn();
-        Assert.AreEqual(Player.Phase.Defense, players[0].GetCurrentPhase());
+        Assert.AreEqual(Player.Phase.Defense, PlayerController.players[0].GetCurrentPhase());
     }
 
     [Test]
     public void TestAllPhasesDone_True()
     {
-        TurnMaster.AdvancePlayerPhase(players[0]);
-        TurnMaster.AdvancePlayerPhase(players[0]);
-        TurnMaster.AdvancePlayerPhase(players[0]);
-        TurnMaster.AdvancePlayerPhase(players[1]);
-        TurnMaster.AdvancePlayerPhase(players[1]);
-        TurnMaster.AdvancePlayerPhase(players[1]);
-        //players[0].NextPhase(); // Attack
-        //players[0].NextPhase(); // Build
-        //players[1].PlayerFinishTurn();
-        //players[1].NextPhase(); // Attack
-        //players[1].NextPhase(); // Build
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[1]);
+        //PlayerController.players[0].NextPhase(); // Attack
+        //PlayerController.players[0].NextPhase(); // Build
+        //PlayerController.players[1].PlayerFinishTurn();
+        //PlayerController.players[1].NextPhase(); // Attack
+        //PlayerController.players[1].NextPhase(); // Build
         Assert.IsTrue(TurnMaster.AllPhasesDone());
     }
 
     [Test]
     public void TestAllPhasesDone_False()
     {
-        players[0].PlayerFinishTurn();
-        players[0].NextPhase(); // Attack
-        // players[1] is still in Defense phase
+        PlayerController.players[0].PlayerFinishTurn();
+        PlayerController.players[0].NextPhase(); // Attack
+        // PlayerController.players[1] is still in Defense phase
         Assert.IsFalse(TurnMaster.AllPhasesDone());
     }
 
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesAttack()
     {
-        TurnMaster.AdvancePlayerPhase(players[0]);
-        Assert.AreEqual(Player.Phase.Attack, players[0].GetCurrentPhase());
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        Assert.AreEqual(Player.Phase.Attack, PlayerController.players[0].GetCurrentPhase());
     }
 
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesFinishTurn()
     {
-        TurnMaster.AdvancePlayerPhase(players[0]);
-        TurnMaster.AdvancePlayerPhase(players[0]);
-        TurnMaster.AdvancePlayerPhase(players[0]);
-        Assert.IsTrue(players[0].IsPlayerTurnFinished());
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        Assert.IsTrue(PlayerController.players[0].IsPlayerTurnFinished());
     }
 
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesBuild()
     {
-        TurnMaster.AdvancePlayerPhase(players[0]);
-        TurnMaster.AdvancePlayerPhase(players[0]);
-        Assert.AreEqual(Player.Phase.Build, players[0].GetCurrentPhase());
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
+        Assert.AreEqual(Player.Phase.Build, PlayerController.players[0].GetCurrentPhase());
     }
 
     [Test]
