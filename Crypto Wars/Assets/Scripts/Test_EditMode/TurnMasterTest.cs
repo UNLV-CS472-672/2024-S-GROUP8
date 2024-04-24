@@ -13,15 +13,12 @@ public class TurnMasterTest
     {
         // Setup method to initialize objects before each test
         turnMaster = new TurnMaster();
-        playerController = new PlayerController();
-        
+        player1 = new Player("Player1", null);
+        player2 = new Player("Player2", null);
 
         // Initialize TurnMaster with two players
-        Player[] players = playerController.GetPlayerList();
-
-        player1 = players[0];
-        player2 = players[1];
-        
+        Player[] players = new Player[] { player1, player2 };
+        playerController = new playerController();
     }
 
     // [Test]
