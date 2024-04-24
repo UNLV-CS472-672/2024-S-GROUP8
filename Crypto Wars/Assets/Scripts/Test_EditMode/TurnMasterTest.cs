@@ -20,29 +20,7 @@ public class TurnMasterTest
             new Player("One", Resources.Load<Material>("Materials/PlayerTileColor")),
             new Player("Two", Resources.Load<Material>("Materials/EnemyTileColor"))
         };
-        
-        
-        // Initialize TurnMaster with two players
-        //Player[] players = PlayerController.players;
-        //player1 = players[0];
-        //player2 = players[1];
     }
-
-    // [Test]
-    // public void TestAllAreDone_True()
-    // {
-    //     player1.PlayerFinishTurn();
-    //     player2.PlayerFinishTurn();
-    //     Assert.IsTrue(turnMaster.allAreDone(turnMaster.Players));
-    // }
-
-    // [Test]
-    // public void TestAllAreDone_False()
-    // {
-    //     player1.PlayerFinishTurn();
-    //     // player2 does not finish the turn
-    //     Assert.IsFalse(turnMaster.allAreDone(turnMaster.Players));
-    // }
 
     [Test]
     public void TestGetCurrTurn_Initial()
