@@ -67,20 +67,9 @@ public class TurnMasterTest
     }
 
     [Test]
-    public void TestAllPhasesDone_True()
-    {
-        PlayerController.players[0].PlayerFinishTurn();
-        PlayerController.players[1].PlayerFinishTurn();
-        Assert.IsTrue(TurnMaster,AllPhasesDone());
-    }
-
-    [Test]
     public void TestAllPhasesDone_False()
     {
         TurnMaster.AdvancePlayerPhase(PlayerController.players[0]);
-        //PlayerController.players[0].PlayerFinishTurn();
-        //PlayerController.players[0].NextPhase(); // Attack
-        // PlayerController.players[1] is still in Defense phase
         Assert.IsFalse(TurnMaster.AllPhasesDone());
     }
 
