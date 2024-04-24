@@ -7,17 +7,24 @@ public class TurnMasterTest
 {
     private TurnMaster turnMaster;
     private Player player1, player2;
+    private PlayerController playerController;
 
     [SetUp]
     public void Setup()
     {
         // Setup method to initialize objects before each test
         turnMaster = new TurnMaster();
-        player1 = new Player("Player1", null);
-        player2 = new Player("Player2", null);
-
+        playerController = new PlayerController();
+        
+        PlayerController.players = new List<Player>
+        {
+            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor")),
+            new Player("Two", Resources.Load<Material>("Materials/EnemyTileColor"))
+        };
         // Initialize TurnMaster with two players
-        Player[] players = new Player[] { player1, player2 };
+        Player[] players = PlayerController.players;
+        player1 = players[0];
+        player2 = players[1];
     }
 
     // [Test]
