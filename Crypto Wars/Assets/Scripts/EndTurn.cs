@@ -27,23 +27,11 @@ public class EndTurn : MonoBehaviour
 
         // On-screen text for displaying the current phase
         phaseObject = GameObject.Find("PhaseDisplay");
-        if (phaseObject == null)
-        {
-            phaseObject = new GameObject("PhaseDisplay");
-            phaseObject.AddComponent<TextMeshProUGUI>();
-            phaseObject.SetActive(true);
-        }
         phaseOutput = phaseObject.GetComponent<TextMeshProUGUI>();
         phaseOutput.text = "Phase: " + "Defense";
 
         // On-screen text for turn counter
         turnObject = GameObject.Find("TurnCounter");
-        if (turnObject == null)
-        {
-            turnObject = new GameObject("TurnCounter");
-            turnObject.AddComponent<TextMeshProUGUI>();
-            turnObject.SetActive(true);
-        }
         turnOutput = turnObject.GetComponent<TextMeshProUGUI>();
         turnOutput.text = "Turn " + turnNum.ToString();
 

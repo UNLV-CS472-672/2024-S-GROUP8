@@ -16,6 +16,11 @@ public class EscapeMenuTest
         SceneManager.LoadScene("Project", LoadSceneMode.Single);
         yield return null;
         yield return new EnterPlayMode();
+        GameObject Camera = GameObject.Find("Main Camera");
+
+        Assert.IsNotNull(Camera);
+
+        testMenu = Camera.GetComponent<EscapeMenu>();
     }
 
     [UnityTearDown]
@@ -28,11 +33,6 @@ public class EscapeMenuTest
     public IEnumerator SceneTest()
     {
         yield return new WaitForSeconds(0.5f);
-        GameObject Camera = GameObject.Find("Main Camera");
-
-        Assert.IsNotNull(Camera);
-
-        testMenu = Camera.GetComponent<EscapeMenu>();
         Assert.IsNotNull(testMenu);
     }
     [UnityTest]

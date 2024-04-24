@@ -37,6 +37,11 @@ public class BuildButtonScriptTest
     [Test]
     public void BuildButton_ActivatesCorrectly()
     {
+        GameObject holder = new GameObject();
+        holder.AddComponent<Tile>();
+        holder.AddComponent<MeshRenderer>();
+        Tile tile = holder.GetComponent<Tile>();
+        PlayerController.SetSelectedTile(tile);
         testBuildButton.ActivateMenu();
         Assert.IsTrue(testBuildButton.buildMenu.activeSelf, "Build menu should be active.");
     }
