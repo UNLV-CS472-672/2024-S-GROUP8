@@ -7,7 +7,16 @@ using UnityEngine.TestTools;
 
 public class SettingsTest
 {
+    public GameObject go;
     public SettingsMenu settTest;
+
+    [SetUp]
+    public void SetUp()
+    {
+        go = new GameObject();
+        go.AddComponent<SettingsMenu>();
+        settTest = go.GetComponent<SettingsMenu>();
+    }
 
     [Test]
     public void TestPlayerCountSettings()
@@ -53,5 +62,10 @@ public class SettingsTest
         Assert.AreEqual(settTest.getTileWinCondition(), 1f);
     }
 
+    [TearDown]
+    public void TearDown()
+    {
+        Object.DestroyImmediate(go);
+    }
 
 }
