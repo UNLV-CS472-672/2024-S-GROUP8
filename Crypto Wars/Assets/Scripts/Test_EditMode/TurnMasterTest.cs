@@ -14,7 +14,7 @@ public class TurnMasterTest
     {
         // Setup method to initialize objects before each test
         turnMaster = new TurnMaster();
-        playerController = new PlayerController();
+        
         
         
         // Initialize TurnMaster with two players
@@ -42,6 +42,7 @@ public class TurnMasterTest
     [Test]
     public void TestNewTurn_ResetsTurnsFinsished()
     {
+        playerController = new PlayerController();
         PlayerController.players = new List<Player>
         {
             new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
@@ -54,6 +55,7 @@ public class TurnMasterTest
     [Test]
     public void TestNewTurn_ResetsPhase()
     {
+        playerController = new PlayerController();
         PlayerController.players = new List<Player>
         {
             new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
@@ -66,6 +68,7 @@ public class TurnMasterTest
     [Test]
     public void TestAllPhasesDone_True()
     {
+        playerController = new PlayerController();
         PlayerController.players = new List<Player>
         {
             new Player("One", Resources.Load<Material>("Materials/PlayerTileColor")),
@@ -88,6 +91,7 @@ public class TurnMasterTest
     [Test]
     public void TestAllPhasesDone_False()
     {
+        playerController = new PlayerController();
         PlayerController.players = new List<Player>
         {
             new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
@@ -101,6 +105,7 @@ public class TurnMasterTest
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesAttack()
     {
+        playerController = new PlayerController();
         PlayerController.players = new List<Player>
         {
             new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
@@ -112,6 +117,7 @@ public class TurnMasterTest
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesFinishTurn()
     {
+        playerController = new PlayerController();
         PlayerController.players = new List<Player>
         {
             new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
@@ -125,6 +131,7 @@ public class TurnMasterTest
     [Test]
     public void TestAdvancePlayerPhase_CyclesThroughPhasesBuild()
     {
+        playerController = new PlayerController();
         PlayerController.players = new List<Player>
         {
             new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
@@ -137,6 +144,7 @@ public class TurnMasterTest
     [Test]
     public void TestGetCurrTurn_Initial()
     {
+        playerController = new PlayerController();
         PlayerController.players = new List<Player>
         {
             new Player("One", Resources.Load<Material>("Materials/PlayerTileColor"))
