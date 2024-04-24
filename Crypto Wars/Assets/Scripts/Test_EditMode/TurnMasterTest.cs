@@ -55,12 +55,17 @@ public class TurnMasterTest
     [Test]
     public void TestAllPhasesDone_True()
     {
-        player1.PlayerFinishTurn();
-        player1.NextPhase(); // Attack
-        player1.NextPhase(); // Build
-        player2.PlayerFinishTurn();
-        player2.NextPhase(); // Attack
-        player2.NextPhase(); // Build
+        TurnMaster.AdvancePlayerPhase(player1);
+        TurnMaster.AdvancePlayerPhase(player1);
+        TurnMaster.AdvancePlayerPhase(player1);
+        TurnMaster.AdvancePlayerPhase(player2);
+        TurnMaster.AdvancePlayerPhase(player2);
+        TurnMaster.AdvancePlayerPhase(player2);
+        //player1.NextPhase(); // Attack
+        //player1.NextPhase(); // Build
+        //player2.PlayerFinishTurn();
+        //player2.NextPhase(); // Attack
+        //player2.NextPhase(); // Build
         Assert.IsTrue(TurnMaster.AllPhasesDone());
     }
 
