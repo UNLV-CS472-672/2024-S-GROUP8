@@ -13,11 +13,15 @@ public class TurnMasterTest
     {
         // Setup method to initialize objects before each test
         turnMaster = new TurnMaster();
-        player1 = new Player("Player1", null);
-        player2 = new Player("Player2", null);
+        playerController = new PlayerController();
+        
 
         // Initialize TurnMaster with two players
-        Player[] players = new Player[] { player1, player2 };
+        Player[] players = playerController.GetPlayerList();
+
+        player1 = players[0];
+        player2 = players[1];
+        
     }
 
     // [Test]
@@ -55,14 +59,12 @@ public class TurnMasterTest
     [Test]
     public void TestAllPhasesDone_True()
     {
-        TurnMaster.AdvancePlayerPhase(player1);
-        TurnMaster.AdvancePlayerPhase(player1);
-        TurnMaster.AdvancePlayerPhase(player1);
-        TurnMaster.AdvancePlayerPhase(player1);
-        TurnMaster.AdvancePlayerPhase(player2);
-        TurnMaster.AdvancePlayerPhase(player2);
-        TurnMaster.AdvancePlayerPhase(player2);
-        TurnMaster.AdvancePlayerPhase(player2);
+        //TurnMaster.AdvancePlayerPhase(player1);
+        //TurnMaster.AdvancePlayerPhase(player1);
+        //TurnMaster.AdvancePlayerPhase(player1);
+        //TurnMaster.AdvancePlayerPhase(player2);
+        //TurnMaster.AdvancePlayerPhase(player2);
+        //TurnMaster.AdvancePlayerPhase(player2);
         //player1.NextPhase(); // Attack
         //player1.NextPhase(); // Build
         //player2.PlayerFinishTurn();
