@@ -5155,6 +5155,8 @@ MonoBehaviour:
   destroyButton: {fileID: 862832802}
   buildButton: {fileID: 2088928847}
   progressBar: {fileID: 6920437114583034399}
+  cancelButton: {fileID: 136179074}
+  stash: {fileID: 1529211361}
 --- !u!114 &1048171620
 MonoBehaviour:
   m_ObjectHideFlags: 0

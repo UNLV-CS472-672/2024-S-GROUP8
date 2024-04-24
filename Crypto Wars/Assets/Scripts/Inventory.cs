@@ -20,6 +20,7 @@ public class Inventory
         if (CardStacks.Count < 1)
         {
             CardStacks.Add(new CardStack(card, maxCardStack));
+            Debug.Log(CardStacks[0].GetCardinStack().GetName().Equals(""));
             manager.SetText("CardName", 0, "" + CardStacks[0].GetCardinStack().GetName(), "CardName Bar");
             manager.SetText("Amount", 0, "" + 1);
         }

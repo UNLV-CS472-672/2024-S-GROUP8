@@ -7,14 +7,14 @@ using UnityEngine.TestTools;
 public class BuildingTest
 {
     [Test]
-    public void testBuildingCreate()
+    public void TestBuildingCreate()
     {
         Building build = new Building("testBuilding", 1, 2);
         Assert.IsNotNull(build);
     }
     
     [Test]
-    public void testBuildingOwner()
+    public void TestBuildingOwner()
     {
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Renderer rend = cube.GetComponent<Renderer>();
@@ -28,7 +28,7 @@ public class BuildingTest
 
 
     [Test]
-    public void testBuildingTile()
+    public void TestBuildingTile()
     {  
         Tile tile = new Tile();
         Building build = new Building("testBuilding", 1, 2);
@@ -38,7 +38,7 @@ public class BuildingTest
     }
 
     [Test]
-    public void testBuildingProduction()
+    public void TestBuildingProduction()
     {  
         Building build = new Building("testBuilding", 1, 4);
         build.DidNotProduce();
@@ -47,7 +47,7 @@ public class BuildingTest
     }
 
     [Test]
-    public void testBuildingAmount()
+    public void TestBuildingAmount()
     {  
         Building build = new Building("testBuilding", 2, 2);
         build.SetAmount(3);
@@ -56,15 +56,15 @@ public class BuildingTest
     }
 
     [Test]
-    public void testBuildingName()
+    public void TestBuildingName()
     {  
         Building build = new Building("testBuilding", 2, 2);
-        string buildName = build.GetName();
-        Assert.AreEqual("testBuilding", buildName);
+        build.SetName("testBuilding2");
+        Assert.AreEqual("testBuilding2", build.GetName());
     }
 
     [Test]
-    public void testBuildingCard()
+    public void TestBuildingCard()
     {  
         Card card = new Card(null, "testCard");
         Building build = new Building("testBuilding", 2, 2);
@@ -74,17 +74,66 @@ public class BuildingTest
     }
 
     [Test]
-    public void testAddCardsToInventory()
+    public void TestAddCardsToInventory()
     {
         Material playerColor = new Material(Shader.Find("Specular"));
         Player player = new Player("Test",playerColor);
         Card card = new Card(null, "testCard");
         Building build = new Building("testBuilding", 2, 1);
+        build.SetCard(card);
 
         build.DidNotProduce();
         build.DidNotProduce();
 
+        InventoryManager.GetManager().SetupSlot(0);
         build.AddCardsToInventory(player.GetInventory());
         Assert.AreEqual(0, build.GetTurnsSinceLast());
+    }
+
+    [Test]
+    public void TestAddCardsToInventory_NoProduction()
+    {
+        Material playerColor = new Material(Shader.Find("Specular"));
+        Player player = new Player("Test", playerColor);
+        Card card = new Card(null, "testCard");
+        Building build = new Building("testBuilding", 2, 1);
+        build.SetCard(card);
+
+        InventoryManager.GetManager().SetupSlot(0);
+        build.AddCardsToInventory(player.GetInventory());
+        Assert.AreEqual(1, build.GetTurnsSinceLast());
+    }
+
+    [Test]
+    public void TestBuildingPercentage()
+    {
+        Material playerColor = new Material(Shader.Find("Specular"));
+        Player player = new Player("Test", playerColor);
+        Card card = new Card(null, "testCard");
+        Building build = new Building("testBuilding", 2, 1);
+
+        build.DidNotProduce();
+        Assert.AreEqual(1f, build.GetPercentageFilled());
+    }
+
+    [Test]
+    public void TestBuildingTimeToProduce()
+    {
+        Material playerColor = new Material(Shader.Find("Specular"));
+        Player player = new Player("Test", playerColor);
+        Card card = new Card(null, "testCard");
+        Building build = new Building("testBuilding", 2, 1);
+        Assert.AreEqual(1, build.GetTimeToProduce());
+    }
+
+    [Test]
+    public void TestBuildingPosition()
+    {
+        Material playerColor = new Material(Shader.Find("Specular"));
+        Player player = new Player("Test", playerColor);
+        Card card = new Card(null, "testCard");
+        Building build = new Building("testBuilding", 2, 1);
+        build.SetPosition(new Vector2(1, 1));
+        Assert.AreEqual(new Vector2(1, 1), build.GetPosition());
     }
 }

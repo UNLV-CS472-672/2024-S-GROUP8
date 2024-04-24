@@ -61,6 +61,7 @@ public class StashTest
     {
         yield return new WaitForSeconds(0.5f);
         Card TestCard = new Card(null, "John");
+        PlayerController.CurrentPlayer = new Player("Steve", null);
         PlayerController.CurrentPlayer.GetInventory().GetHand().AddCardtoHand(TestCard);
         Stash StashScript = GameObject.Find("Stash Bar").transform.Find("Stash").gameObject.GetComponent<Stash>();
         StashScript.HandtoStash();
