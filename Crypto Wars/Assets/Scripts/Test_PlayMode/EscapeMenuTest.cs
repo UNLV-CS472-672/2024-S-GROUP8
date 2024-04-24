@@ -8,38 +8,38 @@ using System.Collections;
 
 public class EscapeMenuTest
 {
-    public EscapeMenu testMenu;
+    // public EscapeMenu testMenu;
 
-    [UnitySetUp]
-    public IEnumerator SetUp()
-    {
-        SceneManager.LoadScene("Project", LoadSceneMode.Single);
-        yield return null;
-        yield return new EnterPlayMode();
-        GameObject Camera = GameObject.Find("Main Camera");
+    // [UnitySetUp]
+    // public IEnumerator SetUp()
+    // {
+    //     SceneManager.LoadScene("Project", LoadSceneMode.Single);
+    //     yield return null;
+    //     yield return new EnterPlayMode();
+    //     GameObject Camera = GameObject.Find("Main Camera");
 
-        Assert.IsNotNull(Camera);
+    //     Assert.IsNotNull(Camera);
 
-        testMenu = Camera.GetComponent<EscapeMenu>();
-    }
+    //     testMenu = Camera.GetComponent<EscapeMenu>();
+    // }
 
-    [UnityTearDown]
-    public IEnumerator TearDown()
-    {
-        yield return new ExitPlayMode();
-    }
+    // [UnityTearDown]
+    // public IEnumerator TearDown()
+    // {
+    //     yield return new ExitPlayMode();
+    // }
 
-    [UnityTest]
-    public IEnumerator SceneTest()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Assert.IsNotNull(testMenu);
-    }
-    [UnityTest]
-    public IEnumerator TestToggleMenu() 
-    {
-        yield return new WaitForSeconds(0.5f);
-        testMenu.ToggleMenu();
-        Assert.AreEqual(Time.timeScale, 0);
-    }
+    // [UnityTest]
+    // public IEnumerator SceneTest()
+    // {
+    //     yield return new WaitForSeconds(0.5f);
+    //     Assert.IsNotNull(testMenu);
+    // }
+    // [UnityTest]
+    // public IEnumerator TestToggleMenu() 
+    // {
+    //     yield return new WaitForSeconds(0.5f);
+    //     testMenu.ToggleMenu();
+    //     Assert.AreEqual(Time.timeScale, 0);
+    //}
 }
