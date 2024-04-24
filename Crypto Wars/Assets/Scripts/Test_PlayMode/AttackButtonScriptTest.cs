@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class AttackButtonScriptTest
 {
@@ -13,14 +14,18 @@ public class AttackButtonScriptTest
         go = new GameObject("AttackButton");
         go.AddComponent<AttackButtonScript>();
         attackButton = go.GetComponent<AttackButtonScript>();
-        go.transform.position = new Vector3(0, 0, 0);
+        GameObject attackButtonButton = new GameObject();
+        attackButtonButton.AddComponent<Button>();
+        attackButton.SetAttackButton(attackButtonButton);
+        GameObject thing = new GameObject();
+        thing.AddComponent<Stash>();
+        attackButton.SetStash(thing.GetComponent<Stash>());
     }
 
     [Test]
-    public void TestOutOfFrame()
+    public void TestDeactivate()
     {
-        Vector3 expectedPosition = new Vector3(0,-375,0);
         attackButton.Deactivate();
-        Assert.AreEqual(expectedPosition, go.transform.position);
+        Assert.True(!attackButton.GetAttackButton().activeSelf);
     }
 }

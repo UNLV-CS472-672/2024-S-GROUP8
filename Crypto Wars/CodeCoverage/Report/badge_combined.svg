@@ -77,7 +77,11 @@
 
         <text x="53" y="15" fill="#010101" fill-opacity=".3">Coverage</text>
         <text x="53" y="14" fill="#fff">Coverage</text>
+<<<<<<< HEAD
         <text class="linecoverage" x="132.5" y="15" fill="#010101" fill-opacity=".3">61.9%</text><text class="linecoverage" x="132.5" y="14">61.9%</text>
+=======
+        <text class="linecoverage" x="132.5" y="15" fill="#010101" fill-opacity=".3">52.7%</text><text class="linecoverage" x="132.5" y="14">52.7%</text>
+>>>>>>> upstream/master
         <text class="branchcoverage" x="132.5" y="15" fill="#010101" fill-opacity=".3">N/A</text><text class="branchcoverage" x="132.5" y="14">N/A</text>
     </g>
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using NUnit.Framework;
+using TMPro;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -25,14 +26,18 @@ public class testWinConditions
     public void SetUp()
     {
         winConditionsGameObject = new GameObject();
-        winConditions = winConditionsGameObject.AddComponent<WinConditions>();
+        winConditionsGameObject.AddComponent<WinConditions>();
+        winConditionsGameObject.AddComponent<TMPro.TextMeshProUGUI>();
+        winConditions = winConditionsGameObject.GetComponent<WinConditions>();
 
         /************************************************************
          * Set testWinConditions variables to match WinConditions.cs
          ***********************************************************/
         timer = 0f;
-        //gameWinner = GetComponent<TextMeshProUGUI>();
-        //gameWinner.text = "Winner ";
+        winConditions.gameWinner = winConditionsGameObject.GetComponent<TMPro.TextMeshProUGUI>();
+        winConditions.gameWinner.text = "Winner ";
+        winConditions.gameOver = new GameObject();
+
         playerCtrlGameObject = new GameObject();
         playerCtrl = playerCtrlGameObject.AddComponent<PlayerController>();
     }
@@ -64,6 +69,7 @@ public class testWinConditions
             winner
         };
 
+        Debug.Log(winConditions.gameWinner.text);
         winConditions.gameIsOver(winner);
     }
 
@@ -82,7 +88,8 @@ public class testWinConditions
 
         // timer < maxTime
         winConditions.findWinner(playerCtrl);
-        Assert.AreEqual(null,winConditions.winningPlayer);
+        Assert.AreEqual("One", winConditions.winningPlayer.GetName());
+
 
 
         // timer > maxTime
