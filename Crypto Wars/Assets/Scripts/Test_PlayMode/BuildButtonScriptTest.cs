@@ -19,8 +19,21 @@ public class BuildButtonScriptTest
     {
         go = new GameObject("BuildMenu");
         canvas = new GameObject("Canvas");
+
+        // Create and set up BuildButton
+        buildButton = new GameObject("BuildButton");
+        buildButton.transform.SetParent(canvas.transform);
+
+        // Create and set up Text object for the BuildButton
+        GameObject buildText = new GameObject("BuildButtonText");
+        buildText.transform.SetParent(buildButton.transform);
+        buildText.AddComponent<Text>();
+
+        // Assign mock objects to the script
         go.AddComponent<BuildButtonScript>();
         testBuildButton = go.GetComponent<BuildButtonScript>();
+        testBuildButton.buildButton = buildButton;
+        
         //testBuildButton.CreateBuildButton();
         //testBuildButton.CreateDestroyButton();
         //testBuildButton.CreateCancelButton();
