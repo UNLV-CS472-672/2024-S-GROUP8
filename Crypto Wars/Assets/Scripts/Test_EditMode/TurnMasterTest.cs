@@ -37,11 +37,18 @@ public class TurnMasterTest
     // }
 
     [Test]
-    public void TestNewTurn_ResetsPlayers()
+    public void TestNewTurn_ResetsTurnsFinsished()
     {
         player1.PlayerFinishTurn();
-        TurnMaster.StartNewTurn();
+        turnMaster.StartNewTurn();
         Assert.IsFalse(player1.IsPlayerTurnFinished());
+    }
+
+    [Test]
+    public void TestNewTurn_ResetsPhase()
+    {
+        player1.PlayerFinishTurn();
+        turnMaster.StartNewTurn();
         Assert.AreEqual(Player.Phase.Defense, player1.GetCurrentPhase());
     }
 
@@ -54,7 +61,7 @@ public class TurnMasterTest
         player2.PlayerFinishTurn();
         player2.NextPhase(); // Attack
         player2.NextPhase(); // Build
-        Assert.IsTrue(TurnMaster.AllPhasesDone());
+        Assert.IsTrue(turnMaster.AllPhasesDone());
     }
 
     [Test]
@@ -63,24 +70,38 @@ public class TurnMasterTest
         player1.PlayerFinishTurn();
         player1.NextPhase(); // Attack
         // player2 is still in Defense phase
-        Assert.IsFalse(TurnMaster.AllPhasesDone());
+        Assert.IsFalse(turnMaster.AllPhasesDone());
     }
 
     [Test]
-    public void TestAdvancePlayerPhase_CyclesThroughPhases()
+    public void TestAdvancePlayerPhase_CyclesThroughPhasesAttack()
     {
-        TurnMaster.AdvancePlayerPhase(player1);
+        turnMaster.AdvancePlayerPhase(player1);
         Assert.AreEqual(Player.Phase.Attack, player1.GetCurrentPhase());
-        TurnMaster.AdvancePlayerPhase(player1);
-        TurnMaster.AdvancePlayerPhase(player1);
-        Assert.AreEqual(Player.Phase.Defense, player1.GetCurrentPhase());
+    }
+
+    [Test]
+    public void TestAdvancePlayerPhase_CyclesThroughPhasesFinishTurn()
+    {
+        turnMaster.AdvancePlayerPhase(player1);
+        turnMaster.AdvancePlayerPhase(player1);
+        turnMaster.AdvancePlayerPhase(player1);
         Assert.IsTrue(player1.IsPlayerTurnFinished());
+    }
+
+    [Test]
+    public void TestAdvancePlayerPhase_CyclesThroughPhasesDefense()
+    {
+        turnMaster.AdvancePlayerPhase(player1);
+        turnMaster.AdvancePlayerPhase(player1);
+        turnMaster.AdvancePlayerPhase(player1);
+        Assert.AreEqual(Player.Phase.Defense, player1.GetCurrentPhase());
     }
 
     [Test]
     public void TestGetCurrTurn_Initial()
     {
-        Assert.AreEqual(0, TurnMaster.GetCurrentTurn());
+        Assert.AreEqual(0, turnMaster.GetCurrentTurn());
     }
 }
 

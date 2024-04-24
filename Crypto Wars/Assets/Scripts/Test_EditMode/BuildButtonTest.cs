@@ -24,4 +24,5 @@ public class BuildButtonTest
         buildButton.DeactivateMain();
         Assert.AreEqual(expectedPosition, go.transform.position);
     }
+
 }
