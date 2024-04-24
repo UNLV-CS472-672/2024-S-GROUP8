@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CoverageSession xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="0.0.0.0">
+<<<<<<< HEAD
   <Summary numSequencePoints="1674" visitedSequencePoints="1368" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="81.72" branchCoverage="0.0" maxCyclomaticComplexity="33" minCyclomaticComplexity="1" maxCrapScore="933.47" minCrapScore="1" visitedClasses="32" numClasses="32" visitedMethods="177" numMethods="177" />
   <Modules>
     <Module>
@@ -2269,11 +2270,67 @@
                 <SequencePoint vc="4" uspid="3924" ordinal="0" offset="0" sl="162" sc="31" el="162" ec="31" bec="0" bev="0" fileid="21" />
                 <SequencePoint vc="4" uspid="3925" ordinal="0" offset="1" sl="163" sc="9" el="163" ec="9" bec="0" bev="0" fileid="21" />
                 <SequencePoint vc="4" uspid="3926" ordinal="0" offset="15" sl="164" sc="5" el="164" ec="5" bec="0" bev="0" fileid="21" />
+=======
+  <Summary numSequencePoints="66" visitedSequencePoints="66" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0.0" maxCyclomaticComplexity="4" minCyclomaticComplexity="1" maxCrapScore="4" minCrapScore="1" visitedClasses="1" numClasses="1" visitedMethods="11" numMethods="11" />
+  <Modules>
+    <Module>
+      <Summary numSequencePoints="66" visitedSequencePoints="66" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0.0" maxCyclomaticComplexity="4" minCyclomaticComplexity="1" maxCrapScore="4" minCrapScore="1" visitedClasses="1" numClasses="1" visitedMethods="11" numMethods="11" />
+      <ModuleTime>0001-01-01T00:00:00</ModuleTime>
+      <ModuleName>Scripts</ModuleName>
+      <Files>
+        <File uid="1" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/Battles.cs" />
+        <File uid="2" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/Building.cs" />
+        <File uid="3" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/buildingRegistry.cs" />
+        <File uid="4" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/CameraScript.cs" />
+        <File uid="5" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/cardRegistry.cs" />
+        <File uid="6" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/CardStack.cs" />
+        <File uid="7" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/Card_Abstract.cs" />
+        <File uid="8" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/CreateDefenseSystem.cs" />
+        <File uid="9" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/EndTurn.cs" />
+        <File uid="10" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GameManager.cs" />
+        <File uid="11" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/AttackButtonScript.cs" />
+        <File uid="12" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/BuildButtonScript.cs" />
+        <File uid="13" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/CancelButton.cs" />
+        <File uid="14" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/EscapeMenu.cs" />
+        <File uid="15" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/HandManager.cs" />
+        <File uid="16" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/InventoryManager.cs" />
+        <File uid="17" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/InventorySelection.cs" />
+        <File uid="18" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/MainMenu.cs" />
+        <File uid="19" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/PlayerList.cs" />
+        <File uid="20" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/SettingsMenu.cs" />
+        <File uid="21" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/Stash.cs" />
+        <File uid="22" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/GUI/VictoryScreen.cs" />
+        <File uid="23" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/Hand.cs" />
+        <File uid="24" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/Inventory.cs" />
+        <File uid="25" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/MapGenerator.cs" />
+        <File uid="26" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/PlayerController.cs" />
+        <File uid="27" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/PlayerScript.cs" />
+        <File uid="28" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/TileScript.cs" />
+        <File uid="29" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/TurnMaster.cs" />
+        <File uid="30" fullPath="/Users/nathaniel/Documents/GitHub/2024-S-GROUP8-CW/Crypto Wars/Assets/Scripts/WinConditions.cs" />
+      </Files>
+      <Classes>
+        <Class>
+          <Summary numSequencePoints="66" visitedSequencePoints="66" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0.0" maxCyclomaticComplexity="4" minCyclomaticComplexity="1" maxCrapScore="4" minCrapScore="1" visitedClasses="1" numClasses="1" visitedMethods="11" numMethods="11" />
+          <FullName>SettingsMenu</FullName>
+          <Methods>
+            <Method visited="true" cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="1" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="4" visitedSequencePoints="4" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+              <MetadataToken>100663460</MetadataToken>
+              <Name>System.Void SettingsMenu::setTwoPlayer()</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="1" uspid="3825" ordinal="0" offset="0" sl="63" sc="5" el="63" ec="5" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3826" ordinal="0" offset="1" sl="64" sc="9" el="64" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3827" ordinal="0" offset="8" sl="65" sc="9" el="65" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3828" ordinal="0" offset="19" sl="66" sc="5" el="66" ec="5" bec="0" bev="0" fileid="20" />
+>>>>>>> 6f7c6fc2669f9104ef52acf675dc1a9372d55cf0
               </SequencePoints>
               <BranchPoints />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="1" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
               <Summary numSequencePoints="4" visitedSequencePoints="4" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+<<<<<<< HEAD
               <MetadataToken>100663479</MetadataToken>
               <Name>System.Void Stash::Clear()</Name>
               <FileRef uid="21" />
@@ -2310,11 +2367,22 @@
                 <SequencePoint vc="5098" uspid="3972" ordinal="0" offset="0" sl="17" sc="38" el="17" ec="38" bec="0" bev="0" fileid="23" />
                 <SequencePoint vc="5098" uspid="3973" ordinal="0" offset="1" sl="18" sc="9" el="18" ec="9" bec="0" bev="0" fileid="23" />
                 <SequencePoint vc="5098" uspid="3974" ordinal="0" offset="10" sl="19" sc="5" el="19" ec="5" bec="0" bev="0" fileid="23" />
+=======
+              <MetadataToken>100663461</MetadataToken>
+              <Name>System.Void SettingsMenu::setThreePlayer()</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="1" uspid="3829" ordinal="0" offset="0" sl="69" sc="5" el="69" ec="5" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3830" ordinal="0" offset="1" sl="70" sc="9" el="70" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3831" ordinal="0" offset="8" sl="71" sc="9" el="71" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3832" ordinal="0" offset="19" sl="72" sc="5" el="72" ec="5" bec="0" bev="0" fileid="20" />
+>>>>>>> 6f7c6fc2669f9104ef52acf675dc1a9372d55cf0
               </SequencePoints>
               <BranchPoints />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="1" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
               <Summary numSequencePoints="4" visitedSequencePoints="4" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+<<<<<<< HEAD
               <MetadataToken>100663487</MetadataToken>
               <Name>System.Void Hand::AddCardtoHand(Card)</Name>
               <FileRef uid="23" />
@@ -2323,10 +2391,21 @@
                 <SequencePoint vc="10" uspid="3976" ordinal="0" offset="1" sl="23" sc="9" el="23" ec="9" bec="0" bev="0" fileid="23" />
                 <SequencePoint vc="10" uspid="3977" ordinal="0" offset="14" sl="24" sc="9" el="24" ec="9" bec="0" bev="0" fileid="23" />
                 <SequencePoint vc="10" uspid="3978" ordinal="0" offset="54" sl="25" sc="5" el="25" ec="5" bec="0" bev="0" fileid="23" />
+=======
+              <MetadataToken>100663462</MetadataToken>
+              <Name>System.Void SettingsMenu::setFourPlayer()</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="1" uspid="3833" ordinal="0" offset="0" sl="75" sc="5" el="75" ec="5" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3834" ordinal="0" offset="1" sl="76" sc="9" el="76" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3835" ordinal="0" offset="8" sl="77" sc="9" el="77" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3836" ordinal="0" offset="19" sl="78" sc="5" el="78" ec="5" bec="0" bev="0" fileid="20" />
+>>>>>>> 6f7c6fc2669f9104ef52acf675dc1a9372d55cf0
               </SequencePoints>
               <BranchPoints />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="1" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+<<<<<<< HEAD
               <Summary numSequencePoints="3" visitedSequencePoints="3" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
               <MetadataToken>100663490</MetadataToken>
               <Name>System.Boolean Hand::IsEmpty()</Name>
@@ -2452,10 +2531,22 @@
                 <SequencePoint vc="0" uspid="4072" ordinal="0" offset="94" sl="105" sc="17" el="105" ec="17" bec="0" bev="0" fileid="24" />
                 <SequencePoint vc="0" uspid="4073" ordinal="0" offset="146" sl="106" sc="9" el="106" ec="9" bec="0" bev="0" fileid="24" />
                 <SequencePoint vc="1" uspid="4074" ordinal="0" offset="147" sl="107" sc="5" el="107" ec="5" bec="0" bev="0" fileid="24" />
+=======
+              <Summary numSequencePoints="4" visitedSequencePoints="4" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+              <MetadataToken>100663463</MetadataToken>
+              <Name>System.Void SettingsMenu::hotSeatEnable()</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="1" uspid="3837" ordinal="0" offset="0" sl="85" sc="5" el="85" ec="5" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3838" ordinal="0" offset="1" sl="86" sc="9" el="86" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3839" ordinal="0" offset="8" sl="87" sc="9" el="87" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3840" ordinal="0" offset="19" sl="89" sc="5" el="89" ec="5" bec="0" bev="0" fileid="20" />
+>>>>>>> 6f7c6fc2669f9104ef52acf675dc1a9372d55cf0
               </SequencePoints>
               <BranchPoints />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="1" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+<<<<<<< HEAD
               <Summary numSequencePoints="3" visitedSequencePoints="3" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
               <MetadataToken>100663494</MetadataToken>
               <Name>Hand Inventory::GetHand()</Name>
@@ -2630,10 +2721,22 @@
                 <SequencePoint vc="19" uspid="4174" ordinal="0" offset="193" sl="72" sc="9" el="72" ec="9" bec="0" bev="0" fileid="25" />
                 <SequencePoint vc="19" uspid="4175" ordinal="0" offset="200" sl="73" sc="9" el="73" ec="9" bec="0" bev="0" fileid="25" />
                 <SequencePoint vc="19" uspid="4176" ordinal="0" offset="207" sl="74" sc="5" el="74" ec="5" bec="0" bev="0" fileid="25" />
+=======
+              <Summary numSequencePoints="4" visitedSequencePoints="4" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+              <MetadataToken>100663464</MetadataToken>
+              <Name>System.Void SettingsMenu::hotseatDisable()</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="1" uspid="3841" ordinal="0" offset="0" sl="92" sc="5" el="92" ec="5" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3842" ordinal="0" offset="1" sl="93" sc="9" el="93" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3843" ordinal="0" offset="8" sl="94" sc="9" el="94" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3844" ordinal="0" offset="19" sl="96" sc="5" el="96" ec="5" bec="0" bev="0" fileid="20" />
+>>>>>>> 6f7c6fc2669f9104ef52acf675dc1a9372d55cf0
               </SequencePoints>
               <BranchPoints />
             </Method>
             <Method visited="true" cyclomaticComplexity="4" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="4" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+<<<<<<< HEAD
               <Summary numSequencePoints="22" visitedSequencePoints="22" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="4" minCyclomaticComplexity="4" maxCrapScore="4" minCrapScore="4" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
               <MetadataToken>100663508</MetadataToken>
               <Name>System.Void MapGenerator::GenerateMap()</Name>
@@ -2707,11 +2810,62 @@
               <FileRef uid="26" />
               <SequencePoints>
                 <SequencePoint vc="58" uspid="4202" ordinal="0" offset="0" sl="22" sc="47" el="22" ec="47" bec="0" bev="0" fileid="26" />
+=======
+              <Summary numSequencePoints="17" visitedSequencePoints="17" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="4" minCyclomaticComplexity="4" maxCrapScore="4" minCrapScore="4" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+              <MetadataToken>100663465</MetadataToken>
+              <Name>System.Void SettingsMenu::gameTimeSettings(System.Int32)</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="3" uspid="3845" ordinal="0" offset="0" sl="102" sc="5" el="102" ec="5" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3846" ordinal="0" offset="1" sl="103" sc="9" el="103" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3847" ordinal="0" offset="9" sl="104" sc="9" el="104" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3848" ordinal="0" offset="10" sl="105" sc="13" el="105" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3849" ordinal="0" offset="21" sl="106" sc="13" el="106" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3850" ordinal="0" offset="32" sl="107" sc="9" el="107" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3851" ordinal="0" offset="33" sl="109" sc="9" el="109" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3852" ordinal="0" offset="41" sl="110" sc="9" el="110" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3853" ordinal="0" offset="42" sl="111" sc="13" el="111" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3854" ordinal="0" offset="53" sl="112" sc="13" el="112" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3855" ordinal="0" offset="64" sl="113" sc="9" el="113" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3856" ordinal="0" offset="65" sl="115" sc="9" el="115" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3857" ordinal="0" offset="73" sl="116" sc="9" el="116" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3858" ordinal="0" offset="74" sl="117" sc="13" el="117" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3859" ordinal="0" offset="85" sl="118" sc="13" el="118" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3860" ordinal="0" offset="96" sl="119" sc="9" el="119" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3861" ordinal="0" offset="97" sl="120" sc="5" el="120" ec="5" bec="0" bev="0" fileid="20" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="true" cyclomaticComplexity="4" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="4" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="17" visitedSequencePoints="17" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="4" minCyclomaticComplexity="4" maxCrapScore="4" minCrapScore="4" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+              <MetadataToken>100663466</MetadataToken>
+              <Name>System.Void SettingsMenu::tilePercentageSettings(System.Int32)</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="3" uspid="3862" ordinal="0" offset="0" sl="123" sc="5" el="123" ec="5" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3863" ordinal="0" offset="1" sl="124" sc="9" el="124" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3864" ordinal="0" offset="9" sl="125" sc="9" el="125" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3865" ordinal="0" offset="10" sl="126" sc="13" el="126" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3866" ordinal="0" offset="21" sl="127" sc="13" el="127" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3867" ordinal="0" offset="32" sl="128" sc="9" el="128" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3868" ordinal="0" offset="33" sl="130" sc="9" el="130" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3869" ordinal="0" offset="41" sl="131" sc="9" el="131" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3870" ordinal="0" offset="42" sl="132" sc="13" el="132" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3871" ordinal="0" offset="53" sl="133" sc="13" el="133" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3872" ordinal="0" offset="64" sl="134" sc="9" el="134" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3873" ordinal="0" offset="65" sl="136" sc="9" el="136" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3874" ordinal="0" offset="73" sl="137" sc="9" el="137" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3875" ordinal="0" offset="74" sl="138" sc="13" el="138" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3876" ordinal="0" offset="85" sl="139" sc="13" el="139" ec="13" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="1" uspid="3877" ordinal="0" offset="96" sl="140" sc="9" el="140" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3878" ordinal="0" offset="97" sl="141" sc="5" el="141" ec="5" bec="0" bev="0" fileid="20" />
+>>>>>>> 6f7c6fc2669f9104ef52acf675dc1a9372d55cf0
               </SequencePoints>
               <BranchPoints />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="1" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
               <Summary numSequencePoints="3" visitedSequencePoints="3" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+<<<<<<< HEAD
               <MetadataToken>100663514</MetadataToken>
               <Name>System.Int32 PlayerController::GetNumberOfPlayers()</Name>
               <FileRef uid="26" />
@@ -2963,11 +3117,21 @@
                 <SequencePoint vc="20" uspid="4445" ordinal="0" offset="0" sl="35" sc="5" el="35" ec="5" bec="0" bev="0" fileid="27" />
                 <SequencePoint vc="20" uspid="4446" ordinal="0" offset="1" sl="36" sc="9" el="36" ec="9" bec="0" bev="0" fileid="27" />
                 <SequencePoint vc="20" uspid="4447" ordinal="0" offset="8" sl="37" sc="5" el="37" ec="5" bec="0" bev="0" fileid="27" />
+=======
+              <MetadataToken>100663467</MetadataToken>
+              <Name>System.Int32 SettingsMenu::getPlayerCount()</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="3" uspid="3879" ordinal="0" offset="0" sl="147" sc="5" el="147" ec="5" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3880" ordinal="0" offset="1" sl="148" sc="9" el="148" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3881" ordinal="0" offset="10" sl="149" sc="5" el="149" ec="5" bec="0" bev="0" fileid="20" />
+>>>>>>> 6f7c6fc2669f9104ef52acf675dc1a9372d55cf0
               </SequencePoints>
               <BranchPoints />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="1" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
               <Summary numSequencePoints="3" visitedSequencePoints="3" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+<<<<<<< HEAD
               <MetadataToken>100663536</MetadataToken>
               <Name>Player/Phase Player::GetCurrentPhase()</Name>
               <FileRef uid="27" />
@@ -2975,11 +3139,21 @@
                 <SequencePoint vc="20291" uspid="4451" ordinal="0" offset="0" sl="47" sc="5" el="47" ec="5" bec="0" bev="0" fileid="27" />
                 <SequencePoint vc="20291" uspid="4452" ordinal="0" offset="1" sl="48" sc="9" el="48" ec="9" bec="0" bev="0" fileid="27" />
                 <SequencePoint vc="20291" uspid="4453" ordinal="0" offset="10" sl="49" sc="5" el="49" ec="5" bec="0" bev="0" fileid="27" />
+=======
+              <MetadataToken>100663468</MetadataToken>
+              <Name>System.Boolean SettingsMenu::getHotseat()</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="2" uspid="3882" ordinal="0" offset="0" sl="153" sc="5" el="153" ec="5" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="2" uspid="3883" ordinal="0" offset="1" sl="154" sc="9" el="154" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="2" uspid="3884" ordinal="0" offset="10" sl="155" sc="5" el="155" ec="5" bec="0" bev="0" fileid="20" />
+>>>>>>> 6f7c6fc2669f9104ef52acf675dc1a9372d55cf0
               </SequencePoints>
               <BranchPoints />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="1" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
               <Summary numSequencePoints="3" visitedSequencePoints="3" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+<<<<<<< HEAD
               <MetadataToken>100663538</MetadataToken>
               <Name>Inventory Player::GetInventory()</Name>
               <FileRef uid="27" />
@@ -2987,11 +3161,21 @@
                 <SequencePoint vc="381" uspid="4454" ordinal="0" offset="0" sl="64" sc="5" el="64" ec="5" bec="0" bev="0" fileid="27" />
                 <SequencePoint vc="381" uspid="4455" ordinal="0" offset="1" sl="65" sc="9" el="65" ec="9" bec="0" bev="0" fileid="27" />
                 <SequencePoint vc="381" uspid="4456" ordinal="0" offset="10" sl="66" sc="5" el="66" ec="5" bec="0" bev="0" fileid="27" />
+=======
+              <MetadataToken>100663469</MetadataToken>
+              <Name>System.Single SettingsMenu::getTimerWinCondition()</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="3" uspid="3885" ordinal="0" offset="0" sl="161" sc="5" el="161" ec="5" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3886" ordinal="0" offset="1" sl="162" sc="9" el="162" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3887" ordinal="0" offset="10" sl="163" sc="5" el="163" ec="5" bec="0" bev="0" fileid="20" />
+>>>>>>> 6f7c6fc2669f9104ef52acf675dc1a9372d55cf0
               </SequencePoints>
               <BranchPoints />
             </Method>
             <Method visited="true" cyclomaticComplexity="1" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="1" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
               <Summary numSequencePoints="3" visitedSequencePoints="3" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="1" minCyclomaticComplexity="1" maxCrapScore="1" minCrapScore="1" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
+<<<<<<< HEAD
               <MetadataToken>100663540</MetadataToken>
               <Name>System.Boolean Player::IsPlayerTurnFinished()</Name>
               <FileRef uid="27" />
@@ -3493,6 +3677,15 @@
                 <SequencePoint vc="737" uspid="4812" ordinal="0" offset="0" sl="15" sc="9" el="15" ec="9" bec="0" bev="0" fileid="28" />
                 <SequencePoint vc="737" uspid="4813" ordinal="0" offset="21" sl="16" sc="9" el="16" ec="9" bec="0" bev="0" fileid="28" />
                 <SequencePoint vc="737" uspid="4814" ordinal="0" offset="32" sl="17" sc="9" el="17" ec="9" bec="0" bev="0" fileid="28" />
+=======
+              <MetadataToken>100663470</MetadataToken>
+              <Name>System.Single SettingsMenu::getTileWinCondition()</Name>
+              <FileRef uid="20" />
+              <SequencePoints>
+                <SequencePoint vc="3" uspid="3888" ordinal="0" offset="0" sl="166" sc="4" el="166" ec="4" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3889" ordinal="0" offset="1" sl="167" sc="9" el="167" ec="9" bec="0" bev="0" fileid="20" />
+                <SequencePoint vc="3" uspid="3890" ordinal="0" offset="10" sl="168" sc="4" el="168" ec="4" bec="0" bev="0" fileid="20" />
+>>>>>>> 6f7c6fc2669f9104ef52acf675dc1a9372d55cf0
               </SequencePoints>
               <BranchPoints />
             </Method>

@@ -80,18 +80,19 @@ public class SettingsMenu : MonoBehaviour
 
 
     // Multiplayer Settings
+    // moved functionality of SetActive to the Inspector due to test failures
     public void hotSeatEnable()
     {
         hotseat = true;
         Debug.Log("Hotseat Enabled");
-        settingsMenu.SetActive(true);
+        //settingsMenu.SetActive(true);
     }
 
     public void hotseatDisable()
     {
         hotseat = false;
         Debug.Log("Hotseat Disabled");
-        settingsMenu.SetActive(true);
+        //settingsMenu.SetActive(true);
     }
 
 

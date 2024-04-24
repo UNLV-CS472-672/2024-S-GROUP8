@@ -62,7 +62,7 @@ namespace Test
             // Test to ensure the building is retrieved correctly
             Building building = tile.GetBuilding();
             string buildingName = building.GetName();
-            Assert.AreEqual("Nothing", buildingName);
+            Assert.AreEqual("Nothing", building.GetName());
 
         }
         [Test]
