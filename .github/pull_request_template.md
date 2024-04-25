@@ -8,7 +8,7 @@
 
 ## Types of changes
 - [ ] Bug fix (fixes a issue)
-- [ ] New feature (new implemention of a feature)
+- [ ] New feature (new implementation of a feature)
 - [ ] Refactoring (small changes that won't impact very much)
 - [ ] Possible broken change (fix or feature that could break functionality)
 
