@@ -33,20 +33,6 @@ public class MainMenu : MonoBehaviour
 
     public GameObject confirmationPrompt = null;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    //     startButtonText.text = "Start Game";
-    //     settingsButtonText.text = "Settings";
-    //     exitButtonText.text = "Exit Game"
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     
     public void NewGameSelectionYes(){
         SceneManager.LoadScene(newGame);

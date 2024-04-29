@@ -492,7 +492,7 @@ MonoBehaviour:
   startButtonText: {fileID: 0}
   settingsButtonText: {fileID: 0}
   exitButtonText: {fileID: 0}
-  newGame: newGame
+  newGame: GameSettings
   noSaveToLoad: {fileID: 2098758286}
   volumeText: {fileID: 550373473}
   volumeSlider: {fileID: 1120545124}

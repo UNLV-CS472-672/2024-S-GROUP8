@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class EscapeMenu : MonoBehaviour
 {
@@ -60,7 +61,10 @@ public class EscapeMenu : MonoBehaviour
         // Quit to main menu is not available yet as we do not have a main menu currently.
         // Otherwise this button will allow the player to return to the main menu from a battle.
         GameObject quitButton = CreateButton(menuPanel.transform, new Vector2(0, -60), "Main Menu");
-        quitButton.GetComponent<Button>().onClick.AddListener(() => {Debug.Log("Quit to main menu button clicked");});
+        quitButton.GetComponent<Button>().onClick.AddListener(() => {
+            SceneManager.LoadScene("Main Menu");
+            Debug.Log("Quit to main menu button clicked");
+        });
 
         // If this button is clicked, close the entire game.
         GameObject exitGameButton = CreateButton(menuPanel.transform, new Vector2(0, -110), "Exit Game");
