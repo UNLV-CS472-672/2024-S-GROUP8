@@ -16,6 +16,9 @@ public class PlayerList : MonoBehaviour
     public GameObject element;
     public List<GameObject> elementList;
     public static bool updateMenu = false;
+    public static bool updateCurrentPlayer = false;
+    public Sprite goldBar;
+    public Sprite selectBar;
 
     // Start is called before the first frame update
     /* Start creates all objects and components needed to create */
@@ -60,7 +63,6 @@ public class PlayerList : MonoBehaviour
 
         // add text to panel
         for (int i = 0; i < Controller.GetNumberOfPlayers(); i++){
-            Player CurrentPlayer = PlayerController.players[i]; // get next player from controller
             elementList.Add(Instantiate(element));
             elementList[i].gameObject.transform.parent = panel.transform;
             elementList[i].GetComponent<RectTransform>().localScale = new Vector3(.75f, .75f, .75f);
@@ -68,6 +70,9 @@ public class PlayerList : MonoBehaviour
             elementList[i].transform.Find("PlayerIcon").GetComponent<Image>().color = PlayerController.players[i].GetColor().color;
             elementList[i].transform.Find("PlayerName").GetComponent<TextMeshProUGUI>().text = PlayerController.players[i].GetName();
             elementList[i].transform.Find("TileInfo").GetComponent<TextMeshProUGUI>().text = "Tiles: 0";
+            if (PlayerController.players[i].GetName().Equals(PlayerController.CurrentPlayer.GetName())){
+                elementList[i].GetComponent<Image>().sprite = selectBar;
+            } 
         }
     }
 
@@ -81,6 +86,18 @@ public class PlayerList : MonoBehaviour
                 elementList[i].transform.Find("TileInfo").GetComponent<TextMeshProUGUI>().text = "Tiles: " + PlayerController.players[i].getTilesControlledCount();
             }
             updateMenu = false;
+        }
+        if (updateCurrentPlayer) {
+            for (int i = 0; i < Controller.GetNumberOfPlayers(); i++)
+            {
+                if (PlayerController.players[i].GetName().Equals(PlayerController.CurrentPlayer.GetName())){
+                    elementList[i].GetComponent<Image>().sprite = selectBar;
+                }
+                else {
+                    elementList[i].GetComponent<Image>().sprite = goldBar;
+                }
+            }
+            updateCurrentPlayer = false;
         }
     }
 

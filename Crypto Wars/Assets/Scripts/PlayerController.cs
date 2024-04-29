@@ -215,6 +215,7 @@ public class PlayerController : MonoBehaviour
     // Moves to the next player in line
     public static void NextPlayer() {
         Switching = true;
+        PlayerList.updateCurrentPlayer = true;
         if (players.Count > (CurrentPlayerIndex + 1))
         {
             CurrentPlayerIndex++; 
@@ -229,6 +230,7 @@ public class PlayerController : MonoBehaviour
     public static void NextPlayer(int index)
     {
         Switching = true;
+        PlayerList.updateCurrentPlayer = true;
         if (players.Count >= (index + 1))
         {
             CurrentPlayerIndex = index;
