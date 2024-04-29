@@ -49,7 +49,8 @@ public class Tile : MonoBehaviour
         // -1 represents non-ownership
         if (index > -1)
         {
-            PlayerController.players[index].AddTiles(reference);
+            if(reference.tilePosition != new Vector2(-1000, -1000))
+                PlayerController.players[index].AddTiles(reference);
         }
         playerIndex = index;
     }

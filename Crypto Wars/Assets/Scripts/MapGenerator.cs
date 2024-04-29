@@ -12,26 +12,93 @@ public class MapGenerator : MonoBehaviour
     void Start()
     {
         // Just a default map
-        int[,] map = 
+        if (PlayerController.players.Count == 2) { 
+            int[,] map = 
+            {
+                {1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1},
+            };
+            int[,] owners =
+            {
+                {0, 0, 0, 1, 1},
+                {0, 0, -1, 1, 1},
+                {0, -1, -1, -1, 1},
+                {0, 0, -1, 1, 1},
+                {0, 0, 1, 1, 1}
+            };
+            SetArray(map);
+            SetOwner(owners);
+            GenerateMap(map, owners);
+        }
+
+        // The Triangle
+        if (PlayerController.players.Count == 3)
         {
-            {1, 1, 1, 1, 0},
-            {1, 1, 1, 1, 0},
-            {1, 1, 1, 1, 1},
-            {0, 1, 1, 1, 1},
-            {0, 1, 1, 1, 0}
-        };
-        int[,] owners =
+            int[,] map =
+            {
+                {1, 0, 0, 0, 0 },
+                {1, 1, 0, 0, 0 },
+                {1, 1, 1, 0, 0 },
+                {1, 1, 1, 1, 0 },
+                {1, 1, 1, 1, 1 },
+                {1, 1, 1, 1, 0 },
+                {1, 1, 1, 0, 0 },
+                {1, 1, 0, 0, 0 },
+                {1, 0, 0, 0, 0 }
+
+            };
+            int[,] owners =
+            {
+                {0, 9, 9, 9, 9 },
+                {0, 0, 9, 9, 9 },
+                {0, 0, 0, 9, 9 },
+                {1, 1, 1, 1, 9 },
+                {1, 1, 1, 1, 1 },
+                {1, 1, 1, 1, 9 },
+                {2, 2, 2, 9, 9 },
+                {2, 2, 9, 9, 9 },
+                {2, 9, 9, 9, 9 }
+            };
+            SetArray(map);
+            SetOwner(owners);
+            GenerateMap(map, owners);
+        }
+
+        // Bigger Box
+        if (PlayerController.players.Count == 4)
         {
-            {0, 0, 0, 0, -1},
-            {0, 0, 0, 0, -1},
-            {0, 0, 1, 1, 1},
-            {-1, 1, 1, 1, 1},
-            {-1, 1, 1, 1, -1}
-        };
-        SetArray(map);
-        SetOwner(owners);
-        CreateSymmetricMap(map);
-        GenerateMap();
+            int[,] map =
+            {
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1}
+            };
+            int[,] owners =
+            {
+                {0, 0, 0, 0, 2, 2, 2, 2},
+                {0, 0, 0, 0, 2, 2, 2, 2},
+                {0, 0, 0, 0, 2, 2, 2, 2},
+                {0, 0, 0, -1, -1, 2, 2, 2},
+                {1, 1, 1, -1, -1, 3, 3, 3},
+                {1, 1, 1, 1, 3, 3, 3, 3},
+                {1, 1, 1, 1, 3, 3, 3, 3},
+                {1, 1, 1, 1, 3, 3, 3, 3}
+            };
+            SetArray(map);
+            SetOwner(owners);
+            GenerateMap(map, owners);
+        }
+
+        //CreateSymmetricMap(map);
+
     }
     public void SetArray(int[,] array)
     {
@@ -73,10 +140,10 @@ public class MapGenerator : MonoBehaviour
         ownerArray = newOwnerArray;
     }
     // Generate a map of tiles based on the given array
-    public void GenerateMap()
+    public void GenerateMap(int[,] tiles, int[,] owner)
     {
-        int width = tileArray.GetLength(0);
-        int height = tileArray.GetLength(1);
+        int width = tiles.GetLength(0);
+        int height = tiles.GetLength(1);
 
         // The offset is used to mimic an edge shader effect on the tiles so that they are easy to differentiate
         // If this effect is not desired then xOffset and yOffset should be set to 1
@@ -91,7 +158,8 @@ public class MapGenerator : MonoBehaviour
                 if(tileArray[i, j] == 1)
                 {
                     Vector3 tilePosition = new Vector3(i * xOffset, 2.0f, j * yOffset);
-                    tilePrefab.GetComponent<Tile>().SetPlayer(ownerArray[i, j]);
+                    tilePrefab.GetComponent<Tile>().SetPlayer(owner[i, j]);
+                    Debug.Log("POS: " + i + " " + j) ;
                     GameObject tile = Instantiate(tilePrefab, tilePosition, Quaternion.identity);
                     //tile.transform.SetParent(transform);
                 }

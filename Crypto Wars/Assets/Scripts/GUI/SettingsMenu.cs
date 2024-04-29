@@ -74,18 +74,21 @@ public class SettingsMenu : MonoBehaviour
     public void setTwoPlayer()
     {
         playerCount = 2;
+        PlayerController.playersToGen = 2;
         Debug.Log("Player Count set to 2!");
     }
 
     public void setThreePlayer()
     {
         playerCount = 3;
+        PlayerController.playersToGen = 3;
         Debug.Log("Player Count set to 3!");
     }
 
     public void setFourPlayer()
     {
         playerCount = 4;
+        PlayerController.playersToGen = 4;
         Debug.Log("Player Count set to 4!");
     }
 
