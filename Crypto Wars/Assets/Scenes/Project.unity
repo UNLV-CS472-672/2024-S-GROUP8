@@ -5197,6 +5197,8 @@ MonoBehaviour:
   bar: {fileID: 21300000, guid: 82310fbd337ba654f8bd6cfc8b5b10ef, type: 3}
   element: {fileID: 8466484515229984739, guid: dba1183f4603efa4fbecf823656a05b1, type: 3}
   elementList: []
+  goldBar: {fileID: 21300000, guid: 6258e2691ebd8d24a9c3bac8c972a46d, type: 3}
+  selectBar: {fileID: 21300000, guid: 4faded5395e90b149ab5e80033fa4419, type: 3}
 --- !u!81 &1048171622
 AudioListener:
   m_ObjectHideFlags: 0

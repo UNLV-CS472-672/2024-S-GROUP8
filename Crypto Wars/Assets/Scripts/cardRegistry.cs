@@ -10,9 +10,9 @@ public class CardRegistry
     public static void Load()
     {
         // Create the cards
-        CreateCard("Python", 5, 55, 20);
-        CreateCard("Java", 8, 21, 30);
-        CreateCard("C", 1, 34, 40);
+        CreateCard(Resources.Load<Sprite>("Sprites/python_card"), "Python", 3, 35, 0.1f, 0);
+        CreateCard(Resources.Load<Sprite>("Sprites/java_card"), "Java", 5, 20, 0, 0.1f);
+        CreateCard(Resources.Load<Sprite>("Sprites/c_card"), "C", 4, 30, 0, 0);
 
         // To test, log the names of the cards that were created
         foreach (var card in cardList)
@@ -22,15 +22,16 @@ public class CardRegistry
     }
 
     // Method to create a card and add it to the list
-    private static void CreateCard(string name, int offense, int defense, int staminaCost)
+    private static void CreateCard(Sprite spr, string name, int offense, int defense, float immunity, float efficeny)
     {
         
-        Sprite cardSprite = null; // Card sprite placeholder 
+        Sprite cardSprite = spr; 
 
         Card newCard = new Card(cardSprite, name);
         newCard.setOffense(offense);
         newCard.setDefense(defense);
-        newCard.setStaminaCost(staminaCost);
+        newCard.setImmunityChance(immunity);
+        newCard.setEfficency(efficeny);
 
         cardList.Add(newCard);
     }
