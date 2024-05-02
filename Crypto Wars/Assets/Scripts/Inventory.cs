@@ -23,6 +23,7 @@ public class Inventory
             Debug.Log(CardStacks[0].GetCardinStack().GetName().Equals(""));
             manager.SetText("CardName", 0, "" + CardStacks[0].GetCardinStack().GetName(), "CardName Bar");
             manager.SetText("Amount", 0, "" + 1);
+            manager.ChangeImage(0);
         }
         // Stacks already exist
         else
@@ -47,6 +48,7 @@ public class Inventory
                 CardStacks.Add(new CardStack(card, maxCardStack));
                 manager.SetText("CardName", CardStacks.Count - 1, "" + CardStacks[CardStacks.Count - 1].GetCardinStack().GetName(), "CardName Bar");
                 manager.SetText("Amount", CardStacks.Count - 1, "" + CardStacks[CardStacks.Count - 1].GetSize());
+                manager.ChangeImage(CardStacks.Count - 1);
             }
             else
             {

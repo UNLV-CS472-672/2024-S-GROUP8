@@ -55,6 +55,7 @@ public class Player
         playerName = name;
         playerColor = color;
         percentControlled = 0;
+        tilesControlled = 0;
         inventory = new Inventory();
         tilesOwned = new List<Tile.TileReference>();
     }
@@ -100,8 +101,8 @@ public class Player
         if (!tilesOwned.Contains(tile))
         {
             tilesOwned.Add(tile);
-            Debug.Log("Tile added to player's ownership");
-            Debug.Log(tilesOwned.GetHashCode());
+            PlayerList.updateMenu = true;
+            Debug.Log("Tile Added: " + tile.tilePosition);
         }
     }
 

@@ -12,11 +12,20 @@ public class PlayerList : MonoBehaviour
     public Boolean visible = true;
     public Image image;
     private GameObject panel;
+    public Sprite bar;
+    public GameObject element;
+    public List<GameObject> elementList;
+    public static bool updateMenu = false;
+    public static bool updateCurrentPlayer = false;
+    public Sprite goldBar;
+    public Sprite selectBar;
 
     // Start is called before the first frame update
     /* Start creates all objects and components needed to create */
     void Start()
     {
+        elementList = new List<GameObject>();
+
         TMP_FontAsset font = Resources.Load<TMP_FontAsset>("LiberationSans.ttf");
         GameObject Canvas = GameObject.Find("Canvas");
 
@@ -25,7 +34,9 @@ public class PlayerList : MonoBehaviour
         panel.transform.parent = Canvas.transform;
         panel.AddComponent<CanvasRenderer>();
         image = panel.AddComponent<Image>();
-        image.color = new Color(0, 0, 0, 1);
+        image.color = new Color(255, 255, 255, 255);
+        image.sprite = bar;
+        image.type = Image.Type.Sliced;
         // EventTrigger is used to toggle visibility of PlayerList
         EventTrigger et = panel.AddComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();
@@ -34,33 +45,34 @@ public class PlayerList : MonoBehaviour
         et.triggers.Add(entry);
 
         // fix panel position to middle right of screen
-        panel.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        panel.GetComponent<RectTransform>().localPosition = new Vector3(0, 40, 0);
+        panel.GetComponent<RectTransform>().sizeDelta = new Vector2 (120, 200);
         panel.GetComponent<RectTransform>().anchorMin = new Vector2(1, 0.5f);
         panel.GetComponent<RectTransform>().anchorMax = new Vector2(1, 0.5f);
         panel.GetComponent<RectTransform>().pivot = new Vector2(1, 0.5f);
+        panel.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
+        panel.AddComponent<GridLayoutGroup>();
+        RectOffset rect = new RectOffset();
+        rect.left = -10;
+        rect.right = 0;
+        rect.top = 3;
+        rect.bottom = 0;
+        panel.GetComponent<GridLayoutGroup>().padding = rect;
+        panel.GetComponent<GridLayoutGroup>().cellSize = new Vector2(140f, 45f);
 
         // add text to panel
-        for(int i = 0; i < Controller.GetNumberOfPlayers(); i++){
-            Player CurrentPlayer = PlayerController.CurrentPlayer; // get next player from controller
-            GameObject temp = new GameObject("Player" + CurrentPlayer.GetName() + "_Text");
-            TextMeshProUGUI playerText = temp.AddComponent<TextMeshProUGUI>();
-            playerText.transform.parent = panel.transform;
-            // align text within panel
-            playerText.GetComponent<RectTransform>().localPosition = Vector3.zero;
-            playerText.GetComponent<RectTransform>().anchorMin = new Vector2(1, 0.5f);
-            playerText.GetComponent<RectTransform>().anchorMax = new Vector2(1, 0.5f);
-            playerText.GetComponent<RectTransform>().pivot = new Vector2(1, 0.5f);
-            playerText.GetComponent<RectTransform>().sizeDelta = new Vector2(125, 82);
-            if(i > 0){ // moves text further down panel dependant on number of players
-                playerText.GetComponent<RectTransform>().localPosition = new Vector3(50, -40*i, 0);
-            }
-            // change how text is displayed
-            playerText.text = "Player " + CurrentPlayer.GetName() + "\n<info>";
-            playerText.color = CurrentPlayer.GetColor().color;
-            playerText.font = font;
-            playerText.fontSize = 10;
-
-            PlayerController.NextPlayer();
+        for (int i = 0; i < Controller.GetNumberOfPlayers(); i++){
+            elementList.Add(Instantiate(element));
+            elementList[i].gameObject.transform.parent = panel.transform;
+            elementList[i].GetComponent<RectTransform>().localScale = new Vector3(.75f, .75f, .75f);
+            elementList[i].name = "ListElement" + (i + 1);
+            elementList[i].transform.Find("PlayerIcon").GetComponent<Image>().color = PlayerController.players[i].GetColor().color;
+            elementList[i].transform.Find("PlayerName").GetComponent<TextMeshProUGUI>().text = PlayerController.players[i].GetName();
+            elementList[i].transform.Find("TileInfo").GetComponent<TextMeshProUGUI>().text = "Tiles: 0";
+            if (PlayerController.players[i].GetName().Equals(PlayerController.CurrentPlayer.GetName())){
+                elementList[i].GetComponent<Image>().sprite = selectBar;
+            } 
         }
     }
 
@@ -68,7 +80,25 @@ public class PlayerList : MonoBehaviour
     /* Update() should be used to change any displayed text during the game */
     void Update()
     {
-        
+        if (updateMenu) {
+            for (int i = 0; i < Controller.GetNumberOfPlayers(); i++)
+            {
+                elementList[i].transform.Find("TileInfo").GetComponent<TextMeshProUGUI>().text = "Tiles: " + PlayerController.players[i].getTilesControlledCount();
+            }
+            updateMenu = false;
+        }
+        if (updateCurrentPlayer) {
+            for (int i = 0; i < Controller.GetNumberOfPlayers(); i++)
+            {
+                if (PlayerController.players[i].GetName().Equals(PlayerController.CurrentPlayer.GetName())){
+                    elementList[i].GetComponent<Image>().sprite = selectBar;
+                }
+                else {
+                    elementList[i].GetComponent<Image>().sprite = goldBar;
+                }
+            }
+            updateCurrentPlayer = false;
+        }
     }
 
     public void ToggleVisibility(){

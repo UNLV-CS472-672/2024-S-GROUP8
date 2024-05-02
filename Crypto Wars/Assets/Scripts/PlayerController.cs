@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     private bool notAdj = false;
     private float offSet = 0.04f;
 
+    public static int playersToGen = 2;
+
     public void SetAdj(bool boo)
     {
         notAdj = !boo;
@@ -50,13 +52,32 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        players = new List<Player>
-        {
-            new Player("One", Resources.Load<Material>("Materials/PlayerTileColor")),
-            new Player("Two", Resources.Load<Material>("Materials/EnemyTileColor"))
-        };
+        if (playersToGen == 2){
+            players = new List<Player>
+            {
+                new Player("Player One", Resources.Load<Material>("Materials/PlayerTileColor")),
+                new Player("Player Two", Resources.Load<Material>("Materials/EnemyTileColor"))
+            };
+        }
+        else if (playersToGen == 3){
+            players = new List<Player>
+            {
+                new Player("Player One", Resources.Load<Material>("Materials/PlayerTileColor")),
+                new Player("Player Two", Resources.Load<Material>("Materials/EnemyTileColor")),
+                new Player("Player Three", Resources.Load<Material>("Materials/OrangeColor"))
+            };
+        }
+        else {
+            players = new List<Player>
+            {
+                new Player("Player One", Resources.Load<Material>("Materials/PlayerTileColor")),
+                new Player("Player Two", Resources.Load<Material>("Materials/EnemyTileColor")),
+                new Player("Player Three", Resources.Load<Material>("Materials/OrangeColor")),
+                new Player("Player Four", Resources.Load<Material>("Materials/PurpleColor"))
+            };
+        }
 
-        
+
         CurrentPlayer = players[0];
         CurrentPlayerIndex = 0;
         CurrentPlayer.SetPhase(Player.Phase.Defense);
@@ -145,6 +166,7 @@ public class PlayerController : MonoBehaviour
                 // (If an attack exists)
                 if (tile.GetPlayer() == CurrentPlayerIndex && CurrentPlayer.GetCurrentPhase() == Player.Phase.Defense)
                 {
+                    EnableCancel();
                     // Grabs the tile to check if it can be defended
                     if (CreateDefenseSystem.IsDefendable(tile.GetTilePosition()))
                     {
@@ -194,6 +216,7 @@ public class PlayerController : MonoBehaviour
     // Moves to the next player in line
     public static void NextPlayer() {
         Switching = true;
+        PlayerList.updateCurrentPlayer = true;
         if (players.Count > (CurrentPlayerIndex + 1))
         {
             CurrentPlayerIndex++; 
@@ -208,6 +231,7 @@ public class PlayerController : MonoBehaviour
     public static void NextPlayer(int index)
     {
         Switching = true;
+        PlayerList.updateCurrentPlayer = true;
         if (players.Count >= (index + 1))
         {
             CurrentPlayerIndex = index;

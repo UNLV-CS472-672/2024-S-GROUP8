@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Tile : MonoBehaviour
 {
@@ -49,7 +48,8 @@ public class Tile : MonoBehaviour
         // -1 represents non-ownership
         if (index > -1)
         {
-            PlayerController.players[index].AddTiles(reference);
+            if(reference.tilePosition != new Vector2(-1000, -1000))
+                PlayerController.players[index].AddTiles(reference);
         }
         playerIndex = index;
     }

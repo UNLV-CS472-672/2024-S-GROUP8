@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class SettingsMenu : MonoBehaviour
     private bool hotseat;
     private float timerWinCondition;    
     private float tileWinCondition;
+
+    public string newGame;
+    public string main;
 
 
     void Start()
@@ -56,28 +60,37 @@ public class SettingsMenu : MonoBehaviour
     //     winConditionsMenu.SetActive(true);
     // }
 
+    public void LoadGame() {
+        SceneManager.LoadScene(newGame);
+    }
 
+
+    public void ReturnToMain()
+    {
+        SceneManager.LoadScene(main);
+    }
 
     // Player Menu Buttons
     public void setTwoPlayer()
     {
         playerCount = 2;
+        PlayerController.playersToGen = 2;
         Debug.Log("Player Count set to 2!");
     }
 
     public void setThreePlayer()
     {
         playerCount = 3;
+        PlayerController.playersToGen = 3;
         Debug.Log("Player Count set to 3!");
     }
 
     public void setFourPlayer()
     {
         playerCount = 4;
+        PlayerController.playersToGen = 4;
         Debug.Log("Player Count set to 4!");
     }
-
-
 
     // Multiplayer Settings
     // moved functionality of SetActive to the Inspector due to test failures

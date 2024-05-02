@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 // Need some way of switching the InventoryManager system for each player
@@ -11,6 +13,9 @@ public class InventoryManager : MonoBehaviour
     private static Inventory currentPlayerInventory = null;
     private Card Temp;
     private Card Temp1;
+
+    [SerializeField]
+    private Sprite def;
 
     public static InventoryManager GetManager() { 
         return FindObjectOfType<InventoryManager>();
@@ -67,6 +72,7 @@ public class InventoryManager : MonoBehaviour
             for (int i = 0; i < currentPlayerInventory.GetStacksListSize(); i++){
                 SetText("CardName", i, "" + stacks[i].GetCardinStack().GetName(), "CardName Bar");
                 SetText("Amount", i, "" + stacks[i].GetSize());
+                ChangeImage(i);
             }
             PlayerController.Switching = false;
         }
@@ -96,10 +102,20 @@ public class InventoryManager : MonoBehaviour
             for (int i = 0; i < stacks.Count(); i++) {
                 SetText("CardName", i, "" + stacks[i].GetCardinStack().GetName(), "CardName Bar");
                 SetText("Amount", i, "" + stacks[i].GetSize());
+                ChangeImage(i);
             }
-        SetText("CardName", stacks.Count(), "", "CardName Bar");
-        SetText("Amount", stacks.Count(), "");
+            SetText("CardName", stacks.Count(), "", "CardName Bar");
+            SetText("Amount", stacks.Count(), "");
+            ChangeImage(stacks.Count());
         }
+    }
+
+    public void ChangeImage(int index) {
+        List<CardStack> stacks = currentPlayerInventory.GetStacks();
+        if (stacks.Count > index)
+            Slots[index].GetComponent<Image>().sprite = stacks[index].GetCardinStack().GetSprite();
+        else
+            Slots[index].GetComponent<Image>().sprite = def;
     }
 
     // Function for unit tests to reset slots
