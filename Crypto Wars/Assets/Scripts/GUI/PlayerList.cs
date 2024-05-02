@@ -45,12 +45,12 @@ public class PlayerList : MonoBehaviour
         et.triggers.Add(entry);
 
         // fix panel position to middle right of screen
-        panel.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        panel.GetComponent<RectTransform>().localPosition = new Vector3(0, 40, 0);
         panel.GetComponent<RectTransform>().sizeDelta = new Vector2 (120, 200);
         panel.GetComponent<RectTransform>().anchorMin = new Vector2(1, 0.5f);
         panel.GetComponent<RectTransform>().anchorMax = new Vector2(1, 0.5f);
         panel.GetComponent<RectTransform>().pivot = new Vector2(1, 0.5f);
-        panel.GetComponent<RectTransform>().localScale = Vector3.one;
+        panel.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
         panel.AddComponent<GridLayoutGroup>();
         RectOffset rect = new RectOffset();
