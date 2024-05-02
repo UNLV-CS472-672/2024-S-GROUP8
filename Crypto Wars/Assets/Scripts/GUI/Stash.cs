@@ -111,9 +111,10 @@ public class Stash : MonoBehaviour
         // Controls the actions the player can take on tiles
         Debug.Log(PlayerController.CurrentPlayer.GetCurrentPhase().ToString());
         if ((PlayerController.CurrentPlayer.GetCurrentPhase() == Player.Phase.Attack) && GetStashSize() > 0){
+            tileSelect = PlayerController.GetSelectedTile();
             Activate(false);
             Debug.Log("Collecting attacker data");
-            tileSelect = PlayerController.GetSelectedTile();
+            
             makeAttack = new Battles.AttackObject(stashedCards, new Vector2(0, 0) /* Null for now */, tileSelect.GetTilePosition());
             // Create a new incomplete battle with our attacker object
             GameManager.AddAttackerToBattle(PlayerController.CurrentPlayer, PlayerController.players[tileSelect.GetPlayer()], makeAttack, tileSelect);
@@ -125,9 +126,10 @@ public class Stash : MonoBehaviour
             // PlayerController.CurrentPlayer.SetPhase(Player.Phase.Defense);
         }
         else if ((PlayerController.CurrentPlayer.GetCurrentPhase() == Player.Phase.Defense) && GetStashSize() > 0){
+            tileSelect = PlayerController.GetSelectedTile();
             Activate(false);
             Debug.Log("Collecting defender data");
-            tileSelect = PlayerController.GetSelectedTile();
+
             Debug.Log("" + stashedCards.Count);
             makeDefend = new Battles.DefendObject(stashedCards, tileSelect.GetTilePosition());
             // Finish the incomplete battle with our attacker object
@@ -153,6 +155,7 @@ public class Stash : MonoBehaviour
         }
         else{
             gameObject.SetActive(false);
+            PlayerController.SetSelectedTile(null);
         }
     }
 

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static PlasticPipe.Server.MonitorStats;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,10 +50,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (FinalBattles.Count > 0) {
-            if (PlayerController.CurrentPlayer.GetCurrentPhase() == Player.Phase.Build) {
-                DoAllBattles();
+        if (PlayerController.CurrentPlayer.GetCurrentPhase() == Player.Phase.Build) {
+            if (PlannedBattles.Count > 0) {
+                for (int i = PlannedBattles.Count - 1; i > -1; i--){
+                    if(PlayerController.CurrentPlayer.GetName().Equals(PlayerController.players[PlannedBattles[i].tile.GetPlayer()].GetName()))
+                        AddDefenderToBattle(PlayerController.CurrentPlayer, new Battles.DefendObject(new List<Card>(), PlannedBattles[i].attack.destinationTilePos));
+                }
+            
             }
+            DoAllBattles();
         }
     }
 
@@ -92,7 +96,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void DoAllBattles(){
-         for(int i = 0; i < FinalBattles.Count; i++){
+         for (int i = FinalBattles.Count - 1; i > -1 ; i--){
             // Calculate outcome for battle i
             if(FinalBattles[i].defenderHasCards){
                 // Defender has selected cards

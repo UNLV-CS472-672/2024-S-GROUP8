@@ -166,6 +166,7 @@ public class PlayerController : MonoBehaviour
                 // (If an attack exists)
                 if (tile.GetPlayer() == CurrentPlayerIndex && CurrentPlayer.GetCurrentPhase() == Player.Phase.Defense)
                 {
+                    EnableCancel();
                     // Grabs the tile to check if it can be defended
                     if (CreateDefenseSystem.IsDefendable(tile.GetTilePosition()))
                     {

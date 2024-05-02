@@ -37,7 +37,7 @@ public class CreateDefenseSystem : MonoBehaviour
         if (defendObjects.Count < 1)
             return;
         foreach (GameObject def in defendObjects) {
-            Debug.Log(vec.x);
+            Debug.Log(def.transform.position);
             if (Mathf.FloorToInt(def.transform.position.x) == vec.x && Mathf.FloorToInt(def.transform.position.z) == vec.y) { 
                 Destroy(def);
             }
@@ -52,6 +52,7 @@ public class CreateDefenseSystem : MonoBehaviour
         foreach (GameObject def in defendObjects){
             Destroy(def);
         }
+        defendObjects.Clear();
     }
 
     // Start is called before the first frame update
